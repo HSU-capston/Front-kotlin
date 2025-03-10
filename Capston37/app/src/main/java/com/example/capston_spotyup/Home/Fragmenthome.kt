@@ -56,7 +56,30 @@ class FragmentHome : Fragment() {
 
         // 자동 슬라이드 시작
         handler.postDelayed(autoScrollRunnable, 3000)
+
+        // 🔹 ProgressBar 업데이트 로직 추가
+        setupHorizontalScrollListener()
     }
+
+
+    private fun setupHorizontalScrollListener() {
+        // 가로 스크롤 뷰 & ProgressBar 가져오기
+        val horizontalScrollView = binding.horizontalScrollView
+        val progressBar = binding.scrollIndicator
+
+        horizontalScrollView.viewTreeObserver.addOnGlobalLayoutListener {
+            // 전체 스크롤 가능 거리 계산
+            val scrollRange = horizontalScrollView.getChildAt(0).width - horizontalScrollView.width
+
+            horizontalScrollView.setOnScrollChangeListener { _, scrollX, _, _, _ ->
+                if (scrollRange > 0) {
+                    val progress = (scrollX.toFloat() / scrollRange * 100).toInt()
+                    progressBar.progress = progress
+                }
+            }
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

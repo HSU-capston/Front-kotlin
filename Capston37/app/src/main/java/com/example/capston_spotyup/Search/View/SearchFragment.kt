@@ -1,10 +1,11 @@
-package com.example.capston_spotyup
+package com.example.capston_spotyup.Search.View
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.FragmentSubBinding
 
 

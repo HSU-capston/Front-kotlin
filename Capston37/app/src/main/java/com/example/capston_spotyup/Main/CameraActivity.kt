@@ -22,12 +22,21 @@ import androidx.camera.video.VideoRecordEvent
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.capston_spotyup.Map.DTO.Response.BowlingResponse
+import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.databinding.ActivityCameraBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 
 class CameraActivity : AppCompatActivity() {
@@ -159,7 +168,7 @@ class CameraActivity : AppCompatActivity() {
             runOnUiThread {
                 binding.lotti.visibility = android.view.View.INVISIBLE
                 binding.texttimer.visibility = android.view.View.INVISIBLE
-                binding.texttimer.text="00:00"
+                binding.texttimer.text = "00:00"
             }
 
             timerHandler?.removeCallbacksAndMessages(null)
@@ -176,7 +185,7 @@ class CameraActivity : AppCompatActivity() {
         isRecording = true
         startTimer()
 
-        // ✅ 새 파일 저장 설정
+        // ✅ 파일 이름 생성
         val fileName = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
             .format(System.currentTimeMillis()) + ".mp4"
 
@@ -212,7 +221,13 @@ class CameraActivity : AppCompatActivity() {
                     }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
-                            Toast.makeText(this, "영상 저장됨", Toast.LENGTH_SHORT).show()
+                            val videoFilePath = getVideoFilePath(fileName) // ✅ 녹화된 영상 경로 가져오기
+                            saveVideoFilePathToPreferences(videoFilePath) // ✅ `SharedPreferences`에 저장
+
+                            val sharedPref = getSharedPreferences("VideoPrefs", MODE_PRIVATE)
+                            val savedPath = sharedPref.getString("savedVideoPath", "")
+                            Log.d("CameraActivity", "저장된 파일 경로 확인: $savedPath")
+                            Toast.makeText(this, "$savedPath", Toast.LENGTH_SHORT).show()
                         } else {
                             Log.e("CameraActivity", "녹화 실패: ${recordEvent.error}")
                         }
@@ -228,6 +243,23 @@ class CameraActivity : AppCompatActivity() {
                 }
             }
     }
+    private fun getVideoFilePath(fileName: String): String {
+        return "${getExternalFilesDir(null)}/Movies/CameraX-Video/$fileName"
+    }
+
+
+
+
+    // 🔥 SharedPreferences에 저장하여 MapFragment에서 가져오도록 설정
+    private fun saveVideoFilePathToPreferences(videoFilePath: String) {
+        val sharedPref = getSharedPreferences("VideoPrefs", MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("savedVideoPath", videoFilePath) // 🔥 로컬 경로 저장
+            apply()
+        }
+    }
+
+
     // ✅ 타이머 시작 함수
     private fun startTimer() {
         timerHandler = Handler(Looper.getMainLooper())
