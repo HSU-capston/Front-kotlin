@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 선택된 상태 (회색) -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/Gray3"/>  <!-- 회색으로 유지 -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- 눌린 상태 (어두운 회색) -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/Gray3"/>  <!-- 더 어두운 회색 -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- 추가: 체크 상태에서도 적용되도록 -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/Gray3"/> <!-- 체크 상태에서도 회색 적용 -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- 기본 상태 (투명) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/> <!-- 원래 배경 유지 -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+</selector>
