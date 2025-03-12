@@ -22,125 +22,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="595c0fe3-f9ac-4f09-9e72-5a133aae5a83" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/deploymentTargetSelector.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/kotlinc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/migrations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/androidTest/java/com/example/capston_spotyup/ExampleInstrumentedTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Home/Fragmenthome.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Home/ViewPagerAdapter.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Main/CameraActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Main/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Map/MapFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Profile/ProfileFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Search/SearchFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Signin/SigninActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Signup/SignupActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/java/com/example/capston_spotyup/Splash/SplashActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/color/btn_nav_menu_color.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/color/selector_diet_complete_text.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/color/selector_home_menu_item.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/bottom_nav_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/custom_scroll_indicator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/edit_shape.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/google44.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/gradiant.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_back_btn.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_camera_main.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_home.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_my.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_star_filled.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ic_sub.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_home1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_home2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_home3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_home4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_home_banner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_viewpager2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_viewpager3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/img_viewpager4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/kakako_44.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/logo1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/logo2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/main_button_color.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/main_radius.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/menu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/naver_44.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/ques.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/shape_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/sub_card.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/drawable/viewimage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/customize.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/font.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/jalnan_2.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/mainfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/pretendard_bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/pretendard_medium.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/pretendard_regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/pretendard_semibold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/protest.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/font/sdswagger.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/activity_camera.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/content.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/fragment_home.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/fragment_map.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/fragment_mypage.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/fragment_sub.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/main_dialog.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/signin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/signup.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/splash.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/viewpager1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/viewpager2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/viewpager3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/layout/viewpager4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/menu/bottom_navigation.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/navigation/moblie_navigation.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/values-night/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/values/dimens.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/values/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/app/src/test/java/com/example/capston_spotyup/ExampleUnitTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/gradle/libs.versions.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CapstonSportyUP/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/fragment_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/fragment_map.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +35,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\h0106\.android\avd\Pixel_7_API_34.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/CapstonSportyUP">
       <ProjectState />
@@ -161,12 +46,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Capston-SpotyUP" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -181,18 +61,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "vvan2"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;vvan2&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/HSU-capston/Front.git",
-    "accountId": "65f24e32-ba03-4289-b714-4a6f28dfb815"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/HSU-capston/Front.git&quot;,
+    &quot;accountId&quot;: &quot;65f24e32-ba03-4289-b714-4a6f28dfb815&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -202,28 +82,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "Flutter.main.dart.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "android.gradle.sync.needed": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/wndhk/AndroidStudioProjects/Capston_37_r",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "flutter.settings",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/wndhk/AndroidStudioProjects/Capston_37_r&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;flutter.settings&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Git\Front\android\app\build" />
@@ -232,6 +113,7 @@
   <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="Capston-SpotyUP.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -239,12 +121,14 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="RESTORE_ENABLED" value="false" />
       <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
@@ -291,6 +175,7 @@
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
