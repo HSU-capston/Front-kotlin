@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.capston_spotyup.ProfileFragment
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.Search.View.SearchFragment
 import com.example.capston_spotyup.databinding.ActivityMainBinding
@@ -14,6 +13,7 @@ import com.example.capston_spotyup.databinding.MainDialogBinding
 import com.example.sportyup.FragmentHome
 import com.example.capston_spotyup.CameraActivity
 import com.example.capston_spotyup.Map.MapFragment
+import com.example.capston_spotyup.Profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
