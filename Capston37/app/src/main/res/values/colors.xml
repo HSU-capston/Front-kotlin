@@ -22,6 +22,13 @@
     <color name="sub_6">#007AFF</color>
 
 
+    <!-- Gradient-->
+    <color name="grad1">#007AFF</color>
+    <color name="grad2">#2686EF</color>
+    <color name="grad3">#5BA1EC</color>
+    <color name="grad4">#F2F7FD</color>
+
+
 
 
     <!--Gray-->
