@@ -38,41 +38,36 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 🔥 버튼 클릭 시 저장된 URL을 가져와 서버에 업로드 후 재생
+        // 🔥 버튼 클릭 시 최신 비디오 파일을 찾아 서버에 업로드 후 재생
         binding.playbutton.setOnClickListener {
-            uploadVideoToServer()
+            uploadLatestVideoToServer()
         }
     }
 
+    /**
+     * ✅ 최신 저장된 비디오 파일을 찾아서 서버에 업로드하는 함수
+     */
+    private fun uploadLatestVideoToServer() {
+        val latestVideoPath = getLatestVideoFileFromMediaStore()
 
-    private fun uploadVideoToServer() {
-        var videoFilePath = getSavedVideoPath()
-        var file = File(videoFilePath)
-
-        Log.d("MapFragment", "SharedPreferences에서 가져온 비디오 파일 경로: $videoFilePath")
-
-        if (!file.exists()) {
-            videoFilePath = requireContext().getExternalFilesDir(null)?.absolutePath + "/Movies/CameraX-Video/20250310_063934.mp4"
-            file = File(videoFilePath)
-            Log.d("MapFragment", "getExternalFilesDir()에서 가져온 경로: $videoFilePath")
-        }
-
-        Log.d("MapFragment", "파일 존재 여부: ${file.exists()}, 파일 읽기 가능 여부: ${file.canRead()}")
-
-        if (!file.exists() || !file.canRead()) {
-            videoFilePath = getVideoPathFromMediaStore()
-            file = File(videoFilePath)
-            Log.d("MapFragment", "MediaStore에서 찾은 파일 경로: $videoFilePath")
-        }
-
-        if (!file.exists() || !file.canRead()) {
-            Toast.makeText(requireContext(), "저장된 영상 파일을 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
+        if (latestVideoPath.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "최신 비디오 파일을 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
             return
         }
 
+        val file = File(latestVideoPath)
+        Log.d("MapFragment", "최신 비디오 파일 경로: $latestVideoPath")
+
+        if (!file.exists() || !file.canRead()) {
+            Toast.makeText(requireContext(), "비디오 파일을 찾을 수 없거나 접근할 수 없습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // 🔥 MultipartBody.Part 변환
         val requestFile = file.asRequestBody("video/mp4".toMediaTypeOrNull())
         val videoPart = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
+        // 🔥 서버로 POST 요청 보내기
         RetrofitClient.instance.analyzeBowling(videoPart).enqueue(object : Callback<BowlingResponse> {
             override fun onResponse(call: Call<BowlingResponse>, response: Response<BowlingResponse>) {
                 Log.d("MapFragment", "서버 응답 코드: ${response.code()}")
@@ -109,32 +104,30 @@ class MapFragment : Fragment() {
         })
     }
 
-
-    // 🔥 SharedPreferences에서 저장된 파일 경로 가져오기
-    private fun getSavedVideoPath(): String {
-        val sharedPref = requireActivity().getSharedPreferences("VideoPrefs", AppCompatActivity.MODE_PRIVATE)
-        return sharedPref.getString("savedVideoPath", "") ?: ""
-    }
-
-    // 🔥 MediaStore에서 비디오 파일 경로 가져오기
-    private fun getVideoPathFromMediaStore(): String {
+    /**
+     * ✅ 가장 최근에 저장된 비디오 파일 경로 가져오기 (MediaStore 사용)
+     */
+    private fun getLatestVideoFileFromMediaStore(): String? {
         val projection = arrayOf(MediaStore.Video.Media.DATA)
-        val cursor = requireContext().contentResolver.query(
-            MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-            projection, null, null, null
-        )
+        val sortOrder = "${MediaStore.Video.Media.DATE_ADDED} DESC" // 최신 파일 순 정렬
 
-        cursor?.use {
-            val columnIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
-            while (it.moveToNext()) {
-                val filePath = it.getString(columnIndex)
-                Log.d("MapFragment", "MediaStore에서 찾은 파일 경로: $filePath")
-                return filePath // 🔥 첫 번째 검색된 경로 반환
+        requireContext().contentResolver.query(
+            MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+            projection, null, null, sortOrder
+        )?.use { cursor ->
+            val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
+            if (cursor.moveToFirst()) {
+                val filePath = cursor.getString(columnIndex)
+                Log.d("MapFragment", "최신 비디오 파일 경로: $filePath")
+                return filePath
             }
         }
-        return ""
+        return null
     }
 
+    /**
+     * ✅ 서버에서 받은 비디오 URL을 VideoView에 로드하여 재생
+     */
     private fun playVideo(videoUrl: String?) {
         if (videoUrl.isNullOrEmpty()) {
             Log.e("MapFragment", "playVideo()에 전달된 videoUrl이 null 또는 빈 문자열입니다.")
@@ -142,7 +135,6 @@ class MapFragment : Fragment() {
             return
         }
 
-        // 🔥 URL이 http 또는 https로 시작하는지 확인
         if (!videoUrl.startsWith("http")) {
             Log.e("MapFragment", "비디오 URL이 올바르지 않습니다: $videoUrl")
             Toast.makeText(requireContext(), "비디오 URL이 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
@@ -158,10 +150,8 @@ class MapFragment : Fragment() {
         }
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
