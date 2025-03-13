@@ -7,13 +7,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private const val BASE_URL = "http://223.194.134.172:8080" // 🔥 서버 주소 확인!
+    private const val BASE_URL = "http://223.194.128.38:8080" // 🔥 서버 주소 확인!
 
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(180, TimeUnit.SECONDS) // ⏳ 연결 시간 60초
         .readTimeout(180, TimeUnit.SECONDS) // ⏳ 읽기 시간 60초
         .writeTimeout(180, TimeUnit.SECONDS) // ⏳ 쓰기 시간 60초
         .build()
+    // Timeout 에따라 연결
 
     val instance: BowlingApi by lazy {
         Retrofit.Builder()
