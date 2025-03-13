@@ -1,8 +1,12 @@
 package com.example.capston_spotyup.Map.DTO.Response
 
-import okhttp3.MultipartBody
-import java.io.File
-
 data class BowlingResponse(
-    val file : String?
+    val isSuccess: Boolean,
+    val code: String,
+    val message: String,
+    val result: ResultData?
+)
+
+data class ResultData(
+    val videoUrl: String?
 )

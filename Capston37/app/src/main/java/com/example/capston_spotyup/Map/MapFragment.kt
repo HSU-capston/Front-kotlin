@@ -46,47 +46,55 @@ class MapFragment : Fragment() {
 
 
     private fun uploadVideoToServer() {
-        var videoFilePath = getSavedVideoPath() // 🔥 SharedPreferences에서 파일 경로 가져오기
+        var videoFilePath = getSavedVideoPath()
         var file = File(videoFilePath)
 
-        // 🔥 로그 추가 - SharedPreferences에서 가져온 경로 확인
         Log.d("MapFragment", "SharedPreferences에서 가져온 비디오 파일 경로: $videoFilePath")
 
         if (!file.exists()) {
-            // 🔥 만약 `SharedPreferences`에서 가져온 파일이 없다면, `getExternalFilesDir()`을 사용하여 확인
             videoFilePath = requireContext().getExternalFilesDir(null)?.absolutePath + "/Movies/CameraX-Video/20250310_063934.mp4"
             file = File(videoFilePath)
             Log.d("MapFragment", "getExternalFilesDir()에서 가져온 경로: $videoFilePath")
         }
 
-        // 🔥 파일이 존재하는지 확인
         Log.d("MapFragment", "파일 존재 여부: ${file.exists()}, 파일 읽기 가능 여부: ${file.canRead()}")
 
         if (!file.exists() || !file.canRead()) {
-            // 🔥 `MediaStore`에서 파일 경로를 찾기
             videoFilePath = getVideoPathFromMediaStore()
             file = File(videoFilePath)
             Log.d("MapFragment", "MediaStore에서 찾은 파일 경로: $videoFilePath")
         }
 
-        // 🔥 최종적으로 파일이 존재하는지 다시 확인
         if (!file.exists() || !file.canRead()) {
             Toast.makeText(requireContext(), "저장된 영상 파일을 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // 🔥 파일을 MultipartBody.Part로 변환
         val requestFile = file.asRequestBody("video/mp4".toMediaTypeOrNull())
         val videoPart = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-        // 🔥 서버로 POST 요청 보내기
         RetrofitClient.instance.analyzeBowling(videoPart).enqueue(object : Callback<BowlingResponse> {
             override fun onResponse(call: Call<BowlingResponse>, response: Response<BowlingResponse>) {
                 Log.d("MapFragment", "서버 응답 코드: ${response.code()}")
-                if (response.isSuccessful && response.body() != null) {
-                    val processedVideoUrl = response.body()!!.file
-                    Log.d("MapFragment", "서버 응답 URL: $processedVideoUrl")
-                    playVideo(processedVideoUrl)
+
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("MapFragment", "서버 응답 데이터: $responseBody")
+
+                    if (responseBody != null) {
+                        val processedVideoUrl = responseBody.result?.videoUrl
+                        Log.d("MapFragment", "비디오 URL: $processedVideoUrl")
+
+                        if (processedVideoUrl.isNullOrEmpty()) {
+                            Log.e("MapFragment", "서버에서 받은 videoUrl이 null 또는 빈 문자열입니다.")
+                            Toast.makeText(requireContext(), "올바른 비디오 URL을 받지 못했습니다.", Toast.LENGTH_SHORT).show()
+                            return
+                        }
+                        playVideo(processedVideoUrl)
+                    } else {
+                        Log.e("MapFragment", "서버 응답이 null 입니다.")
+                        Toast.makeText(requireContext(), "서버 응답이 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
                     val errorBody = response.errorBody()?.string()
                     Log.e("MapFragment", "비디오 처리 실패. 응답 코드: ${response.code()}, 에러 메시지: $errorBody")
@@ -94,13 +102,13 @@ class MapFragment : Fragment() {
                 }
             }
 
-
             override fun onFailure(call: Call<BowlingResponse>, t: Throwable) {
                 Log.e("MapFragment", "네트워크 오류: ${t.message}")
                 Toast.makeText(requireContext(), "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
 
     // 🔥 SharedPreferences에서 저장된 파일 경로 가져오기
     private fun getSavedVideoPath(): String {
