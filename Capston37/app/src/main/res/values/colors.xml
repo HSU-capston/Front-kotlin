@@ -43,4 +43,32 @@
     <color name="Gray9">#F8F8F8</color>
     <color name="Gray10">#FAFAFA</color>
 
+    <!--Main color 수정안 -->
+    <color name="blue_1">#E8EFFD</color>
+    <color name="blue_2">#DDE7FC</color>
+    <color name="blue_3">#B9CDFA</color>
+    <color name="blue_4">#1C5EEE</color>
+    <color name="blue_5">#1955D6</color>
+    <color name="blue_6">#164BBE</color>
+    <color name="blue_7">#1547B3</color>
+    <color name="blue_8">#11388F</color>
+    <color name="blue_9">#0D2A6B</color>
+    <color name="blue_10">#0A2153</color>
+
+
+    <color name="gray_1">#FAFBFB</color>
+    <color name="gray_2">#F8F9F9</color>
+    <color name="gray_3">#F0F2F4</color>
+    <color name="gray_4">#CED4DA</color>
+    <color name="gray_5">#B9BFC4</color>
+    <color name="gray_6">#A5AAAE</color>
+    <color name="gray_7">#9B9FA4</color>
+    <color name="gray_8">#7C7F83</color>
+    <color name="gray_9">#5D5F62</color>
+    <color name="gray_10">#484A4C</color>
+
+
+
+
+
 </resources>
