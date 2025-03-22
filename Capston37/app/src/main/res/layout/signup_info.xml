@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_16"
+        android:layout_marginTop="96sp"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="설문조사가 필요해요!"
+        android:textColor="@color/main"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_16"
+        android:layout_marginTop="@dimen/spacing_4"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="적절한 운동 추천에 중요해요"
+        android:textColor="@color/Gray6"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <LinearLayout
+        android:id="@+id/infolinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_48"
+        android:layout_marginLeft="@dimen/spacing_16"
+        android:layout_marginRight="@dimen/spacing_16"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Gray1"
+                android:fontFamily="@font/pretendard_semibold"
+                android:text="관심 있는 종목을 선택해주세요!"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:paddingTop="@dimen/spacing_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/select1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="볼링"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/select2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="골프"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/select3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="당구"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_16">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textSize="17sp"
+                android:textColor="@color/Gray1"
+                android:text="앱을 사용하시는 이유도 알려주세요!" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_8"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/survey1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="실력향상"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/survey2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="점수 기록"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/survey3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="자세교정"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textSize="17sp"
+                android:textColor="@color/Gray1"
+                android:paddingTop="@dimen/spacing_16"
+                android:text="본인의 실력은 어느 정도인 것 같나요?" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_8"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/class1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="초급"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/class2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="중급"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/class3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="고급"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textSize="17sp"
+                android:textColor="@color/Gray1"
+                android:paddingTop="@dimen/spacing_16"
+                android:text="본인의 목표를 설정해주세요!" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_8"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/purpose1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="일반인"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/purpose2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="아마추어"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/purpose3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#F8F8F8"
+                    android:text="프로"
+                    android:textColor="#B9B9B9"
+                    android:textSize="14sp"
+                    app:strokeColor="#F8F8F8"
+                    app:strokeWidth="2dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/NextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="96sp"
+        android:backgroundTint="@color/Gray7"
+        android:padding="10dp"
+        android:text="다음"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infolinear" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
