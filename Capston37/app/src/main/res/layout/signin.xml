@@ -9,25 +9,16 @@
     >
 
 
-
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="85dp"
-        android:src="@drawable/logo1"
+        android:id="@+id/loginTitle"
+        android:layout_marginTop="100sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="108dp"
-        android:src="@drawable/logo2"
-        app:layout_constraintStart_toEndOf="@+id/loginTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_logo_2"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -36,25 +27,13 @@
         android:text="개인 맞춤형 스포츠 피드백 서비스"
         android:textColor="@color/main"
         android:textStyle="bold"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/spacing_4"
         app:layout_constraintBottom_toTopOf="@+id/emailLoginInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTitle"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/loginTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/mainfont"
-        android:layout_marginTop="100dp"
-        android:text="Sporty UP"
-        android:textColor="@color/main"
-        android:textSize="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 
@@ -131,15 +110,15 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/Gray7"
         android:text="회원가입"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:strokeColor="@color/main"
+        app:strokeColor="@color/Gray8"
         app:strokeWidth="1dp" />
 
     <com.google.android.material.button.MaterialButton
@@ -147,7 +126,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/spacing_24"
         android:backgroundTint="@color/main"
         android:text="로그인"
         android:textStyle="bold"
@@ -161,7 +140,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="소셜 로그인"
+        android:textColor="@color/Gray6"
+        android:text="아이디 찾기 | 비밀번호 찾기"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

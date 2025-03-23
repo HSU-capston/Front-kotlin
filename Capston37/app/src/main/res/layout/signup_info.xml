@@ -79,6 +79,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/select2"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F8F8F8"
@@ -90,6 +91,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/select3"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F8F8F8"
@@ -138,6 +140,7 @@
                     android:id="@+id/survey2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:backgroundTint="#F8F8F8"
                     android:text="점수 기록"
                     android:textColor="#B9B9B9"
@@ -147,6 +150,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/survey3"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F8F8F8"
@@ -196,6 +200,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/class2"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F8F8F8"
@@ -207,6 +212,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/class3"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F8F8F8"
@@ -252,6 +258,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/purpose2"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F8F8F8"
@@ -263,6 +270,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/purpose3"
+                    android:layout_marginStart="@dimen/spacing_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#F8F8F8"

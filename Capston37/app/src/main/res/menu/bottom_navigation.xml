@@ -2,26 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/fragment_sub"
-        android:title="@string/sub_title"
-        android:icon="@drawable/ic_sub"
+        android:id="@+id/fragment_map"
+        android:title="@string/map_title"
+        android:icon="@drawable/ic_map_sv"
         android:enabled="true" />
 
     <item
         android:id="@+id/fragment_home"
         android:title="@string/home_title"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_home_sv"
+        android:enabled="true" />
+
+    <item
+        android:id="@+id/fragment_sub"
+        android:title="@string/sub_title"
+        android:icon="@drawable/ic_chary_re"
         android:enabled="true" />
 
     <item
         android:id="@+id/fragment_my"
         android:title="@string/my_title"
-        android:icon="@drawable/ic_my"
+        android:icon="@drawable/ic_my_sv"
         android:enabled="true" />
 
-    <item
-        android:id="@+id/fragment_map"
-        android:title="@string/map_title"
-        android:icon="@drawable/ic_star_filled"
-        android:enabled="true" />
+
 </menu>

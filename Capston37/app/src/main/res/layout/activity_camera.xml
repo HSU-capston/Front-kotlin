@@ -13,13 +13,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/spacing_16"
         android:layout_marginTop="@dimen/spacing_16"
+        android:background="@drawable/camera_round"
         android:fontFamily="@font/pretendard_bold"
+        android:padding="@dimen/spacing_4"
         android:text="Sroce : 0"
-        android:textColor="@color/white"
+        android:textColor="@color/main"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,63 +34,70 @@
         android:layout_marginTop="@dimen/spacing_16"
         android:layout_marginRight="@dimen/spacing_16"
         android:text="Round : 0"
-        android:textColor="@color/white"
+        android:textColor="@color/main"
+        android:background="@drawable/camera_round"
+        android:padding="@dimen/spacing_4"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lotti"
-        android:layout_width="100sp"
-        android:layout_height="30sp"
-        android:rotation="90"
-        android:scaleType="centerCrop"
-        android:scaleX="1.4"
-        android:scaleY="1.5"
-        android:layout_marginTop="@dimen/spacing_12"
-        android:visibility="visible"
-        android:layout_marginLeft="110sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/recoding" />
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/lotti"-->
+<!--        android:layout_width="100sp"-->
+<!--        android:layout_height="30sp"-->
+<!--        android:rotation="90"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:scaleX="1.4"-->
+<!--        android:scaleY="1.5"-->
+<!--        android:layout_marginTop="@dimen/spacing_12"-->
+<!--        android:visibility="visible"-->
+<!--        android:layout_marginLeft="110sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_rawRes="@raw/recoding" />-->
 
     <TextView
         android:id="@+id/texttimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_16"
         android:fontFamily="@font/pretendard_bold"
         android:text="00:00"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:background="@drawable/timer_round"
+        android:padding="@dimen/spacing_4"
         android:textStyle="bold"
-        android:layout_marginRight="88sp"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
 
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/camera"
         android:layout_width="60sp"
         android:layout_height="60sp"
-        android:src="@drawable/ic_camera_main"
+        android:src="@drawable/ic_cam"
+        android:elevation="1sp"
         android:layout_marginBottom="@dimen/spacing_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
+
+
     <ImageView
         android:layout_width="36sp"
         android:layout_height="36sp"
-        android:layout_marginLeft="@dimen/spacing_32"
         android:layout_marginBottom="36sp"
         android:backgroundTint="@color/white"
-        android:src="@drawable/ic_rotate_camera"
+        android:layout_marginRight="@dimen/spacing_48"
+        android:src="@drawable/ic_re"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+   />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

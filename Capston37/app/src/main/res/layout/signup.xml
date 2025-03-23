@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints" />
+
     <!-- Title -->
     <ImageView
         android:layout_marginTop="100sp"
@@ -114,21 +120,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kakaoButton" />
 
-    <!-- Sign Up Button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/signupButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:backgroundTint="@color/main"
-        android:padding="10dp"
-        android:text="가입완료"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:layout_marginTop="160sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/naverButton"
-        app:layout_constraintVertical_bias="0.12" />
 </androidx.constraintlayout.widget.ConstraintLayout>
