@@ -57,7 +57,7 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.lotti.visibility = android.view.View.INVISIBLE
+//        binding.lotti.visibility = android.view.View.INVISIBLE
         binding.texttimer.visibility = android.view.View.INVISIBLE
 
         // ✅ 카메라 권한 체크 후 실행
@@ -166,7 +166,7 @@ class CameraActivity : AppCompatActivity() {
             isRecording = false
 
             runOnUiThread {
-                binding.lotti.visibility = android.view.View.INVISIBLE
+//                binding.lotti.visibility = android.view.View.INVISIBLE
                 binding.texttimer.visibility = android.view.View.INVISIBLE
                 binding.texttimer.text = "00:00"
             }
@@ -178,7 +178,7 @@ class CameraActivity : AppCompatActivity() {
         }
 
         runOnUiThread {
-            binding.lotti.visibility = android.view.View.VISIBLE
+//            binding.lotti.visibility = android.view.View.VISIBLE
             binding.texttimer.visibility = android.view.View.VISIBLE
         }
 
@@ -233,7 +233,7 @@ class CameraActivity : AppCompatActivity() {
                         }
                         isRecording = false
                         runOnUiThread {
-                            binding.lotti.visibility = android.view.View.INVISIBLE
+//                            binding.lotti.visibility = android.view.View.INVISIBLE
                             binding.texttimer.visibility = android.view.View.INVISIBLE
                             binding.texttimer.text = "00:00"  // ⏳ 타이머 초기화
                         }
