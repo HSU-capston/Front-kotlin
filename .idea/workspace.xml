@@ -92,48 +92,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="595c0fe3-f9ac-4f09-9e72-5a133aae5a83" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Signup/fragmentInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/bottom_sheet_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/camera_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_cam.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_camera_sv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_chary_re.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_close.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_dialog_qe.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_home_logo.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_home_sv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_map_sv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_my_sv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_question.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_re.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_search.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/image_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/main_gradient2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/search_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/timer_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/fragment_home_re.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/main_dialog_sheet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Main/CameraActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Main/CameraActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Main/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Signin/SigninActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Signin/SigninActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Signup/SignupActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/java/com/example/capston_spotyup/Signup/SignupActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_emial.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_kakao.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_kakao_logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_logo_2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/ic_naver.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/main_gradient.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/drawable/main_gradient.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/activity_camera.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/activity_camera.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/signup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/signup.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/signup_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/layout/signup_info.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Capston37/app/src/main/res/menu/bottom_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Capston37/app/src/main/res/menu/bottom_navigation.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,13 +176,14 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Feat/16",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/wndhk/AndroidStudioProjects/UMC_322/Capston37",
+    "last_opened_file_path": "C:/Users/wndhk/AndroidStudioProjects/Front/Front",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
