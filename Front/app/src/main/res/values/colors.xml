@@ -30,6 +30,10 @@
 
 
 
+    <!-- 경고문구 색상-->
+    <color name="Invalid">#EB5757</color>
+    <color name="Valid">#3070F8</color>
+
 
     <!--Gray-->
     <color name="Gray1">#484848</color>
