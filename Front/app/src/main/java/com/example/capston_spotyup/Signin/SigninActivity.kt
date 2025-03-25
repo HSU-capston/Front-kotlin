@@ -4,8 +4,12 @@ import com.example.capston_spotyup.Main.MainActivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.capston_spotyup.SignupActivity
+import androidx.fragment.app.commit
+import com.example.capston_spotyup.R
+//import com.example.capston_spotyup.SignupActivity
 import com.example.capston_spotyup.databinding.SigninBinding
+import com.example.umc.SignUp.SignUpFragment
+import com.example.umc.SignUp.SigninEmailFragment
 
 
 class SigninActivity : AppCompatActivity() {
@@ -23,9 +27,14 @@ class SigninActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.loginButton2.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
+            val fragment = SignUpFragment()
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace(R.id.fragment_container, fragment)
+                addToBackStack(null)
+            }
         }
+
     }
 
     private fun addToBackStack(nothing: Nothing?) {
