@@ -22,11 +22,11 @@ class ProfileFragment : Fragment() {
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
 
         // 기본 Fragment 설정 (보관함)
-        replaceFragment(StorageFragment(), binding.tabStorage) // ✅ 수정된 부분
+        replaceFragment(StorageFragment(), binding.tabProfile) // ✅ 수정된 부분
 
         // 탭 버튼 클릭 이벤트
-        binding.tabStorage.setOnClickListener {
-            replaceFragment(StorageFragment(), binding.tabStorage)
+        binding.tabProfile.setOnClickListener {
+            replaceFragment(StorageFragment(), binding.tabProfile)
         }
 
         binding.tabFriends.setOnClickListener {
@@ -50,14 +50,14 @@ class ProfileFragment : Fragment() {
 
     // 현재 선택된 버튼만 회색, 나머지는 하얀색으로 변경
     private fun setSelectedTab(selectedButton: Button) {
-        binding.tabStorage.isSelected = false
+        binding.tabProfile.isSelected = false
         binding.tabFriends.isSelected = false
         binding.tabSettings.isSelected = false
 
         selectedButton.isSelected = true
 
         // UI 강제 갱신
-        binding.tabStorage.requestLayout()
+        binding.tabProfile.requestLayout()
         binding.tabFriends.requestLayout()
         binding.tabSettings.requestLayout()
     }

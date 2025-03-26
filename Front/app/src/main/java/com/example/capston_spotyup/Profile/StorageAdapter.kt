@@ -1,4 +1,4 @@
-package com.example.capston_spotyup.Profile
+/*package com.example.capston_spotyup.Profile
 
 import android.view.LayoutInflater
 import android.view.View
@@ -25,3 +25,4 @@ class StorageAdapter(private val itemList: List<String>) : RecyclerView.Adapter<
 
     override fun getItemCount(): Int = itemList.size
 }
+*/

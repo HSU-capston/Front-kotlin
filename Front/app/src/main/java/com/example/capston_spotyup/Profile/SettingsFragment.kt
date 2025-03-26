@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.R
 
 class SettingsFragment : Fragment() {
 
+    private lateinit var switchNotification: SwitchCompat
     private lateinit var inputName: EditText
     private lateinit var inputEmail: EditText
     private lateinit var buttonSave: Button
@@ -23,33 +25,17 @@ class SettingsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_mypage_setting, container, false)
 
-        inputName = view.findViewById(R.id.inputName)
-        inputEmail = view.findViewById(R.id.inputEmail)
-        buttonSave = view.findViewById(R.id.buttonSave)
+        switchNotification = view.findViewById(R.id.switchNotification)
 
         // SharedPreferences에서 기존 값 불러오기
         val sharedPreferences = requireActivity().getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
-        inputName.setText(sharedPreferences.getString("name", ""))
-        inputEmail.setText(sharedPreferences.getString("email", ""))
+        val isAllowed = sharedPreferences.getBoolean("notification", true)
+        switchNotification.isChecked = isAllowed
 
-        buttonSave.setOnClickListener {
-            saveUserProfile()
+        switchNotification.setOnCheckedChangeListener{_, isChecked ->
+            sharedPreferences.edit().putBoolean("notification",isChecked)
         }
 
         return view
-    }
-
-    private fun saveUserProfile() {
-        val name = inputName.text.toString()
-        val email = inputEmail.text.toString()
-
-        // SharedPreferences에 저장
-        val sharedPreferences = requireActivity().getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("name", name)
-        editor.putString("email", email)
-        editor.apply()
-
-        Toast.makeText(requireContext(), "저장되었습니다", Toast.LENGTH_SHORT).show()
     }
 }
