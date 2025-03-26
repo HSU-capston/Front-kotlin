@@ -122,7 +122,7 @@
         android:background="@color/Gray9"
         android:paddingVertical="1dp"
         app:itemActiveIndicatorStyle="@color/transparent"
-        app:itemIconSize="30sp"
+        app:itemIconSize="28sp"
         app:itemIconTint="@color/btn_nav_menu_color"
         app:itemTextColor="@color/btn_nav_menu_color"
         app:labelVisibilityMode="labeled"
