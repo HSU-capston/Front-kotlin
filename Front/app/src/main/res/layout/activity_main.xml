@@ -104,7 +104,7 @@
 
 
     <ImageView
-        android:layout_width="58sp"
+        android:layout_width="60sp"
         android:layout_height="56sp"
         android:elevation="3sp"
         android:layout_marginBottom="45sp"
