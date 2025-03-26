@@ -11,7 +11,7 @@
 
     <!-- Title -->
     <ImageView
-        android:layout_marginTop="100sp"
+        android:layout_marginTop="120sp"
         android:id="@+id/signupTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
         android:layout_width="326dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="@color/Gray9"
         android:text="이메일로 시작하기"
         android:textColor="@color/Gray3"
