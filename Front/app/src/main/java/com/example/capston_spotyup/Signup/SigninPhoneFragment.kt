@@ -63,7 +63,7 @@ class SigninPhoneFragment : Fragment() {
             }
         }
 
-        // NextButton 클릭 이벤트 처리
+        // NextButton 클릭 이벤트 처리  -> 기존 코드
         binding.NextButton.setOnClickListener {
             if (!binding.editText2.isVisible) {
                 // 1단계: 인증코드 입력란 활성화
@@ -85,12 +85,14 @@ class SigninPhoneFragment : Fragment() {
                 // OTP 코드 검증
 //                verifyOtpCode(phoneNumber, code)
 
-//                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//                transaction.replace(R.id.fragmentContainer, SigninInfoFragment())
-//                transaction.addToBackStack(null) // 뒤로 가기 지원
-//                transaction.commit()
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragment_container, SigninInfoFragment())
+                transaction.addToBackStack(null) // 뒤로 가기 지원
+                transaction.commit()
             }
         }
+
+
 
         // 인증코드 입력에 따른 버튼 상태 업데이트
         binding.editText2.addTextChangedListener(object : TextWatcher {
@@ -214,7 +216,7 @@ class SigninPhoneFragment : Fragment() {
     }
     private fun navigateToNextFragment() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, SigninInfoFragment())
+        transaction.replace(R.id.fragment_container, SigninInfoFragment())
         transaction.addToBackStack(null)
         transaction.commit()
     }
