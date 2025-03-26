@@ -168,42 +168,26 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
+
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="10sp">
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_home1"/>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:background="@color/Gray4"/>
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="10sp">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:background="@color/Gray4"/>
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
+                        android:scaleType="centerCrop"
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:src="@drawable/img_home1"/>
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="10sp">
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:src="@drawable/img_home1"/>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home1"/>
-
-                    </androidx.cardview.widget.CardView>
 
 
 
@@ -213,18 +197,61 @@
 
             </HorizontalScrollView>
 
-            <ProgressBar
-                android:id="@+id/scrollIndicator"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="120dp"
-                android:layout_height="4dp"
-                android:progressDrawable="@drawable/custom_scroll_indicator"
-                android:max="100"
-                android:progress="0"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
+            <LinearLayout
+                android:id="@+id/dotsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:layout_marginBottom="48dp"
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
+                tools:layout_editor_absoluteX="0dp">
+
+                <View
+                    android:id="@+id/dot1"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot3"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot4"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_active" />
+
+            </LinearLayout>
+
+<!--            <ProgressBar-->
+<!--                android:id="@+id/scrollIndicator"-->
+<!--                style="?android:attr/progressBarStyleHorizontal"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="4dp"-->
+<!--                android:progressDrawable="@drawable/custom_scroll_indicator"-->
+<!--                android:max="100"-->
+<!--                android:progress="0"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"/>-->
 
 
             <TextView
@@ -238,7 +265,7 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/pretendard_semibold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/scrollIndicator" />
+                app:layout_constraintTop_toBottomOf="@id/dotsLayout" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView2"
@@ -259,6 +286,188 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
+                        android:src="@drawable/img_home3"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:src="@drawable/img_home3"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:src="@drawable/img_home3"/>
+
+
+                </LinearLayout>
+
+
+
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:id="@+id/dotsLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:layout_marginBottom="48dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView2"
+                tools:layout_editor_absoluteX="0dp">
+
+                <View
+                    android:id="@+id/dot5"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot6"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot7"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주완님을 위한 제품"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:textColor="@color/Gray2"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_semibold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dotsLayout2" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView3"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/textView7"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_home4"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:src="@drawable/img_home4"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:src="@drawable/img_home4"/>
+
+
+                </LinearLayout>
+
+
+
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:id="@+id/dotsLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:layout_marginBottom="48dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView3"
+                tools:layout_editor_absoluteX="0dp">
+
+                <View
+                    android:id="@+id/dot8"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot9"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot10"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주간 HOT CAST"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:textColor="@color/Gray2"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_semibold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dotsLayout3" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView4"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/textView8"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/img_home1"/>
 
                     <ImageView
@@ -266,7 +475,7 @@
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
                         android:layout_marginLeft="@dimen/spacing_16"
-                        android:src="@drawable/img_home2"/>
+                        android:src="@drawable/img_home1"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -280,17 +489,45 @@
 
             </HorizontalScrollView>
 
-            <me.relex.circleindicator.CircleIndicator3
-                android:id="@+id/indicator2"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/dotsLayout4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:ci_drawable="@drawable/main_radius"
-                app:ci_drawable_unselected="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12sp"
+                android:layout_marginBottom="48dp"
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView2"
-                tools:ignore="MissingClass" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView3"
+                tools:layout_editor_absoluteX="0dp">
+
+                <View
+                    android:id="@+id/dot11"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot12"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+                <View
+                    android:id="@+id/dot13"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/dot_inactive" />
+
+
+            </LinearLayout>
+
+
+
 
 
 

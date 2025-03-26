@@ -65,7 +65,7 @@ class FragmentHome : Fragment() {
     private fun setupHorizontalScrollListener() {
         // 가로 스크롤 뷰 & ProgressBar 가져오기
         val horizontalScrollView = binding.horizontalScrollView
-        val progressBar = binding.scrollIndicator
+//        val progressBar = binding.scrollIndicator
 
         horizontalScrollView.viewTreeObserver.addOnGlobalLayoutListener {
             // 전체 스크롤 가능 거리 계산
@@ -74,7 +74,7 @@ class FragmentHome : Fragment() {
             horizontalScrollView.setOnScrollChangeListener { _, scrollX, _, _, _ ->
                 if (scrollRange > 0) {
                     val progress = (scrollX.toFloat() / scrollRange * 100).toInt()
-                    progressBar.progress = progress
+//                    progressBar.progress = progress
                 }
             }
         }
