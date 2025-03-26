@@ -16,7 +16,7 @@
     <item
         android:id="@+id/fragment_sub"
         android:title="@string/sub_title"
-        android:icon="@drawable/ic_chary_re"
+        android:icon="@drawable/ic_ana"
         android:enabled="true" />
 
     <item
