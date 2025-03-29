@@ -1,4 +1,4 @@
-//package com.example.capston_spotyup.Signup
+package com.example.capston_spotyup.Signup.Domain//package com.example.capston_spotyup.Signup
 //
 //import android.util.Log
 //import androidx.lifecycle.ViewModel
