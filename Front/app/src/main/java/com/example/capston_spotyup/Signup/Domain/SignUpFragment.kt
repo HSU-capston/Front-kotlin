@@ -1,4 +1,4 @@
-package com.example.umc.SignUp
+package com.example.capston_spotyup.Signup.Domain
 
 import android.os.Bundle
 import android.view.LayoutInflater

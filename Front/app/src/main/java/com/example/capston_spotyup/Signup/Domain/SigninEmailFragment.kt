@@ -1,4 +1,4 @@
-package com.example.umc.SignUp
+package com.example.capston_spotyup.Signup.Domain
 
 import android.content.res.ColorStateList
 import android.graphics.Paint

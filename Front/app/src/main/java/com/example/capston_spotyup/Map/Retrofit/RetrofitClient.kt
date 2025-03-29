@@ -1,13 +1,14 @@
 package com.example.capston_spotyup.Network
 
 import com.example.capston_spotyup.Map.Api.BowlingApi
+import com.example.capston_spotyup.User.Api.EmailApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private const val BASE_URL = "http://223.194.128.38:8080" // 🔥 서버 주소 확인!
+    private const val BASE_URL = "http://13.209.69.164:8080" // 🔥 서버 주소 확인!
 
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(180, TimeUnit.SECONDS) // ⏳ 연결 시간 60초
@@ -24,4 +25,15 @@ object RetrofitClient {
             .build()
             .create(BowlingApi::class.java)
     }
+    val emailApi: EmailApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(EmailApi::class.java)
+    }
+
+
+
 }

@@ -8,8 +8,7 @@ import androidx.fragment.app.commit
 import com.example.capston_spotyup.R
 //import com.example.capston_spotyup.SignupActivity
 import com.example.capston_spotyup.databinding.SigninBinding
-import com.example.umc.SignUp.SignUpFragment
-import com.example.umc.SignUp.SigninEmailFragment
+import com.example.capston_spotyup.Signup.Domain.SignUpFragment
 
 
 class SigninActivity : AppCompatActivity() {
