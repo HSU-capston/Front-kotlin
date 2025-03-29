@@ -1,10 +1,9 @@
-package com.example.umc.SignUp
+package com.example.capston_spotyup.Signup.Domain
 
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,9 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.capston_spotyup.R
+import com.example.capston_spotyup.User.ViewModel.SignUpViewModel
 import com.example.capston_spotyup.databinding.FragmentSigninPhoneBinding
-
-import kotlinx.coroutines.launch
 
 // phonenum 처리
 class SigninPhoneFragment : Fragment() {
@@ -25,7 +22,7 @@ class SigninPhoneFragment : Fragment() {
     private var isPhoneNumberValid = false
     private var isCodeValid = false
     private var timer: CountDownTimer? = null
-//    private val signUpViewModel: SignUpViewModel by activityViewModels() // ViewModel 초기화
+    private val signUpViewModel: SignUpViewModel by activityViewModels() // ViewModel 초기화
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +47,7 @@ class SigninPhoneFragment : Fragment() {
 //            signUpViewModel.phoneNum = binding.editText.text.toString()
 //            updateNextButtonState()
 //        }
-
+//
 
         // editText 포커스 상태 변경에 따른 색상 업데이트
         binding.editText.setOnFocusChangeListener { _, hasFocus ->
