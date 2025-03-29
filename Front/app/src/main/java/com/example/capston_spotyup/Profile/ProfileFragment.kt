@@ -1,11 +1,14 @@
 package com.example.capston_spotyup.Profile
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.databinding.FragmentMypageBinding
 import com.example.capston_spotyup.R
@@ -21,12 +24,12 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
 
-        // 기본 Fragment 설정 (보관함)
-        replaceFragment(StorageFragment(), binding.tabProfile) // ✅ 수정된 부분
+        // 기본 Fragment 설정 및 탭 스타일 지정
+        replaceFragment(StorageFragment(), binding.tabMyinfo)
 
-        // 탭 버튼 클릭 이벤트
-        binding.tabProfile.setOnClickListener {
-            replaceFragment(StorageFragment(), binding.tabProfile)
+        // 탭 클릭 이벤트
+        binding.tabMyinfo.setOnClickListener {
+            replaceFragment(StorageFragment(), binding.tabMyinfo)
         }
 
         binding.tabFriends.setOnClickListener {
@@ -37,7 +40,7 @@ class ProfileFragment : Fragment() {
             replaceFragment(SettingsFragment(), binding.tabSettings)
         }
 
-        // SharedPreferences에서 저장된 이름과 이메일 불러오기
+        // 사용자 정보 불러오기
         val sharedPreferences = requireActivity().getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
         val savedName = sharedPreferences.getString("name", "손주완")
         val savedEmail = sharedPreferences.getString("email", "vvan_2")
@@ -48,27 +51,27 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    // 현재 선택된 버튼만 회색, 나머지는 하얀색으로 변경
-    private fun setSelectedTab(selectedButton: Button) {
-        binding.tabProfile.isSelected = false
-        binding.tabFriends.isSelected = false
-        binding.tabSettings.isSelected = false
+    private fun setSelectedTab(selectedView: TextView) {
+        val gray = ContextCompat.getColor(requireContext(), R.color.Gray1)
+        val blue = ContextCompat.getColor(requireContext(), R.color.blue_5)
 
-        selectedButton.isSelected = true
+        val tabs = listOf(binding.tabMyinfo, binding.tabFriends, binding.tabSettings)
 
-        // UI 강제 갱신
-        binding.tabProfile.requestLayout()
-        binding.tabFriends.requestLayout()
-        binding.tabSettings.requestLayout()
+        tabs.forEach { tab ->
+            tab.setTextColor(gray)
+            tab.setBackgroundResource(android.R.color.transparent)
+        }
+
+        selectedView.setTextColor(blue)
+        selectedView.setBackgroundResource(R.drawable.tab_selected_underline)
     }
 
-    // Fragment 변경 + 선택된 버튼 업데이트
-    private fun replaceFragment(fragment: Fragment, selectedButton: Button) {
+    private fun replaceFragment(fragment: Fragment, selectedView: TextView) {
         childFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
 
-        setSelectedTab(selectedButton)
+        setSelectedTab(selectedView)
     }
 
     override fun onDestroyView() {

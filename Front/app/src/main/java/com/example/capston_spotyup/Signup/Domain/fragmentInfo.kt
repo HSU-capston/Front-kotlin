@@ -1,5 +1,6 @@
 package com.example.capston_spotyup.Signup.Domain
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.capston_spotyup.Main.MainActivity
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.SignupInfoBinding
 import com.google.android.material.button.MaterialButton
@@ -51,7 +53,10 @@ class FragmentInfo : Fragment() {
         updateNextButtonState()
 
         binding.NextButton.setOnClickListener {
-            // TODO: 다음 화면 전환 또는 데이터 처리
+            // TODO: 데이터 처리
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()  // 현재 액티비티 종료
         }
     }
 
