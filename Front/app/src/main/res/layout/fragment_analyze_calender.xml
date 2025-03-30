@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/chartlogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_onboarding"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:layout_marginLeft="@dimen/spacing_16"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:background="@color/white"
+            android:id="@+id/tab1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_64"
+            android:layout_marginRight="@dimen/spacing_64"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/chartlogo"
+            app:tabIndicatorColor="@color/main"
+            app:tabSelectedTextColor="@color/main"
+            app:tabTextColor="@color/Gray6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="차트" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="캘린더" />
+        </com.google.android.material.tabs.TabLayout>
+
+
+
+<!--        <com.prolificinteractive.materialcalendarview.MaterialCalendarView-->
+<!--        android:id="@+id/calendar_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="@dimen/spacing_20"-->
+<!--        android:layout_marginTop="@dimen/spacing_20"-->
+<!--        android:background="@drawable/bg_calendar"-->
+<!--        android:padding="30dp"-->
+<!--        android:theme="@style/CalendarViewCustom"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tab1"-->
+<!--        app:mcv_dateTextAppearance="@style/CalendarViewDateCustomText"-->
+<!--        app:mcv_firstDayOfWeek="sunday"-->
+<!--        app:mcv_headerTextAppearance="@style/CalendarWidgetHeader"-->
+<!--        app:mcv_leftArrow="@drawable/ic_calendar_back"-->
+<!--        app:mcv_rightArrow="@drawable/ic_calendar_next"-->
+<!--        app:mcv_showOtherDates="all"-->
+<!--        app:mcv_weekDayLabels="@array/custom_weekdays"-->
+<!--        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText" />-->
+
+        <com.kizitonwose.calendarview.CalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_20"
+            android:background="@drawable/bg_calendar"
+            android:padding="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab1"
+
+            app:cv_orientation="horizontal"
+            app:cv_scrollMode="paged" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
