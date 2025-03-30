@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.capston_spotyup"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -35,6 +35,21 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    packagingOptions {
+        resources {
+            excludes += setOf(
+                "META-INF/DEPENDENCIES",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/AL2.0",
+                "META-INF/LGPL2.1",
+                "META-INF/*.kotlin_module",
+                "META-INF/io.netty.versions.properties"
+            )
+        }
     }
 }
 
@@ -62,11 +77,18 @@ dependencies {
     //로티 권한
     implementation ("com.airbnb.android:lottie:5.0.2")
 
+    // 그래프,캘린더 커스터마이징 외부 링크
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+//    implementation ("com.github.prolificinteractive:material-calendarview:2.0.1")
+    implementation ("com.github.kizitonwose:CalendarView:1.0.4")
+
     // Api 연동
+
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.3")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

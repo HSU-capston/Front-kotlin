@@ -14,6 +14,7 @@ import com.example.sportyup.FragmentHome
 import com.example.capston_spotyup.CameraActivity
 import com.example.capston_spotyup.Map.MapFragment
 import com.example.capston_spotyup.Profile.ProfileFragment
+import com.example.yourapp.ui.analyze.AnalyzeChartFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.fragment_sub -> {
-                    switchFragment(SearchFragment())
+                    switchFragment(AnalyzeChartFragment())
                     true
                 }
                 R.id.fragment_my -> {

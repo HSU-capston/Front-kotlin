@@ -3,6 +3,8 @@ pluginManagement {
         google()  // ✅ Google 저장소 추가
         mavenCentral()
         gradlePluginPortal()
+
+
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +12,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+
+
+
     }
 }
 
