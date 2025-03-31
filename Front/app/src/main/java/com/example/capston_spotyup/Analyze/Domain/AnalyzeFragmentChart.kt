@@ -1,4 +1,4 @@
-package com.example.yourapp.ui.analyze
+package com.example.capston_spotyup.Analyze.Domain
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,11 +11,9 @@ import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.FragmentAnalyzeChartBinding
 
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.google.android.material.tabs.TabLayout
 
 class AnalyzeChartFragment : Fragment() {
 
@@ -33,21 +31,11 @@ class AnalyzeChartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupTabLayout()
+
         setupChart()
         setupIconSelectors()
     }
 
-    private fun setupTabLayout() {
-        binding.tab1.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                // 탭 선택에 따라 뷰 전환 필요시 여기에 구현
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
-    }
 
     private fun setupChart() {
         val entries = listOf(
