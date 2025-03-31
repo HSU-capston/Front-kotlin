@@ -73,12 +73,13 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/gettext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/pretendard_semibold"
                         android:textSize="18sp"
-                        android:text="골프" />
+                        android:text="" />
 
                     <ImageView
                         android:layout_width="17dp"
