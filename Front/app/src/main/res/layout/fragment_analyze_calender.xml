@@ -2,52 +2,16 @@
 <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/chartlogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_onboarding"
-            android:layout_marginTop="@dimen/spacing_16"
-            android:layout_marginLeft="@dimen/spacing_16"
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <com.google.android.material.tabs.TabLayout
-            android:background="@color/white"
-            android:id="@+id/tab1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/spacing_64"
-            android:layout_marginRight="@dimen/spacing_64"
-            android:layout_marginTop="@dimen/spacing_12"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/chartlogo"
-            app:tabIndicatorColor="@color/main"
-            app:tabSelectedTextColor="@color/main"
-            app:tabTextColor="@color/Gray6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="차트" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="캘린더" />
-        </com.google.android.material.tabs.TabLayout>
 
 
 
@@ -70,20 +34,148 @@
 <!--        app:mcv_showOtherDates="all"-->
 <!--        app:mcv_weekDayLabels="@array/custom_weekdays"-->
 <!--        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText" />-->
+        <LinearLayout
+            android:id="@+id/month_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/btnPreviousMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar_back"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/textMonthTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:text="2025년 3월"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_bold" />
+
+            <ImageView
+                android:id="@+id/btnNextMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar_next"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- 🔷 요일 표시 -->
+        <LinearLayout
+            android:id="@+id/week_days_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/month_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="일" android:textColor="@color/Gray2" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="월" android:textColor="@color/Gray2" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="화" android:textColor="@color/Gray2" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="수" android:textColor="@color/Gray2" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="목" android:textColor="@color/Gray2" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="금" android:textColor="@color/Gray2" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="토" android:textColor="@color/Gray2" />
+        </LinearLayout>
+
 
         <com.kizitonwose.calendarview.CalendarView
             android:id="@+id/calendar_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_20"
-            android:layout_marginTop="@dimen/spacing_20"
+            android:layout_marginTop="@dimen/spacing_8"
             android:background="@drawable/bg_calendar"
             android:padding="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab1"
-
+            app:cv_maxRowCount="6"
             app:cv_orientation="horizontal"
-            app:cv_scrollMode="paged" />
+            app:cv_dayViewResource="@layout/item_calender_day"
+            app:cv_scrollMode="paged"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/week_days_header" />
+
+        <LinearLayout
+            android:id="@+id/undertab1"
+            android:elevation="4sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_32"
+            android:layout_marginLeft="@dimen/spacing_64"
+            android:layout_marginRight="@dimen/spacing_64"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendar_view"
+            >
+
+            <ImageView
+                android:layout_marginStart="@dimen/spacing_48"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chart_1"/>
+
+            <ImageView
+                android:layout_marginStart="@dimen/spacing_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chart_2"/>
+
+            <ImageView
+                android:layout_marginStart="@dimen/spacing_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chart_3"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/undertab2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24sp"
+            android:layout_marginLeft="@dimen/spacing_64"
+            android:layout_marginRight="@dimen/spacing_64"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendar_view"
+            >
+
+            <ImageView
+                android:layout_marginStart="40sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/analyze_ic_background"/>
+
+            <ImageView
+                android:layout_marginStart="9sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/analyze_ic_background"/>
+
+            <ImageView
+                android:layout_marginStart="9sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/analyze_ic_background"/>
+
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
