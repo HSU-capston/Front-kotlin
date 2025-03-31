@@ -12,9 +12,13 @@ import com.example.capston_spotyup.databinding.ActivityMainBinding
 import com.example.capston_spotyup.databinding.MainDialogBinding
 import com.example.sportyup.FragmentHome
 import com.example.capston_spotyup.CameraActivity
+import com.example.capston_spotyup.Main.DTO.SportsResponse
 import com.example.capston_spotyup.Map.MapFragment
+import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
 import com.example.capston_spotyup.Profile.ProfileFragment
+import com.example.capston_spotyup.databinding.MainSelectDialogSheetBinding
 import com.example.yourapp.ui.analyze.AnalyzeChartFragment
+import retrofit2.Call
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     // 📌 다이얼로그를 띄우는 함수
     private fun showCameraDialog() {
-        val dialogBinding = MainDialogBinding.inflate(LayoutInflater.from(this))
+        val dialogBinding = MainSelectDialogSheetBinding.inflate(LayoutInflater.from(this))
 
         val dialog = AlertDialog.Builder(this)
             .setView(dialogBinding.root) // 다이얼로그에 View 적용
@@ -80,21 +84,45 @@ class MainActivity : AppCompatActivity() {
         // 배경을 반투명하게
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        // 버튼 이벤트 처리
-        dialogBinding.btnConfirm.setOnClickListener {
-            // 카메라 열기 기능 추가
-            openCameraActivity()
-            dialog.dismiss()
-        }
+        // 📌 Retrofit API 호출
+        val call = sportsApi.registerUser()
+        call.enqueue(object : retrofit2.Callback<SportsResponse> {
+            override fun onResponse(
+                call: Call<SportsResponse>,
+                response: retrofit2.Response<SportsResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body?.isSuccess == true) {
+                        dialogBinding.gettext.text = body.result?.name ?: "이름 없음"
+                    } else {
+                        dialogBinding.gettext.text = "데이터 없음"
+                    }
+                } else {
+                    dialogBinding.gettext.text = "응답 실패"
+                }
+            }
+
+            override fun onFailure(call: Call<SportsResponse>, t: Throwable) {
+                dialogBinding.gettext.text = "네트워크 오류"
+            }
+        })
+
+        // 버튼 이벤트 처리 (기존 카메라 연결)
+//        dialogBinding.btnConfirm.setOnClickListener {
+//            // 카메라 열기 기능 추가
+//            openCameraActivity()
+//            dialog.dismiss()
+//        }
 //
 //        dialogBinding.btnOpenGallery.setOnClickListener {
 //            // 갤러리에서 선택 기능 추가
 //            dialog.dismiss()
 //        }
-
-        dialogBinding.btnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
+        // 뒤로가기 버튼
+//        dialogBinding.btnCancel.setOnClickListener {
+//            dialog.dismiss()
+//        }
 
         dialog.show()
     }
