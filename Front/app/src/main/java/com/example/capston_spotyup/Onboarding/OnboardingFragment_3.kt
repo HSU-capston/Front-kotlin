@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.capston_spotyup.Main.MainActivity
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.Signup.Domain.FragmentInfo
 import com.example.capston_spotyup.databinding.FragmentOnboarding3Binding

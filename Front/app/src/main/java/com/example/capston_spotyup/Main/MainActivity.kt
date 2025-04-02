@@ -10,7 +10,6 @@ import com.example.capston_spotyup.Analyze.Domain.AnalyzeFragmentMain
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.ActivityMainBinding
 import com.example.sportyup.FragmentHome
-import com.example.capston_spotyup.CameraActivity
 import com.example.capston_spotyup.Main.DTO.SportsResponse
 import com.example.capston_spotyup.Map.MapFragment
 import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
