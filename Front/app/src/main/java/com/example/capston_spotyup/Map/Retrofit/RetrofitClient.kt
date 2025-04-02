@@ -1,6 +1,6 @@
 package com.example.capston_spotyup.Network
 
-import com.example.capston_spotyup.Main.Api.SportsApi
+import com.example.capston_spotyup.Main.Api.ChartApi
 import com.example.capston_spotyup.Map.Api.BowlingApi
 import com.example.capston_spotyup.User.Api.EmailApi
 import okhttp3.OkHttpClient
@@ -35,13 +35,13 @@ object RetrofitClient {
             .create(EmailApi::class.java)
     }
 
-    val sportsApi: SportsApi by lazy{
+    val sportsApi: ChartApi by lazy{
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(SportsApi::class.java)
+            .create(ChartApi::class.java)
     }
 
 

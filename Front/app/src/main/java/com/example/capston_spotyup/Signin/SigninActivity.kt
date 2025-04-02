@@ -1,6 +1,5 @@
 package com.example.capston_spotyup.Signin
 
-import com.example.capston_spotyup.Main.MainActivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
