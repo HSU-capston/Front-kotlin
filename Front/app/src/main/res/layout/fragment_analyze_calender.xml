@@ -38,7 +38,7 @@
             android:id="@+id/month_header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48"
+            android:layout_marginTop="48dp"
             android:orientation="horizontal"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
