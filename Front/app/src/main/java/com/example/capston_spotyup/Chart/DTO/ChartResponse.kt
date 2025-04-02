@@ -1,5 +1,3 @@
-package com.example.capston_spotyup.data.model
-
 data class ChartResponse(
     val isSuccess: Boolean,
     val code: String,
@@ -16,6 +14,6 @@ data class ChartResult(
 )
 
 data class DateScore(
-    val gameDate: String,
+    val gameDate: String,  // ISO 형식 "2025-04-02T05:46:18.189Z"
     val gameScore: Int
 )

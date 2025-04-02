@@ -1,13 +1,15 @@
-package com.example.capston_spotyup.Main.Api
-
-
-import com.example.capston_spotyup.Main.DTO.SportsResponse
+import android.telecom.Call
 import com.example.capston_spotyup.data.model.ChartResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ChartApi {
-    @GET("/Chart")
-    fun registerUser(): Call<ChartResponse>
-}
 
+    @GET("/games/chart/{sportsId}")
+    fun getChartData(
+        @Path("sportsId") sportsId: Int,
+        @Query("userId") userId: Int
+    ): Call<ChartResponse>
+}
