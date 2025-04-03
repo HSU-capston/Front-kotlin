@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.Analyze.Domain.AnalyzeFragmentMain
+import com.example.capston_spotyup.CameraActivity
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.ActivityMainBinding
 import com.example.sportyup.FragmentHome
