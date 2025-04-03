@@ -1,5 +1,3 @@
-import android.telecom.Call
-import com.example.capston_spotyup.data.model.ChartResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
