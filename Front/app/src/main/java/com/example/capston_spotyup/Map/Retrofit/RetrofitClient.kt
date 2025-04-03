@@ -3,6 +3,7 @@ package com.example.capston_spotyup.Network
 import com.example.capston_spotyup.Main.Api.DatesApi
 import com.example.capston_spotyup.Main.Api.SportsApi
 import com.example.capston_spotyup.Map.Api.BowlingApi
+import com.example.capston_spotyup.Signup.Api.SmsVerificationApi
 import com.example.capston_spotyup.User.Api.EmailApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -51,6 +52,24 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(DatesApi::class.java)
+    }
+    // smsApi 추가
+    val smsApi: SmsApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(SmsApi::class.java)
+    }
+
+    val smsVerificationApi: SmsVerificationApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(SmsVerificationApi::class.java)
     }
 
 

@@ -21,13 +21,13 @@ class SigninActivity : AppCompatActivity() {
         binding = SigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 로그인 버튼 클릭 시 fragment_home으로 이동, 원래 코드
+        // 로그인 버튼 클릭 시 fragment_home으로 이동, 원래 코드 (개발할 때는 이게 더 빠를듯)
         binding.loginButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        // 온보딩 전환 코드
+        // 온보딩 전환 코드 (토크 나오고 인증로직 들어가면 이거 써서 풀로 ㄱ)
 //        binding.loginButton.setOnClickListener {
 //            val fragment2 = OnboardingFragment_1()
 //            supportFragmentManager.commit {

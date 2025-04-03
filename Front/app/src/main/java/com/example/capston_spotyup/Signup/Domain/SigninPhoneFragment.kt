@@ -1,9 +1,14 @@
 package com.example.capston_spotyup.Signup.Domain
 
+import SmsRequest
+import SmsResponse
+import SmsVerificationRequest
+import SmsVerificationResponse
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +16,15 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.User.ViewModel.SignUpViewModel
 import com.example.capston_spotyup.databinding.FragmentSigninPhoneBinding
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // phonenum 처리
 class SigninPhoneFragment : Fragment() {
@@ -47,7 +58,7 @@ class SigninPhoneFragment : Fragment() {
 //            signUpViewModel.phoneNum = binding.editText.text.toString()
 //            updateNextButtonState()
 //        }
-//
+
 
         // editText 포커스 상태 변경에 따른 색상 업데이트
         binding.editText.setOnFocusChangeListener { _, hasFocus ->
@@ -60,7 +71,35 @@ class SigninPhoneFragment : Fragment() {
             }
         }
 
-        // NextButton 클릭 이벤트 처리  -> 기존 코드
+        // NextButton 클릭 이벤트 처리  -> 기존 코드(지우면 X), 이건아제 singupviewmodel 안쓰고 하는거
+//        binding.NextButton.setOnClickListener {
+//            if (!binding.editText2.isVisible) {
+//                // 1단계: 인증코드 입력란 활성화
+//                showCodeInputFields()
+//                startTimer()
+//
+//                val phoneNumber = binding.editText.text.toString()
+//                if (isPhoneNumberValid(phoneNumber)) {
+//                    sendOtpRequest(phoneNumber)
+//                }
+//            } else if (isCodeValid) {
+//                // 2단계: 인증확인 후 다음 Fragment로 이동
+//
+//                signUpViewModel.phoneNum = binding.editText.text.toString()
+//                val phoneNumber = binding.editText.text.toString()
+//                val code = binding.editText2.text.toString()
+//
+//
+//                // OTP 코드 검증
+//                verifyOtp(phoneNumber, code)
+//
+//                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+//                transaction.replace(R.id.fragment_container, SigninInfoFragment())
+//                transaction.addToBackStack(null) // 뒤로 가기 지원
+//                transaction.commit()
+//            }
+//        }
+        // NextButton 클릭 이벤트 처리
         binding.NextButton.setOnClickListener {
             if (!binding.editText2.isVisible) {
                 // 1단계: 인증코드 입력란 활성화
@@ -69,23 +108,25 @@ class SigninPhoneFragment : Fragment() {
 
                 val phoneNumber = binding.editText.text.toString()
                 if (isPhoneNumberValid(phoneNumber)) {
-//                    sendOtpRequest(phoneNumber)
+                    signUpViewModel.requestOtp(phoneNumber) { success, message ->
+                        showToast(message) // API 응답 메시지 출력
+                    }
                 }
             } else if (isCodeValid) {
                 // 2단계: 인증확인 후 다음 Fragment로 이동
-
-//                signUpViewModel.phoneNum = binding.editText.text.toString()
                 val phoneNumber = binding.editText.text.toString()
                 val code = binding.editText2.text.toString()
 
-
-                // OTP 코드 검증
-//                verifyOtpCode(phoneNumber, code)
-
-                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.fragment_container, SigninInfoFragment())
-                transaction.addToBackStack(null) // 뒤로 가기 지원
-                transaction.commit()
+                signUpViewModel.verifyOtp(phoneNumber, code) { success, message ->
+                    showToast(message) // API 응답 메시지 출력
+                    if (success) {
+                        // 인증 성공 후 다음 화면으로 이동
+                        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.fragment_container, SigninInfoFragment())
+                        transaction.addToBackStack(null) // 뒤로 가기 지원
+                        transaction.commit()
+                    }
+                }
             }
         }
 
@@ -97,7 +138,7 @@ class SigninPhoneFragment : Fragment() {
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(editable: Editable?) {
                 val code = editable.toString()
-                isCodeValid = code.length == 6
+                isCodeValid = code.length == 4
                 updateNextButtonState()
             }
         })
@@ -124,50 +165,64 @@ class SigninPhoneFragment : Fragment() {
         binding.NextButton.isEnabled = false
         binding.NextButton.setBackgroundColor(resources.getColor(R.color.Gray2))
     }
-    //otp 로직
-//    private fun sendOtpRequest(phoneNumber: String) {
-//        Log.d("SendOtpRequest", "phoneNumber type: ${phoneNumber::class.simpleName}, value: $phoneNumber")
-//
-//        lifecycleScope.launch {
-//            try {
-//                val result = signUpViewModel.requestOtp(phoneNumber)
-//                result.fold(
-//                    onSuccess = { response ->
-//                        showToast(response.success.mes)
-//                    },
-//                    onFailure = { exception ->
-//                        showToast("인증번호 발송 실패: ${exception.message}")
-//                    }
-//                )
-//            } catch (e: Exception) {
-//            }
-//        }
-//    }
+    // otp 로직
+    private fun sendOtpRequest(phoneNumber: String) {
+        Log.d("SendOtpRequest", "phoneNumber type: ${phoneNumber::class.simpleName}, value: $phoneNumber")
+
+        lifecycleScope.launch {
+            try {
+                // Retrofit을 사용하여 SMS 인증번호 요청
+                val smsRequest = SmsRequest(phoneNum = phoneNumber)
+                RetrofitClient.smsApi.sendSms(smsRequest).enqueue(object : Callback<SmsResponse> {
+                    override fun onResponse(call: Call<SmsResponse>, response: Response<SmsResponse>) {
+                        if (response.isSuccessful) {
+                            val smsResponse = response.body()
+                            // 서버로부터 받은 응답 처리
+                            if (smsResponse?.isSuccess == true) {
+                                showToast("인증번호가 전송되었습니다.")
+                                // 타이머 시작
+                                startTimer()
+                            } else {
+                                showToast("인증번호 전송 실패: ${smsResponse?.message}")
+                            }
+                        } else {
+                            showToast("응답 실패: ${response.message()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SmsResponse>, t: Throwable) {
+                        showToast("네트워크 오류: ${t.message}")
+                    }
+                })
+            } catch (e: Exception) {
+                showToast("인증번호 요청 중 오류 발생: ${e.message}")
+            }
+        }
+    }
+
     // OTP 인증 유효 검사 (APi 생성 시 활성화 예정)
-//    private fun verifyOtpCode(phoneNumber: String, code: String) {
-//        lifecycleScope.launch {
-//            try {
-//                // OTP 검증 API 호출
-//                val result = signUpViewModel.verifyOtp(phoneNumber, code) // 인증번호 확인 API 호출
-//                result.fold(
-//                    onSuccess = { response ->
-//                        if (response.resultType == "SUCCESS") {
-//                            // 인증 성공 시, phoneNum을 ViewModel에 저장하고, 다음 화면으로 이동
-//                            signUpViewModel.phoneNum = phoneNumber
-//                            navigateToNextFragment()
-//                        } else {
-//                            showToast(response.error ?: "인증번호가 올바르지 않습니다.")
-//                        }
-//                    },
-//                    onFailure = { exception ->
-//                        showToast("인증 실패: ${exception.message}")
-//                    }
-//                )
-//            } catch (e: Exception) {
-//                showToast("오류가 발생했습니다: ${e.message}")
-//            }
-//        }
-//    }
+    fun verifyOtp(phoneNumber: String, code: String) {
+        val verificationRequest = SmsVerificationRequest(phoneNum = phoneNumber, code = code)
+        RetrofitClient.smsVerificationApi.verifySmsCode(verificationRequest)
+            .enqueue(object : Callback<SmsVerificationResponse> {
+                override fun onResponse(call: Call<SmsVerificationResponse>, response: Response<SmsVerificationResponse>) {
+                    if (response.isSuccessful) {
+                        val verificationResponse = response.body()
+                        if (verificationResponse?.isSuccess == true) {
+                            Log.d("OTP", "인증 성공")
+                        } else {
+                            Log.d("OTP", "인증 실패: ${verificationResponse?.message}")
+                        }
+                    } else {
+                        Log.d("OTP", "응답 실패: ${response.message()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<SmsVerificationResponse>, t: Throwable) {
+                    Log.d("OTP", "네트워크 오류: ${t.message}")
+                }
+            })
+    }
 
 
 
@@ -209,7 +264,7 @@ class SigninPhoneFragment : Fragment() {
         return phone.matches(Regex("^\\d{11}$"))
     }
     private fun isVerificationCodeValid(code: String): Boolean {
-        return code.matches(Regex("^\\d{6}$")) // 6자리 숫자 확인
+        return code.matches(Regex("^\\d{4}$")) // 6자리 숫자 확인
     }
     private fun navigateToNextFragment() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
