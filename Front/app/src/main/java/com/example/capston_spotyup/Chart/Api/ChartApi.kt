@@ -7,6 +7,6 @@ interface ChartApi {
     @GET("/games/chart/{sportsId}")
     suspend fun getChartData(
         @Query("userId") userId: Long,
-        @Path("sportsId") sportsId: Long
+        @Path("sportsId") sportsId: Int
     ): Call<ChartResponse>
 }

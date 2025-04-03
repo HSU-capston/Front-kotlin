@@ -1,5 +1,6 @@
 package com.example.capston_spotyup.Network
 
+import ChartApi
 import com.example.capston_spotyup.Main.Api.DatesApi
 import com.example.capston_spotyup.Main.Api.SportsApi
 import com.example.capston_spotyup.Map.Api.BowlingApi
@@ -52,6 +53,16 @@ object RetrofitClient {
             .build()
             .create(DatesApi::class.java)
     }
+
+    val ChartApi: ChartApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ChartApi::class.java)
+    }
+
 
 
 
