@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.app.AnalyzeFragmentSub
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.FragmentAnalyzeCalenderBinding
 import com.kizitonwose.calendarview.model.CalendarDay
@@ -46,10 +48,29 @@ class AnalyzeCalendarFragment : Fragment() {
                 container.textView.text =
                     if (day.owner == DayOwner.THIS_MONTH) day.date.dayOfMonth.toString()
                     else ""  // 현재 월이 아닌 날짜는 비워서 안 보이게
+
+                // 날짜를 선택했을 때 이벤트 처리
+                container.textView.setOnClickListener {
+                    if (day.owner == DayOwner.THIS_MONTH) {
+                        val selectedDate = day.date
+                        // 날짜를 Bundle로 전달하여 다음 프래그먼트로 이동
+                        val bundle = Bundle()
+                        bundle.putString("selectedDate", selectedDate.toString())
+
+                        // 직접 FragmentTransaction을 사용하여 이동
+                        val analyzeFragmentSub = AnalyzeFragmentSub()
+                        analyzeFragmentSub.arguments = bundle
+
+                        parentFragmentManager.beginTransaction()
+                            .replace(R.id.nav_host_fragment, analyzeFragmentSub) // Fragment container ID
+                            .addToBackStack(null) // Back stack에 추가 (뒤로 가기 가능)
+                            .commit()
+                    }
+                }
             }
         }
         binding.calendarView.monthScrollListener = { month ->
-            val monthText = "${month.year}년 ${month.yearMonth.monthValue}월"
+            val monthText = "${month.yearMonth.monthValue}월"
             binding.textMonthTitle.text = monthText
         }
 

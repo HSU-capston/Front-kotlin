@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
+import com.example.capston_spotyup.Main.MainActivity
 import com.example.capston_spotyup.Onboarding.OnboardingFragment_1
 import com.example.capston_spotyup.R
 //import com.example.capston_spotyup.SignupActivity
@@ -21,20 +22,20 @@ class SigninActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 로그인 버튼 클릭 시 fragment_home으로 이동, 원래 코드
-//        binding.loginButton.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.loginButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         // 온보딩 전환 코드
-        binding.loginButton.setOnClickListener {
-            val fragment2 = OnboardingFragment_1()
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace(R.id.fragment_container, fragment2)
-                addToBackStack(null)
-            }
-        }
+//        binding.loginButton.setOnClickListener {
+//            val fragment2 = OnboardingFragment_1()
+//            supportFragmentManager.commit {
+//                setReorderingAllowed(true)
+//                replace(R.id.fragment_container, fragment2)
+//                addToBackStack(null)
+//            }
+//        }
         binding.loginButton2.setOnClickListener {
             val fragment = SignUpFragment()
             supportFragmentManager.commit {

@@ -29,7 +29,7 @@ class AnalyzeFragmentMain : Fragment() {
         val adapter = AnalyzeAdapter(this)
         binding.viewpager.adapter = adapter
 
-        TabLayoutMediator(binding.tab1, binding.viewpager) { tab, position ->
+        TabLayoutMediator(binding.tab, binding.viewpager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
     }
