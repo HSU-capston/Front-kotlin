@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+
+            <ImageView
+                android:id="@+id/logo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_analyze_logo2"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:layout_marginLeft="@dimen/spacing_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/textmain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="영상을 확인해보세요"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_bold"
+                android:textColor="@color/main"
+                android:layout_marginTop="@dimen/spacing_64"
+                android:layout_marginLeft="@dimen/spacing_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo2"/>
+
+            <TextView
+                android:id="@+id/textsub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="피드백 기록을 한눈에 볼 수 있어요!"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textColor="@color/gray_7"
+                android:layout_marginLeft="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textmain"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_32"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textsub"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>
