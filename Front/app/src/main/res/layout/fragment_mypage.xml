@@ -15,7 +15,8 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_sports"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 프로필 컨테이너 -->
     <androidx.constraintlayout.widget.ConstraintLayout

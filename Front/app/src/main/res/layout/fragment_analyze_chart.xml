@@ -12,7 +12,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
 
             <ImageView
@@ -109,6 +109,8 @@
                     android:layout_marginStart="@dimen/spacing_24"
                     android:layout_width="79sp"
                     android:layout_height="76sp"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
                     android:background="@color/white"
                     app:cardCornerRadius="10dp"
                     android:elevation="@dimen/spacing_4"
@@ -144,6 +146,8 @@
                     android:layout_height="76sp"
                     android:background="@color/white"
                     app:cardCornerRadius="10dp"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
                     android:elevation="@dimen/spacing_4"
                     >
                     <LinearLayout
@@ -178,6 +182,8 @@
                     android:background="@color/white"
                     app:cardCornerRadius="10dp"
                     android:elevation="@dimen/spacing_4"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
                     >
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -210,6 +216,8 @@
                     android:layout_height="76sp"
                     android:background="@color/white"
                     app:cardCornerRadius="10dp"
+                    android:layout_marginBottom="@dimen/spacing_4"
+                    android:layout_marginTop="@dimen/spacing_4"
                     android:elevation="@dimen/spacing_4"
                     >
                     <LinearLayout
@@ -271,10 +279,10 @@
                 android:layout_height="320dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/avr_text"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/avr_text" />
 
 
 
