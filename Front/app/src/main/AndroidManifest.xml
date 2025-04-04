@@ -45,7 +45,7 @@
 
         <!-- 로그인 액티비티 -->
         <activity android:name=".Signin.SigninActivity"/>
-        <activity android:name=".SignupActivity"/>
+
         <!-- 메인 액티비티 -->
         <activity
             android:name=".Main.MainActivity"

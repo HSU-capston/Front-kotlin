@@ -57,9 +57,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
-                android:text="2025년 3월"
+                android:text="3월"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:textColor="@color/main"
                 android:textStyle="bold"
                 android:fontFamily="@font/pretendard_bold" />
 
@@ -79,11 +79,13 @@
             android:orientation="horizontal"
             android:layout_marginTop="12dp"
             android:gravity="center"
+            android:paddingRight="@dimen/spacing_48"
+            android:paddingLeft="@dimen/spacing_48"
             app:layout_constraintTop_toBottomOf="@id/month_header"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="일" android:textColor="@color/Gray2" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="일" android:textColor="@color/Invalid" />
             <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="월" android:textColor="@color/Gray2" />
             <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="화" android:textColor="@color/Gray2" />
             <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="수" android:textColor="@color/Gray2" />
@@ -101,10 +103,11 @@
             android:layout_marginTop="@dimen/spacing_8"
             android:background="@drawable/bg_calendar"
             android:padding="30dp"
+            app:cv_dayViewResource="@layout/item_calender_day"
             app:cv_maxRowCount="6"
             app:cv_orientation="horizontal"
-            app:cv_dayViewResource="@layout/item_calender_day"
             app:cv_scrollMode="paged"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/week_days_header" />
 

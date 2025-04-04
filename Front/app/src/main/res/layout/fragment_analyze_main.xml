@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:id="@+id/nav_host_fragment"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -15,10 +16,20 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/back_img"
+                android:layout_width="match_parent"
+                android:layout_height="156sp"
+                android:src="@drawable/img_mainboard"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ImageView
                 android:id="@+id/chartlogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_onboarding"
+                android:src="@drawable/ic_analyze_logo"
                 android:layout_marginTop="@dimen/spacing_16"
                 android:layout_marginLeft="@dimen/spacing_16"
 
@@ -27,17 +38,17 @@
 
 
             <com.google.android.material.tabs.TabLayout
-                android:background="@color/white"
-                android:id="@+id/tab1"
+                android:background="@color/main"
+                android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_64"
-                android:layout_marginRight="@dimen/spacing_64"
-                android:layout_marginTop="@dimen/spacing_12"
+                android:layout_marginLeft="120sp"
+                android:layout_marginRight="120sp"
+                android:layout_marginTop="@dimen/spacing_24"
                 android:textAlignment="center"
                 app:layout_constraintTop_toBottomOf="@id/chartlogo"
-                app:tabIndicatorColor="@color/main"
-                app:tabSelectedTextColor="@color/main"
+                app:tabIndicatorColor="@color/white"
+                app:tabSelectedTextColor="@color/white"
                 app:tabTextColor="@color/Gray6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -61,7 +72,7 @@
                 android:layout_marginTop="@dimen/spacing_12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tab1"
+                app:layout_constraintTop_toBottomOf="@id/back_img"
                 />
 
 

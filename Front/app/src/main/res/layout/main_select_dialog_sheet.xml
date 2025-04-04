@@ -134,9 +134,10 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center"
+
                         android:paddingTop="@dimen/spacing_8"
                         android:layout_marginBottom="@dimen/spacing_4"
-                        android:src="@drawable/ic_select_bill" />
+                        android:src="@drawable/ic_golf_p" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -176,7 +177,7 @@
                         android:layout_gravity="center"
                         android:paddingTop="@dimen/spacing_8"
                         android:layout_marginBottom="@dimen/spacing_4"
-                        android:src="@drawable/ic_select_bill" />
+                        android:src="@drawable/ic_bowl_p" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
