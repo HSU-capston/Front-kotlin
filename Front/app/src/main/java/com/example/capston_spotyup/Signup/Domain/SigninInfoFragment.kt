@@ -55,8 +55,10 @@ class SigninInfoFragment : Fragment() {
 
                 signUpViewModel.email = binding.editText.text.toString()
                 signUpViewModel.password = binding.editText2.text.toString()
-//                signUpViewModel.birth = "${binding.spinnerYear.selectedItem}-${binding.spinnerMonth.selectedItem}-${binding.spinnerDay.selectedItem}"
-
+                val year = binding.spinnerYear.selectedItem.toString()
+                val month = binding.spinnerMonth.selectedItem.toString().padStart(2, '0')
+                val day = binding.spinnerDay.selectedItem.toString().padStart(2, '0')
+                signUpViewModel.birthday = "$year-$month-$day"
                 // 로그인 처리, Fragment 전환
                 val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.fragment_container, SigninNicknameFragment())
@@ -165,6 +167,7 @@ class SigninInfoFragment : Fragment() {
         val years = resources.getStringArray(R.array.years) // 예시 배열
         val months = resources.getStringArray(R.array.months) // 예시 배열
         val days = resources.getStringArray(R.array.days) // 예시 배열
+
 
         // 각 Spinner에 어댑터 설정
         val yearAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, years)
