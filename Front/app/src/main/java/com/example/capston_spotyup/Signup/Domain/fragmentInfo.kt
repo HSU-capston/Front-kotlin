@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.capston_spotyup.Main.MainActivity
 import com.example.capston_spotyup.R
+import com.example.capston_spotyup.Signin.Domain.SigninActivity
 import com.example.capston_spotyup.databinding.SignupInfoBinding
 import com.google.android.material.button.MaterialButton
 
@@ -54,9 +56,14 @@ class FragmentInfo : Fragment() {
 
         binding.NextButton.setOnClickListener {
             // TODO: 데이터 처리
-            val intent = Intent(requireContext(), MainActivity::class.java)
+//            val intent = Intent(requireContext(), MainActivity::class.java)
+//            startActivity(intent)
+//            requireActivity().finish()  // 현재 액티비티 종료
+
+            val intent = Intent(requireContext(), SigninActivity::class.java)
             startActivity(intent)
             requireActivity().finish()  // 현재 액티비티 종료
+
         }
     }
 
