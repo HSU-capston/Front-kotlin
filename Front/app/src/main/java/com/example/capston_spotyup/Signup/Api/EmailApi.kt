@@ -1,8 +1,7 @@
 package com.example.capston_spotyup.User.Api
 
-
 import EmailRequest
-import EmailResponse
+import com.example.capston_spotyup.User.DTO.EmailResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers

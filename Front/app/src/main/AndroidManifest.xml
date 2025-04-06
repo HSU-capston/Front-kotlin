@@ -19,6 +19,7 @@
 
 
     <application
+        android:name=".Main.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -44,7 +45,7 @@
         </activity>
 
         <!-- 로그인 액티비티 -->
-        <activity android:name=".Signin.SigninActivity"/>
+        <activity android:name=".Signin.Domain.SigninActivity"/>
 
         <!-- 메인 액티비티 -->
         <activity

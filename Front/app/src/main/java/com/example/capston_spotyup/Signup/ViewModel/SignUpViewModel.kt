@@ -16,21 +16,17 @@ class SignUpViewModel : ViewModel() {
 
     var email: String = ""
     var password: String = ""
-    var name: String = ""
+    var nickname: String = ""
     var phoneNum: String = ""
-    var preferSports: String = ""
-    var level: String = ""
-    var goal: String = ""
+    var birthday: String = "" // "2025-04-06" 형식으로 설정할 것
 
     fun toRequest(): EmailRequest {
         return EmailRequest(
             email = email,
             password = password,
-            name = name,
-            phone_num = phoneNum,
-            prefer_sports = preferSports,
-            level = level,
-            goal = goal
+            nickname = nickname,
+            phoneNum = phoneNum,
+            birthday = birthday
         )
     }
 

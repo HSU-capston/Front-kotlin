@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capston_spotyup.R
-import com.example.capston_spotyup.Signin.SigninActivity
+import com.example.capston_spotyup.Signin.Domain.SigninActivity
 
 class SplashActivity : AppCompatActivity() {
 

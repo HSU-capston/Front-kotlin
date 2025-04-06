@@ -1,13 +1,13 @@
-package com.example.capston_spotyup.User.DTO
+package com.example.capston_spotyup.Login.DTO
 
-data class EmailResponse(
+data class LoginResponse(
     val isSuccess: Boolean,
     val code: String,
     val message: String,
-    val result: TokenResult?
+    val result: LoginResult?
 )
 
-data class TokenResult(
+data class LoginResult(
     val accessToken: String,
     val refreshToken: String
 )

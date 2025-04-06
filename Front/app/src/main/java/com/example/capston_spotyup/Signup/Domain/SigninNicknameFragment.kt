@@ -1,20 +1,27 @@
 package com.example.capston_spotyup.Signup.Domain
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import com.example.capston_spotyup.Network.RetrofitClient
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.capston_spotyup.R
-import com.example.capston_spotyup.Signin.SigninActivity
+import com.example.capston_spotyup.Signin.Domain.SigninActivity
+import com.example.capston_spotyup.User.DTO.EmailResponse
 import com.example.capston_spotyup.User.ViewModel.SignUpViewModel
 import com.example.capston_spotyup.databinding.FragmentSigninNicknameBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // nickname 처리
 class SigninNicknameFragment : Fragment() {
@@ -36,22 +43,61 @@ class SigninNicknameFragment : Fragment() {
 
         // 닉네임 입력값에 따라 버튼 활성화 및 색상 변경
         setupNicknameValidation()
+        // 로그인 api
+        binding.NextButton.setOnClickListener {
+            // ViewModel에 닉네임 반영
+            signUpViewModel.nickname = binding.editText.text.toString()
+
+            val request = signUpViewModel.toRequest()
+            Log.d("SignUpRequest", request.toString())
+
+
+            RetrofitClient.emailApi.registerUser(request).enqueue(object : Callback<EmailResponse> {
+                override fun onResponse(call: Call<EmailResponse>, response: Response<EmailResponse>) {
+                    if (response.isSuccessful) {
+                        val result = response.body()
+                        if (result?.isSuccess == true) {
+
+                            Toast.makeText(requireContext(), "회원가입 성공!", Toast.LENGTH_SHORT).show()
+
+                            // 로그인 화면으로 이동
+                            val intent = Intent(requireContext(), SigninActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        } else {
+                            Log.e("SignUpResponse", "회원가입 실패: ${result?.message}")
+                            Toast.makeText(requireContext(), "회원가입 실패: ${result?.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("SignUpResponse", "서버 오류: ${response.code()} / $errorBody")
+                        Toast.makeText(requireContext(), "서버 오류: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<EmailResponse>, t: Throwable) {
+                    Log.e("SignUpResponse", "통신 실패", t)
+                    Toast.makeText(requireContext(), "네트워크 오류: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
 
         // NextButton 클릭 시 Fragment 전환  -> 일단 다시 login쪽으로 넘어가게했습니다.
-        binding.NextButton.setOnClickListener {
-            signUpViewModel.name = binding.editText.text.toString()
-
-            // 로그인 처리, Fragment 전환
-            val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, FragmentInfo())
-            transaction.addToBackStack(null) // 뒤로 가기 지원
-            transaction.commit()
-            //원래 SigninActivity 로넘어감
-//            Toast.makeText(requireContext(), "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(requireContext(), SigninActivity::class.java)
-//            startActivity(intent)
-//            requireActivity().finish() // 현재 Fragment가 포함된 Activity 종료 (필요에 따라 유지 가능)
-        }
+//        binding.NextButton.setOnClickListener {
+//            signUpViewModel.name = binding.editText.text.toString()
+//
+//            // 로그인 처리, Fragment 전환
+//            val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+//            transaction.replace(R.id.fragment_container, FragmentInfo())
+//            transaction.addToBackStack(null) // 뒤로 가기 지원
+//            transaction.commit()
+//            //원래 SigninActivity 로넘어감
+////            Toast.makeText(requireContext(), "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show()
+////            val intent = Intent(requireContext(), SigninActivity::class.java)
+////            startActivity(intent)
+////            requireActivity().finish() // 현재 Fragment가 포함된 Activity 종료 (필요에 따라 유지 가능)
+//        }
         //원래 코드
 //        binding.NextButton.setOnClickListener {
 //            signUpViewModel.name = binding.editText.text.toString()
