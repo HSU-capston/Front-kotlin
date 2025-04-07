@@ -4,7 +4,7 @@
     android:id="@+id/bottomSheetLayout"
     android:layout_width="match_parent"
     android:layout_height="360sp"
-    android:background="@drawable/bottom_sheet_round"
+    android:background="@drawable/sub_card"
     android:orientation="vertical"
     android:padding="24dp">
 

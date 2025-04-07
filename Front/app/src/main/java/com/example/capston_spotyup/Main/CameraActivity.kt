@@ -2,13 +2,17 @@ package com.example.capston_spotyup
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Looper
 import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -22,8 +26,12 @@ import androidx.camera.video.VideoRecordEvent
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.capston_spotyup.Main.DTO.Request.GameExitRequest
+import com.example.capston_spotyup.Main.DTO.Response.GameExitResponse
+import com.example.capston_spotyup.Main.MainActivity
 import com.example.capston_spotyup.Map.DTO.Response.BowlingResponse
 import com.example.capston_spotyup.Network.RetrofitClient
+import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.ActivityCameraBinding
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -43,12 +51,14 @@ class CameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCameraBinding
     private lateinit var cameraExecutor: ExecutorService
-    private var imageCapture: ImageCapture? = null  // ✅ 사진 촬영을 위한 변수 추가
-    private var videoCapture: VideoCapture<Recorder>? = null  // ✅ 변경된 VideoCapture 타입
-    private var recording: Recording? = null  // ✅ 녹화 상태를 저장할 변수
-    private var isRecording = false  // ✅ 녹화 상태 저장
+    private var imageCapture: ImageCapture? = null
+    private var videoCapture: VideoCapture<Recorder>? = null
+    private var recording: Recording? = null
+    private var isRecording = false
     private var timerHandler: Handler? = null
-    private var seconds = 0  // ✅ 타이머를 위한 변수
+    private var seconds = 0
+    private var currentGameId: Long? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,10 +67,13 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        currentGameId = intent.getLongExtra("gameId", -1L)
+        if (currentGameId == -1L) currentGameId = null  // 유효하지 않은 경우 null 처리
+
 //        binding.lotti.visibility = android.view.View.INVISIBLE
         binding.texttimer.visibility = android.view.View.INVISIBLE
 
-        // ✅ 카메라 권한 체크 후 실행
+
         if (allPermissionsGranted()) {
             startCamera()
         } else {
@@ -71,13 +84,17 @@ class CameraActivity : AppCompatActivity() {
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        // ✅ ImageView를 클릭하면 녹화 시작/정지
+
         binding.camera.setOnClickListener {
             toggleRecording()
         }
+        binding.cancel.setOnClickListener {
+            showCameraDialog()
+        }
+
     }
 
-    // ✅ 권한 요청 결과 처리
+    //  권한 요청 결과 처리
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>, grantResults: IntArray
     ) {
@@ -98,26 +115,26 @@ class CameraActivity : AppCompatActivity() {
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-            // ✅ 미리보기 설정
+            //  미리보기 설정
             val preview = Preview.Builder()
                 .build()
                 .also {
                     it.setSurfaceProvider(binding.previewView.surfaceProvider)
                 }
 
-            // ✅ 사진 캡처 기능 추가
+            // 사진 캡처 기능 추가
             imageCapture = ImageCapture.Builder()
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                 .build()
 
-            // ✅ 최신 VideoCapture 설정 (Recorder 사용)
+            //  최신 VideoCapture 설정 (Recorder 사용)
             val recorder = Recorder.Builder()
                 .setQualitySelector(QualitySelector.from(Quality.HD))  // 해상도 설정
                 .build()
 
-            videoCapture = VideoCapture.withOutput(recorder) // ✅ 동영상 촬영 초기화
+            videoCapture = VideoCapture.withOutput(recorder) //  동영상 촬영 초기화
 
-            // ✅ implementationMode 설정 추가 (한 번만 실행)
+            //  implementationMode 설정 추가 (한 번만 실행)
             binding.previewView.post {
                 binding.previewView.implementationMode = PreviewView.ImplementationMode.COMPATIBLE
             }
@@ -135,9 +152,9 @@ class CameraActivity : AppCompatActivity() {
             try {
                 cameraProvider.unbindAll()
 
-                // ✅ 카메라 바인딩 (미리보기 + 사진 캡처 + 동영상 촬영)
+                // 카메라 바인딩 (미리보기 + 사진 캡처 + 동영상 촬영)
                 val camera = cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture, videoCapture  // 🔥 videoCapture 추가!
+                    this, cameraSelector, preview, imageCapture, videoCapture  // videoCapture 추가!
                 )
 
             } catch (exc: Exception) {
@@ -147,7 +164,7 @@ class CameraActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
-    // ✅ 카메라 존재 여부 확인하는 확장 함수 추가
+    // 카메라 존재 여부 확인하는 확장 함수 추가
     private fun ProcessCameraProvider.hasCamera(cameraSelector: CameraSelector): Boolean {
         return try {
             hasCamera(cameraSelector)
@@ -155,12 +172,12 @@ class CameraActivity : AppCompatActivity() {
             false
         }
     }
-    // ✅ 녹화 시작 / 중지 함수
+    //  녹화 시작 / 중지 함수
     private fun toggleRecording() {
         val videoCapture = videoCapture ?: return
 
         if (recording != null) {
-            // 🛑 녹화 중지
+            //  녹화 중지
             recording?.stop()
             recording = null
             isRecording = false
@@ -185,7 +202,7 @@ class CameraActivity : AppCompatActivity() {
         isRecording = true
         startTimer()
 
-        // ✅ 파일 이름 생성
+        //  파일 이름 생성
         val fileName = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
             .format(System.currentTimeMillis()) + ".mp4"
 
@@ -202,7 +219,7 @@ class CameraActivity : AppCompatActivity() {
             .setContentValues(contentValues)
             .build()
 
-        // ✅ 녹화 시작
+        //  녹화 시작
         recording = videoCapture.output
             .prepareRecording(this, mediaStoreOutput)
             .apply {
@@ -221,8 +238,8 @@ class CameraActivity : AppCompatActivity() {
                     }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
-                            val videoFilePath = getVideoFilePath(fileName) // ✅ 녹화된 영상 경로 가져오기
-                            saveVideoFilePathToPreferences(videoFilePath) // ✅ `SharedPreferences`에 저장
+                            val videoFilePath = getVideoFilePath(fileName) //  녹화된 영상 경로 가져오기
+                            saveVideoFilePathToPreferences(videoFilePath) //  `SharedPreferences`에 저장
 
                             val sharedPref = getSharedPreferences("VideoPrefs", MODE_PRIVATE)
                             val savedPath = sharedPref.getString("savedVideoPath", "")
@@ -246,21 +263,91 @@ class CameraActivity : AppCompatActivity() {
     private fun getVideoFilePath(fileName: String): String {
         return "${getExternalFilesDir(null)}/Movies/CameraX-Video/$fileName"
     }
+    private fun showCameraDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.camera_dialog, null)
+        val scoreEditText = dialogView.findViewById<EditText>(R.id.scoreText)
+        val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        // 확인 버튼 클릭 시
+        btnConfirm.setOnClickListener {
+            val scoreText = scoreEditText.text.toString()
+            val score = scoreText.toIntOrNull()
+
+            if (score != null && currentGameId != null) {
+                sendGameExitRequest(score)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(this, "유효한 점수를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // 취소 버튼 클릭 시
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+    private fun sendGameExitRequest(score: Int) {
+        val token = TokenManager.getAccessToken()
+        val gameId = currentGameId
+
+        if (token != null && gameId != null) {
+            val request = GameExitRequest(score)
+
+            RetrofitClient.gameExitApi.exitGame("Bearer $token", gameId, request)
+                .enqueue(object : Callback<GameExitResponse> {
+                    override fun onResponse(call: Call<GameExitResponse>, response: Response<GameExitResponse>) {
+                        if (response.isSuccessful) {
+                            val result = response.body()?.result
+                            Log.d("GameExit", "게임 종료 완료 - 점수: ${result?.score}, 요약: ${result?.summary}")
+                            Toast.makeText(this@CameraActivity, "게임 종료 완료!", Toast.LENGTH_SHORT).show()
+
+                            //  MainActivity로 이동 (FragmentHome 표시 요청)
+                            val intent = Intent(this@CameraActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                            intent.putExtra("navigateToHome", true)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this@CameraActivity, "서버 오류: ${response.code()}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<GameExitResponse>, t: Throwable) {
+                        Log.e("GameExit", "요청 실패: ${t.message}")
+                        Toast.makeText(this@CameraActivity, "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
+                    }
+                })
+        } else {
+            Toast.makeText(this, "토큰 또는 게임 정보가 없습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 
 
 
-    // 🔥 SharedPreferences에 저장하여 MapFragment에서 가져오도록 설정
+
+
+
+    //  SharedPreferences에 저장하여 MapFragment에서 가져오도록 설정
     private fun saveVideoFilePathToPreferences(videoFilePath: String) {
         val sharedPref = getSharedPreferences("VideoPrefs", MODE_PRIVATE)
         with(sharedPref.edit()) {
-            putString("savedVideoPath", videoFilePath) // 🔥 로컬 경로 저장
+            putString("savedVideoPath", videoFilePath) //  로컬 경로 저장
             apply()
         }
     }
 
 
-    // ✅ 타이머 시작 함수
+    //  타이머 시작 함수
     private fun startTimer() {
         timerHandler = Handler(Looper.getMainLooper())
         timerHandler?.post(object : Runnable {
@@ -270,7 +357,7 @@ class CameraActivity : AppCompatActivity() {
                     val secs = seconds % 60
                     val timeString = String.format(Locale.US, "%02d:%02d", minutes, secs)
 
-                    // ✅ runOnUiThread 안에서 UI 업데이트
+                    //  runOnUiThread 안에서 UI 업데이트
                     runOnUiThread {
                         binding.texttimer.text = timeString
                     }
@@ -289,7 +376,7 @@ class CameraActivity : AppCompatActivity() {
         cameraExecutor.shutdown()
     }
 
-    // ✅ 권한 체크 함수
+    //  권한 체크 함수
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
     }
