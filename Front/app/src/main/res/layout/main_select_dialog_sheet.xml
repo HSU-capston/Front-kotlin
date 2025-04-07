@@ -46,7 +46,8 @@
     <HorizontalScrollView
         android:layout_marginTop="@dimen/spacing_16"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -56,6 +57,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardBilliard"
                 android:layout_marginTop="@dimen/spacing_4"
                 android:layout_marginLeft="@dimen/spacing_8"
                 android:layout_width="120dp"
@@ -73,7 +75,7 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/gettext"
+                        android:id="@+id/gettextBilliard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -101,6 +103,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardGolf"
                 android:layout_marginTop="@dimen/spacing_4"
                 android:layout_width="120dp"
                 android:layout_height="160sp"
@@ -117,12 +120,13 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/gettextGolf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/pretendard_semibold"
                         android:textSize="18sp"
-                        android:text="골프" />
+                        android:text="" />
 
                     <ImageView
                         android:layout_width="17dp"
@@ -142,6 +146,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardBowling"
                 android:layout_marginTop="@dimen/spacing_4"
                 android:layout_width="120dp"
                 android:layout_height="160sp"
@@ -158,12 +163,13 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/gettextBowling"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/pretendard_semibold"
                         android:textSize="18sp"
-                        android:text="볼링" />
+                        android:text=""/>
 
                     <ImageView
                         android:layout_width="17dp"
