@@ -9,7 +9,8 @@ import retrofit2.http.Query
 interface ChartApi {
     @GET("/games/chart/{sportsId}")
     suspend fun getChartData(
-        @Query("userId") userId: Long,
-        @Path("sportsId") sportsId: Int
-    ): Call<ChartResponse>
+        @Path("sportsId") sportsId: Int,
+        @Query("userId") userId: Long
+    ): ChartResponse
+
 }

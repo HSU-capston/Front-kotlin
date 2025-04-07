@@ -119,15 +119,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <TextView
-                            android:layout_marginTop="@dimen/spacing_16"
+                            android:id="@+id/tvGameCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:textColor="@color/Gray2"
+                            android:layout_marginTop="@dimen/spacing_16"
                             android:fontFamily="@font/pretendard_semibold"
+                            android:textColor="@color/Gray2"
                             android:textStyle="bold"
-                            android:text="게임수"/>
+                            android:text="-"/>
 
                         <TextView
                             android:layout_marginTop="@dimen/spacing_8"
@@ -155,6 +157,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/tvAvgScore"
                             android:layout_marginTop="@dimen/spacing_16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -162,7 +165,7 @@
                             android:textColor="@color/Gray2"
                             android:fontFamily="@font/pretendard_semibold"
                             android:textStyle="bold"
-                            android:text="게임수"/>
+                            android:text="-"/>
 
                         <TextView
                             android:layout_marginTop="@dimen/spacing_8"
@@ -190,6 +193,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/tvHighScore"
                             android:layout_marginTop="@dimen/spacing_16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -197,7 +201,7 @@
                             android:textColor="@color/Gray2"
                             android:fontFamily="@font/pretendard_semibold"
                             android:textStyle="bold"
-                            android:text="게임수"/>
+                            android:text="-"/>
 
                         <TextView
                             android:layout_marginTop="@dimen/spacing_8"
@@ -225,6 +229,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
                         <TextView
+                            android:id="@+id/tvLowScore"
                             android:layout_marginTop="@dimen/spacing_16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -232,7 +237,7 @@
                             android:textColor="@color/Gray2"
                             android:fontFamily="@font/pretendard_semibold"
                             android:textStyle="bold"
-                            android:text="게임수"/>
+                            android:text="-"/>
 
                         <TextView
                             android:layout_marginTop="@dimen/spacing_8"

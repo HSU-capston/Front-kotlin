@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.capston_spotyup.Analyze.DTO.ChartResponse
+import com.example.capston_spotyup.Analyze.DTO.ChartResult
+import com.example.capston_spotyup.Analyze.DTO.DateScore
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.FragmentAnalyzeChartBinding
 
@@ -38,21 +40,22 @@ class AnalyzeChartFragment : Fragment() {
         viewModel.getChartData(userId, currentSportsId)
 
         // 데이터가 업데이트되면 차트와 RecyclerView를 갱신
-        viewModel.chartData.observe(viewLifecycleOwner, { chartData ->
+        viewModel.chartData.observe(viewLifecycleOwner) { chartData ->
             updateChart(chartData.result.dateScores)
-        })
+            updateStats(chartData.result)  // 📌 추가!
+        }
 
         setupIconSelectors()  // 아이콘 선택 기능 설정
         return binding.root
     }
 
     // 차트 업데이트
-    private fun updateChart(dateScores: List<ChartResponse.getGameDates>) {
-        val entries = dateScores.mapIndexed { index, getGameDates ->
-            Entry(index.toFloat(), getGameDates.gameScore.toFloat())
+    private fun updateChart(dateScores: List<DateScore>) {
+        val entries = dateScores.mapIndexed { index, score ->
+            Entry(index.toFloat(), score.gameScore.toFloat())
         }
 
-        val dataSet = LineDataSet(entries, "월별 평균")
+        val dataSet = LineDataSet(entries, "점수")
         dataSet.color = ContextCompat.getColor(requireContext(), R.color.main)
         dataSet.setCircleColor(Color.BLACK)
         dataSet.lineWidth = 2f
@@ -66,10 +69,18 @@ class AnalyzeChartFragment : Fragment() {
         binding.lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.lineChart.axisRight.isEnabled = false
         binding.lineChart.axisLeft.axisMinimum = 0f
-        binding.lineChart.axisLeft.axisMaximum = 6f
-
-        binding.lineChart.invalidate()  // 차트 업데이트
+        binding.lineChart.invalidate()
     }
+
+    private fun updateStats(result: ChartResult) {
+        binding.tvGameCount.text = result.gameCount.toString()
+        binding.tvAvgScore.text = result.averageScore.toString()
+        binding.tvHighScore.text = result.highScore.toString()
+        binding.tvLowScore.text = result.lowScore.toString()
+    }
+
+
+
 
     // 스포츠 아이콘 클릭 시 데이터 갱신
     private fun setupIconSelectors() {
