@@ -1,6 +1,6 @@
 package com.example.capston_spotyup.Analyze.Domain
 
-import DateScore
+import com.example.capston_spotyup.Analyze.DTO.DateScore
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment

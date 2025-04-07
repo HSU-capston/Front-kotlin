@@ -1,6 +1,6 @@
 package com.example.capston_spotyup.Analyze.Domain
 
-import ChartResponse
+import com.example.capston_spotyup.Analyze.DTO.ChartResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,3 +1,5 @@
+package com.example.capston_spotyup.Analyze.DTO
+
 data class ChartResponse(
     val isSuccess: Boolean,
     val code: String,
