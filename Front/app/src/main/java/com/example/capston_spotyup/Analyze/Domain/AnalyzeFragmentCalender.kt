@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -37,12 +38,15 @@ class AnalyzeCalendarFragment : Fragment() {
     private val availableDates = mutableSetOf<LocalDate>()
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentAnalyzeCalenderBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -118,6 +122,8 @@ class AnalyzeCalendarFragment : Fragment() {
             nextMonth?.let { binding.calendarView.scrollToMonth(it) }
         }
 
+        setupCalendarIconSelectors()
+
     }
     private fun fetchAvailableDates(year: Int, month: Int) {
         val token = TokenManager.getAccessToken()
@@ -148,6 +154,37 @@ class AnalyzeCalendarFragment : Fragment() {
     }
 
 
+    private fun setupCalendarIconSelectors() {
+        val icons = listOf(
+            binding.undertab1.getChildAt(0) as ImageView,
+            binding.undertab1.getChildAt(1) as ImageView,
+            binding.undertab1.getChildAt(2) as ImageView
+        )
+
+        val selectedIcons = listOf(
+            R.drawable.ic_anal_bill,
+            R.drawable.ic_anal_golf,
+            R.drawable.ic_anal_bowl
+        )
+
+        val defaultIcons = listOf(
+            R.drawable.ic_chart_1,
+            R.drawable.ic_chart_2,
+            R.drawable.ic_chart_3
+        )
+
+        icons.forEachIndexed { index, imageView ->
+            imageView.setOnClickListener {
+                icons.forEachIndexed { i, icon ->
+                    icon.setImageResource(defaultIcons[i])
+                }
+                imageView.setImageResource(selectedIcons[index])
+
+                // TODO: 여기에 종목 선택에 따른 데이터 변경 (필요 시)
+                // 예: 현재 sportsId 저장 → 캘린더에 다른 데이터 연동 등
+            }
+        }
+    }
 
 
     override fun onDestroyView() {

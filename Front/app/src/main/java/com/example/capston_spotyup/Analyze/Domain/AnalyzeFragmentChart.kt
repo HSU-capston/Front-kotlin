@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -85,23 +86,36 @@ class AnalyzeChartFragment : Fragment() {
     // 스포츠 아이콘 클릭 시 데이터 갱신
     private fun setupIconSelectors() {
         val icons = listOf(
-            binding.undertab1.getChildAt(0),
-            binding.undertab1.getChildAt(1),
-            binding.undertab1.getChildAt(2)
+            binding.undertab1.getChildAt(0) as ImageView,
+            binding.undertab1.getChildAt(1) as ImageView,
+            binding.undertab1.getChildAt(2) as ImageView
         )
 
-        icons.forEachIndexed { index, view ->
-            view.setOnClickListener {
-                // 모든 아이콘 초기화
-                icons.forEach { it.background = null }
+        // 선택 아이콘 이미지들
+        val selectedIcons = listOf(
+            R.drawable.ic_anal_bill,
+            R.drawable.ic_anal_golf,
+            R.drawable.ic_anal_bowl
+        )
 
-                // 선택된 아이콘에 배경 색 지정
-                view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Gray2))
+        // 기본 아이콘 이미지들
+        val defaultIcons = listOf(
+            R.drawable.ic_chart_1,
+            R.drawable.ic_chart_2,
+            R.drawable.ic_chart_3
+        )
 
-                // 선택된 스포츠 ID 갱신
+
+        icons.forEachIndexed { index, imageView ->
+            imageView.setOnClickListener {
+                icons.forEachIndexed { i, icon ->
+                    icon.setImageResource(defaultIcons[i]) // 기본 아이콘으로 초기화
+                }
+
+                imageView.setImageResource(selectedIcons[index]) // 선택된 아이콘만 파란색으로
                 currentSportsId = index + 1
-                // 데이터 로드
-                val userId = 1234L // 예시 userId
+
+                val userId = 1234L // 예시
                 viewModel.getChartData(userId, currentSportsId)
             }
         }
