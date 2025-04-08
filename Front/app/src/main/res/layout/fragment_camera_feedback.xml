@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="580sp"
+    android:background="@drawable/sub_card"
+    android:orientation="vertical"
+>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="580sp"
+            android:orientation="vertical">
+
+
+            <VideoView
+                android:id="@+id/videoview"
+                android:layout_width="match_parent"
+                android:layout_height="480sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_4"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textSize="18sp"
+                android:textColor="@color/main"
+                android:text="팔의 각도가 좋았어요!"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_4"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textSize="18sp"
+                android:textColor="@color/main"
+                android:text="다음에는 다리를 더 뻗어보세요!"/>
+
+
+
+
+
+
+        </LinearLayout>
+
+</LinearLayout>
