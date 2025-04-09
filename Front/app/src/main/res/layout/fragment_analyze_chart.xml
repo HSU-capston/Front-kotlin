@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/spacing_32"
-                android:layout_marginLeft="@dimen/spacing_64"
+                android:layout_marginLeft="@dimen/spacing_48"
                 android:layout_marginRight="@dimen/spacing_64"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="24sp"
-                android:layout_marginLeft="@dimen/spacing_64"
+                android:layout_marginLeft="@dimen/spacing_48"
                 android:layout_marginRight="@dimen/spacing_64"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,6 @@
                 android:id="@+id/score_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
                 android:layout_marginRight="@dimen/spacing_16"
                 android:layout_marginTop="@dimen/spacing_24"
                 android:orientation="horizontal"
@@ -106,7 +105,7 @@
                 app:layout_constraintTop_toBottomOf="@id/undertab1">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_marginStart="@dimen/spacing_24"
+                    android:layout_marginStart="@dimen/spacing_16"
                     android:layout_width="79sp"
                     android:layout_height="76sp"
                     android:layout_marginBottom="@dimen/spacing_4"

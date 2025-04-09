@@ -126,7 +126,7 @@
             >
 
             <ImageView
-                android:layout_marginStart="@dimen/spacing_48"
+                android:layout_marginStart="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_chart_1"/>
@@ -160,7 +160,7 @@
             >
 
             <ImageView
-                android:layout_marginStart="40sp"
+                android:layout_marginStart="@dimen/spacing_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/analyze_ic_background"/>
