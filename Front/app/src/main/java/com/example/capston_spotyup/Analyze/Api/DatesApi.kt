@@ -2,11 +2,10 @@
 package com.example.capston_spotyup.Main.Api
 
 
-import com.example.capston_spotyup.Analyze.DTO.DatesResponse
+import com.example.capston_spotyup.Analyze.DTO.Response.DatesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface DatesApi {
