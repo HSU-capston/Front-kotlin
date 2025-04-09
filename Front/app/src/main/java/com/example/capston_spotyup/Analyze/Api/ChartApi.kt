@@ -1,7 +1,6 @@
 package com.example.capston_spotyup.Analyze.Api
 
-import com.example.capston_spotyup.Analyze.DTO.ChartResponse
-import retrofit2.Call
+import com.example.capston_spotyup.Analyze.DTO.Response.ChartResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
