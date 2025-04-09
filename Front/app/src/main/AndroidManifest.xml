@@ -55,8 +55,8 @@
             android:name="androidx.camera.defaultConfigProvider"
             android:value="androidx.camera.camera2.Camera2Config" />
         <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="" />
+            android:name="com.kakao.sdk.AppKey"
+            android:value=""/>
 
     </application>
 

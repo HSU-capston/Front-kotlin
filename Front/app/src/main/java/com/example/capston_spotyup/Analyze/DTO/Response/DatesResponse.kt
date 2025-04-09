@@ -1,4 +1,4 @@
-package com.example.capston_spotyup.Analyze.DTO
+package com.example.capston_spotyup.Analyze.DTO.Response
 
 data class DatesResponse(
     val isSuccess: Boolean,

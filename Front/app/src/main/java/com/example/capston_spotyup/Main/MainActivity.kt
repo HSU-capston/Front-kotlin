@@ -20,7 +20,7 @@ import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.ActivityMainBinding
 import com.example.sportyup.FragmentHome
 import com.example.capston_spotyup.Main.DTO.Response.SportsResponse
-import com.example.capston_spotyup.Map.MapFragment
+//import com.example.capston_spotyup.Map.MapFragment
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
 import com.example.capston_spotyup.Profile.ProfileFragment
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.fragment_map -> {
-                    switchFragment(MapFragment())
+//                    switchFragment(MapFragment())
                     true
                 }
 
