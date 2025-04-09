@@ -38,7 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/spacing_48"
+            android:layout_marginLeft="44sp"
             android:layout_marginRight="@dimen/spacing_32"
             android:orientation="horizontal"
             android:layout_marginTop="16dp">

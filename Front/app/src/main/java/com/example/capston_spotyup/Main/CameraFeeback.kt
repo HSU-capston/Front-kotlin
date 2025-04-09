@@ -39,9 +39,9 @@ class CameraFeeback : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 🔥 버튼 클릭 시 최신 비디오 파일을 찾아 서버에 업로드 후 재생
-        binding.playbutton.setOnClickListener {
-            uploadLatestVideoToServer()
-        }
+//        binding.playbutton.setOnClickListener {
+//            uploadLatestVideoToServer()
+//        }
     }
 
     /**
@@ -144,10 +144,10 @@ class CameraFeeback : Fragment() {
         val uri = Uri.parse(videoUrl)
         Log.d("MapFragment", "비디오 재생 URI: $uri")
 
-        binding.videoview.setVideoURI(uri)
-        binding.videoview.setOnPreparedListener { mediaPlayer: MediaPlayer ->
-            mediaPlayer.start()
-        }
+//        binding.videoview.setVideoURI(uri)
+//        binding.videoview.setOnPreparedListener { mediaPlayer: MediaPlayer ->
+//            mediaPlayer.start()
+//        }
     }
 
     override fun onDestroyView() {
