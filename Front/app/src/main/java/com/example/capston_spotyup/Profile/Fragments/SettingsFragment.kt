@@ -1,4 +1,4 @@
-package com.example.capston_spotyup.Profile
+package com.example.capston_spotyup.Profile.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.R
@@ -15,9 +14,7 @@ import com.example.capston_spotyup.R
 class SettingsFragment : Fragment() {
 
     private lateinit var switchNotification: SwitchCompat
-    private lateinit var inputName: EditText
-    private lateinit var inputEmail: EditText
-    private lateinit var buttonSave: Button
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

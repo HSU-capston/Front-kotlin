@@ -23,7 +23,7 @@ import com.example.capston_spotyup.Main.DTO.Response.SportsResponse
 //import com.example.capston_spotyup.Map.MapFragment
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
-import com.example.capston_spotyup.Profile.ProfileFragment
+import com.example.capston_spotyup.Profile.Fragments.ProfileFragment
 import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.MainDialogBinding
 import retrofit2.Call
