@@ -6,6 +6,8 @@
     <string name="sub_title">분석</string>
     <string name="my_title">마이</string>
     <string name="map_title">지도</string>
+    <string name="edit_profile">프로필 수정</string>
+    <string name="save_profile">프로필 저장</string>
 
 
     <string-array name="years">
