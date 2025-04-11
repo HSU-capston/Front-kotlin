@@ -15,10 +15,17 @@ import android.content.Intent
 import android.provider.MediaStore
 import android.net.Uri
 import android.app.Activity
+import androidx.fragment.app.activityViewModels
+import com.example.capston_spotyup.Network.RetrofitClient.userApi
+import com.example.capston_spotyup.Profile.DTO.Request.UserRequest
+import com.example.capston_spotyup.Profile.Domain.ProfileViewModel
 import com.example.capston_spotyup.databinding.FragmentMypageBinding
 import com.example.capston_spotyup.R
 
 class ProfileFragment : Fragment() {
+
+    private val viewModel: ProfileViewModel by activityViewModels()
+
     private lateinit var profileImage: ImageView
     private var _binding: FragmentMypageBinding? = null
     private val binding get() = _binding!!
@@ -43,13 +50,10 @@ class ProfileFragment : Fragment() {
             openGallery()
         }
 
-        // 사용자 정보 불러오기
-        val sharedPreferences = requireActivity().getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
-        val savedName = sharedPreferences.getString("name", "손주완")
-        val savedEmail = sharedPreferences.getString("email", "vvan_2")
-
-        binding.nickname.text = savedName
-        binding.accountCode.text = savedEmail
+        viewModel.userInfo.observe(viewLifecycleOwner) { user ->
+            binding.nickname.text = user.name
+            binding.accountCode.text = user.email
+        }
 
         return binding.root
     }
@@ -115,6 +119,7 @@ class ProfileFragment : Fragment() {
             .commit()
         setSelectedTab(selectedView)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

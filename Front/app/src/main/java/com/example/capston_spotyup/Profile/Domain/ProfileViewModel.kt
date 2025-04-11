@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.media3.common.util.UnstableApi
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Profile.DTO.Request.UserRequest
+import com.example.capston_spotyup.Profile.DTO.Response.UserResponse
 import com.example.capston_spotyup.Profile.DTO.Response.UserResult
 import com.example.capston_spotyup.Util.TokenManager
 import kotlinx.coroutines.launch
@@ -47,4 +48,17 @@ class ProfileViewModel : ViewModel() {
             }
         }
     }
+
+    fun setUserInfo(request: UserRequest) {
+        val userResult = UserResult(
+            name = request.name,
+            email = request.email,
+            password = request.password,
+            phoneNum = request.phone_num
+        )
+
+        _userInfo.value = userResult
+    }
+
+
 }

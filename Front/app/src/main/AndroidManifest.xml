@@ -53,6 +53,7 @@
         <!-- 메인 액티비티 -->
         <activity
             android:name=".Main.MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true"/>
         <meta-data
             android:name="androidx.camera.defaultConfigProvider"
