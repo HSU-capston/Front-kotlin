@@ -4,6 +4,7 @@ import ListApi
 import com.example.capston_spotyup.Analyze.Api.ChartApi
 import com.example.capston_spotyup.Analyze.LocalDateTimeConverter
 import com.example.capston_spotyup.AuthInterceptor
+import com.example.capston_spotyup.Home.Api.HomeApi
 import com.example.capston_spotyup.Login.Api.LoginApi
 import com.example.capston_spotyup.Main.Api.DatesApi
 import com.example.capston_spotyup.Main.Api.GameApi
@@ -31,13 +32,6 @@ object RetrofitClient {
         .connectTimeout(180, TimeUnit.SECONDS) // ⏳ 연결 시간 60초
         .readTimeout(180, TimeUnit.SECONDS) // ⏳ 읽기 시간 60초
         .writeTimeout(180, TimeUnit.SECONDS) // ⏳ 쓰기 시간 60초
-        .addInterceptor { chain ->
-            val token = TokenManager.getAccessToken() // TokenManager에서 토큰을 가져옴
-            val request = chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer $token") // 토큰을 Authorization 헤더에 추가
-                .build()
-            chain.proceed(request)
-        }
         .build()
     // Timeout 에따라 연결
 
@@ -142,5 +136,14 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(gson))  // 커스터마이징된 Gson 사용
             .build()
             .create(ListApi::class.java)
+    }
+
+    val homeApi: HomeApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(HomeApi::class.java)
     }
 }
