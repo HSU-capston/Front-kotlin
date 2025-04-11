@@ -99,7 +99,9 @@ dependencies {
 
 
     implementation ("com.kakao.maps.open:android:2.12.8")
+    implementation ("com.github.bumptech.glide:glide:4.12.0") // 최신 버전으로 확인
 
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
