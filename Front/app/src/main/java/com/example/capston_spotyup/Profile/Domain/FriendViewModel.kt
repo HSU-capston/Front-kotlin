@@ -1,32 +1,25 @@
 package com.example.capston_spotyup.Profile.Domain
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.capston_spotyup.Profile.Api.FriendApi
 import com.example.capston_spotyup.Profile.DTO.Response.Friend
-import kotlinx.coroutines.launch
 
-class FriendViewModel(private val friendApi: FriendApi) : ViewModel() {
+class FriendViewModel : ViewModel() {
 
     private val _friendsList = MutableLiveData<List<Friend>>()
     val friendsList: LiveData<List<Friend>> get() = _friendsList
 
-    fun getFriends() {
-        // 실제 API를 호출하는 대신 더미 데이터를 사용
-        viewModelScope.launch {
-            try {
-                val response = friendApi.getFriends("Bearer dummy_token") // 더미 토큰 사용
-                if (response.isSuccessful) {
-                    _friendsList.value = response.body()  // 더미 데이터로 업데이트
-                } else {
-                    Log.e("FriendViewModel", "Error fetching friends")
-                }
-            } catch (e: Exception) {
-                Log.e("FriendViewModel", "Failed to fetch friends: ${e.message}")
-            }
-        }
+    init {
+        loadDummyFriends() // 시작하자마자 불러오도록
+    }
+
+    private fun loadDummyFriends() {
+        val dummyFriends = listOf(
+            Friend(1, "아이유", "https://randomuser.me/api/portraits/women/1.jpg"),
+            Friend(2, "장원영", "https://randomuser.me/api/portraits/women/2.jpg"),
+            Friend(3, "정국", "https://randomuser.me/api/portraits/men/1.jpg")
+        )
+        _friendsList.value = dummyFriends
     }
 }
