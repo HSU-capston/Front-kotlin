@@ -97,6 +97,16 @@
                         android:layout_marginBottom="@dimen/spacing_4"
                         android:src="@drawable/ic_select_bill" />
 
+                    <!-- 빌리어드 예시 -->
+                    <ImageView
+                        android:id="@+id/checkBilliard"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_check"
+                        android:tint="@color/gray_4"
+                        android:layout_gravity="center"/>
+
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -143,7 +153,16 @@
                         android:layout_marginBottom="@dimen/spacing_4"
                         android:src="@drawable/ic_golf_p" />
 
+                    <!-- 빌리어드 예시 -->
+                    <ImageView
+                        android:id="@+id/checkGolf"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_check"
+                        android:tint="@color/gray_4"
+                        android:layout_gravity="center"/>
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardBowling"
@@ -184,6 +203,16 @@
                         android:paddingTop="@dimen/spacing_8"
                         android:layout_marginBottom="@dimen/spacing_4"
                         android:src="@drawable/ic_bowl_p" />
+
+                    <!-- 빌리어드 예시 -->
+                    <ImageView
+                        android:id="@+id/checkBowling"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_check"
+                        android:tint="@color/gray_4"
+                        android:layout_gravity="center"/>
+
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
