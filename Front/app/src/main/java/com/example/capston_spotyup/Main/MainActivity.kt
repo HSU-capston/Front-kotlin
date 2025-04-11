@@ -1,5 +1,6 @@
 package com.example.capston_spotyup.Main
 
+import MapFragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.fragment_map -> {
-//                    switchFragment(MapFragment())
+                    switchFragment(MapFragment())
                     true
                 }
 
