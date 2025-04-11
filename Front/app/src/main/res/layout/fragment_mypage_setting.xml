@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile.SettingsFragment">
+    tools:context=".Profile.Fragments.SettingsFragment"
+    tools:ignore="ExtraText">
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchNotification"
@@ -15,7 +16,35 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:thumbTint="@color/blue_1"
+        android:trackTint="@color/blue_6"
+        android:textColor="@color/black" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchSms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="문자 알림 허용"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:thumbTint="@color/blue_1"
+        android:trackTint="@color/blue_6"
+        android:textColor="@color/black"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 알림 허용"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:thumbTint="@color/blue_1"
+        android:trackTint="@color/blue_6"
+        android:textColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
