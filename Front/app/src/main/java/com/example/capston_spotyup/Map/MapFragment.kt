@@ -34,13 +34,13 @@ class MapFragment : Fragment() {
         val latLng = LatLng.from(37.566535, 126.977969)
 
         // 지도 초기화 및 중심 설정
-        mapView.setMapCenter(latLng)
+//        mapView.setMapCenter(latLng)
 
         val convertedLatLng = CoordConverter.toLatLngFromWCONG(524612.7, 1082046.6)
 
         // 좌표 변환 후 사용
         // 예를 들어, 변환된 좌표로 지도 중심을 설정할 수 있음
-        mapView.setMapCenter(convertedLatLng)
+//        mapView.setMapCenter(convertedLatLng)
         return binding.root
     }
 

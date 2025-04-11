@@ -1,11 +1,12 @@
 package com.example.capston_spotyup.Profile.Domain
 
+import android.util.Log
 import androidx.annotation.OptIn
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.media3.common.util.Log
+
 import androidx.media3.common.util.UnstableApi
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Profile.DTO.Request.UserRequest
