@@ -9,9 +9,8 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.capston_spotyup.Analyze.DTO.ChartResponse
-import com.example.capston_spotyup.Analyze.DTO.ChartResult
-import com.example.capston_spotyup.Analyze.DTO.DateScore
+import com.example.capston_spotyup.Analyze.DTO.Response.ChartResult
+import com.example.capston_spotyup.Analyze.DTO.Response.DateScore
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.FragmentAnalyzeChartBinding
 

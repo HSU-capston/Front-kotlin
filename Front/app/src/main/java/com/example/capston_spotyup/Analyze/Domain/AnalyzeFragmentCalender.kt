@@ -11,10 +11,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.app.AnalyzeFragmentSub
-import com.example.capston_spotyup.Analyze.DTO.DatesResponse
-import com.example.capston_spotyup.Main.Api.DatesApi
+import com.example.capston_spotyup.Analyze.DTO.Response.DatesResponse
 import com.example.capston_spotyup.Network.RetrofitClient.datesApi
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.Util.TokenManager
@@ -131,6 +129,8 @@ class AnalyzeCalendarFragment : Fragment() {
             Log.e("CalendarAPI", "토큰 없음 - 로그인 필요")
             return
         }
+        // 현재 선택된 날짜를 "YYYY-MM-DD" 형태로 포맷, 선언부 문제인가
+//        val firstDayOfMonth = "${year}-${String.format("%02d", month)}-01" // 월의 첫 날
 
         Log.d("CalendarAPI", "API 요청 시작 - year: $year, month: $month")
         datesApi.getGameDates("Bearer $token", year, month)

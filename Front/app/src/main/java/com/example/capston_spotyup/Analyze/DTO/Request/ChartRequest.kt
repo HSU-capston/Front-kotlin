@@ -1,4 +1,4 @@
-package com.example.capston_spotyup.Analyze.DTO
+package com.example.capston_spotyup.Analyze.DTO.Request
 
 data class ChartRequest(
     val userId: Long,    // 사용자 ID

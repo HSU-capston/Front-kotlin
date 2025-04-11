@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_analyze_logo"
-                android:layout_marginTop="@dimen/spacing_16"
+                android:layout_marginTop="@dimen/spacing_24"
                 android:layout_marginLeft="@dimen/spacing_16"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,25 +38,26 @@
 
 
             <com.google.android.material.tabs.TabLayout
-                android:background="@color/main"
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="120sp"
+                android:layout_marginTop="12dp"
                 android:layout_marginRight="120sp"
-                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@color/main"
                 android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/chartlogo"
                 app:tabIndicatorColor="@color/white"
                 app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="@color/Gray6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:tabTextColor="@color/Gray6">
 
 
                 <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbarSize="@dimen/icon_size_16"
                     android:text="차트" />
 
                 <com.google.android.material.tabs.TabItem

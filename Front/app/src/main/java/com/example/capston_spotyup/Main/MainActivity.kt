@@ -1,5 +1,6 @@
 package com.example.capston_spotyup.Main
 
+import MapFragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -20,10 +21,10 @@ import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.ActivityMainBinding
 import com.example.sportyup.FragmentHome
 import com.example.capston_spotyup.Main.DTO.Response.SportsResponse
-import com.example.capston_spotyup.Map.MapFragment
+//import com.example.capston_spotyup.Map.MapFragment
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
-import com.example.capston_spotyup.Profile.ProfileFragment
+import com.example.capston_spotyup.Profile.Fragments.ProfileFragment
 import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.MainDialogBinding
 import retrofit2.Call

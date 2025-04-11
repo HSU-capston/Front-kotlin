@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.capston_spotyup.Analyze.DTO.ChartResponse
-import com.example.capston_spotyup.Analyze.DTO.ChartResult
+import com.example.capston_spotyup.Analyze.DTO.Response.ChartResponse
+import com.example.capston_spotyup.Analyze.DTO.Response.ChartResult
 import com.example.capston_spotyup.Network.RetrofitClient
 import kotlinx.coroutines.launch
-import com.example.capston_spotyup.Analyze.DTO.DateScore
+import com.example.capston_spotyup.Analyze.DTO.Response.DateScore
 
 class AnalyzeViewModel : ViewModel() {
 

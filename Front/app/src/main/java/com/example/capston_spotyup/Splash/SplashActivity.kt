@@ -19,5 +19,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish() // 현재 액티비티 종료
         }, 3000) // 3초 후 이동
+
+
     }
 }

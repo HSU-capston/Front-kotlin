@@ -1,5 +1,5 @@
 // DatesRequest.kt
-package com.example.capston_spotyup.Analyze.DTO
+package com.example.capston_spotyup.Analyze.DTO.Request
 
 data class DatesRequest(
     val userId: Long,
