@@ -110,5 +110,13 @@ object RetrofitClient {
             .build()
             .create(ChartApi::class.java)
     }
+    val friendApi: FriendApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(FriendApi::class.java)  // friendApi 인터페이스를 만들어야 합니다.
+    }
 
 }
