@@ -93,8 +93,8 @@ dependencies {
     //Naver 연동
 //    implementation("com.naver.maps:map-sdk:3.20.0")
 //    implementation ("com.google.android.gms:play-services-location:18.0.0")
-//    implementation ("com.kakao.sdk:v2-user:2.5.0")  // 카카오 로그인 SDK
-//    implementation ("com.kakao.sdk:v2-map:2.5.0") // 카카오 지도 SDK
+    implementation ("com.kakao.sdk:v2-user:2.7.0")  // 카카오 로그인 SDK
+//    implementation ("com.kakao.sdk:v2-map:2.7.0") // 카카오 지도 SDK
 
 
 
