@@ -50,10 +50,13 @@ class ProfileFragment : Fragment() {
             openGallery()
         }
 
+        viewModel.loadDummyUserInfo() // 서버 안 붙었을 때 더미 데이터 로딩
+
         viewModel.userInfo.observe(viewLifecycleOwner) { user ->
-            binding.nickname.text = user.name
-            binding.accountCode.text = user.email
+            binding.name.text = user.name   // 👈 이름 반영
+            binding.accountCode.text = user.nickname    // 👈 닉네임도 따로 반영 가능
         }
+
 
         return binding.root
     }
