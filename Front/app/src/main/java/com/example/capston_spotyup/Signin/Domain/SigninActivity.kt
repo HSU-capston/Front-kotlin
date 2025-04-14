@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.capston_spotyup.Login.DTO.LoginRequest
 import com.example.capston_spotyup.Login.DTO.LoginResponse
-import com.example.capston_spotyup.Main.MainActivity
+import com.example.capston_spotyup.Main.Domain.MainActivity
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.R
 //import com.example.capston_spotyup.SignupActivity

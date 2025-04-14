@@ -1,4 +1,4 @@
-package com.example.capston_spotyup.Main
+package com.example.capston_spotyup.Main.Domain
 
 import MapFragment
 import android.app.AlertDialog
@@ -14,7 +14,6 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.Analyze.Domain.AnalyzeFragmentMain
-import com.example.capston_spotyup.CameraActivity
 import com.example.capston_spotyup.Main.DTO.Request.GameRequest
 import com.example.capston_spotyup.Main.DTO.Response.GameResponse
 import com.example.capston_spotyup.R

@@ -171,18 +171,21 @@
 
 
                     <ImageView
+                        android:id="@+id/scrollImage1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
                         android:src="@drawable/img_home1"/>
 
                     <ImageView
+                        android:id="@+id/scrollImage2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
                         android:layout_marginLeft="@dimen/spacing_16"
                         android:src="@drawable/img_home1"/>
                     <ImageView
+                        android:id="@+id/scrollImage3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/spacing_16"
@@ -283,18 +286,21 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/scrollImage4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
                         android:src="@drawable/img_home3"/>
 
                     <ImageView
+                        android:id="@+id/scrollImage5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleType="centerCrop"
                         android:layout_marginLeft="@dimen/spacing_16"
                         android:src="@drawable/img_home3"/>
                     <ImageView
+                        android:id="@+id/scrollImage6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/spacing_16"

@@ -1,4 +1,4 @@
-package com.example.capston_spotyup
+package com.example.capston_spotyup.Main.Domain
 
 import android.Manifest
 import android.content.ContentValues
@@ -27,10 +27,10 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.capston_spotyup.Main.DTO.Request.GameExitRequest
+import com.example.capston_spotyup.Main.DTO.Response.AnalyzeResponse
 import com.example.capston_spotyup.Main.DTO.Response.GameExitResponse
-import com.example.capston_spotyup.Main.MainActivity
-import com.example.capston_spotyup.Map.DTO.Response.BowlingResponse
 import com.example.capston_spotyup.Network.RetrofitClient
+import com.example.capston_spotyup.R
 import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.ActivityCameraBinding
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -58,6 +58,7 @@ class CameraActivity : AppCompatActivity() {
     private var timerHandler: Handler? = null
     private var seconds = 0
     private var currentGameId: Long? = null
+    private var loadingDialog: AlertDialog? = null
 
 
 
@@ -236,27 +237,65 @@ class CameraActivity : AppCompatActivity() {
                     is VideoRecordEvent.Start -> {
                         Toast.makeText(this, "녹화 시작", Toast.LENGTH_SHORT).show()
                     }
+//                    is VideoRecordEvent.Finalize -> {
+//                        if (!recordEvent.hasError()) {
+//                            val videoFilePath = getVideoFilePath(fileName) //  녹화된 영상 경로 가져오기
+//                            saveVideoFilePathToPreferences(videoFilePath) //  `SharedPreferences`에 저장
+//
+//                            val sharedPref = getSharedPreferences("VideoPrefs", MODE_PRIVATE)
+//                            val savedPath = sharedPref.getString("savedVideoPath", "")
+//                            if (!savedPath.isNullOrEmpty() && currentGameId != null) {
+//                                sendAnalyzeRequest(currentGameId!!, savedPath)
+//                            }
+//                            Log.d("CameraActivity", "저장된 파일 경로 확인: $savedPath")
+//                            Toast.makeText(this, "$savedPath", Toast.LENGTH_SHORT).show()
+//                        } else {
+//                            Log.e("CameraActivity", "녹화 실패: ${recordEvent.error}")
+//                        }
+//                        isRecording = false
+//                        runOnUiThread {
+////                            binding.lotti.visibility = android.view.View.INVISIBLE
+//                            binding.texttimer.visibility = android.view.View.INVISIBLE
+//                            binding.texttimer.text = "00:00"  // ⏳ 타이머 초기화
+//                        }
+//                        timerHandler?.removeCallbacksAndMessages(null)
+//                        seconds = 0
+//                    }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
-                            val videoFilePath = getVideoFilePath(fileName) //  녹화된 영상 경로 가져오기
-                            saveVideoFilePathToPreferences(videoFilePath) //  `SharedPreferences`에 저장
+                            val videoUri = recordEvent.outputResults.outputUri
+                            val inputStream = contentResolver.openInputStream(videoUri)
+                            val tempFile = File.createTempFile("analyzed_video", ".mp4", cacheDir)
 
-                            val sharedPref = getSharedPreferences("VideoPrefs", MODE_PRIVATE)
-                            val savedPath = sharedPref.getString("savedVideoPath", "")
-                            Log.d("CameraActivity", "저장된 파일 경로 확인: $savedPath")
-                            Toast.makeText(this, "$savedPath", Toast.LENGTH_SHORT).show()
+                            inputStream?.use { input ->
+                                tempFile.outputStream().use { output ->
+                                    input.copyTo(output)
+                                }
+                            }
+
+                            // 임시 파일 경로 SharedPreferences에 저장 (선택사항)
+                            saveVideoFilePathToPreferences(tempFile.absolutePath)
+
+                            // 🔥 분석 요청
+                            if (currentGameId != null) {
+                                sendAnalyzeRequest(currentGameId!!, tempFile.absolutePath)
+                            }
+
+                            Log.d("CameraActivity", "파일 경로: ${tempFile.absolutePath}")
+                            Toast.makeText(this@CameraActivity, "분석 요청 시작", Toast.LENGTH_SHORT).show()
                         } else {
                             Log.e("CameraActivity", "녹화 실패: ${recordEvent.error}")
                         }
+
                         isRecording = false
                         runOnUiThread {
-//                            binding.lotti.visibility = android.view.View.INVISIBLE
                             binding.texttimer.visibility = android.view.View.INVISIBLE
-                            binding.texttimer.text = "00:00"  // ⏳ 타이머 초기화
+                            binding.texttimer.text = "00:00"
                         }
                         timerHandler?.removeCallbacksAndMessages(null)
                         seconds = 0
                     }
+
                 }
             }
     }
@@ -330,7 +369,80 @@ class CameraActivity : AppCompatActivity() {
             Toast.makeText(this, "토큰 또는 게임 정보가 없습니다.", Toast.LENGTH_SHORT).show()
         }
     }
+    private fun sendAnalyzeRequest(gameId: Long, filePath: String) {
+        val token = TokenManager.getAccessToken()
+        if (token == null) {
+            Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
 
+        val file = File(filePath)
+        if (!file.exists()) {
+            Toast.makeText(this, "영상 파일이 없습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val requestFile = file.asRequestBody("video/mp4".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+        if (token == null) {
+            Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        showLoadingDialog()
+
+        RetrofitClient.analyzeApi.analyzeVideo("Bearer $token", gameId, body)
+            .enqueue(object : Callback<AnalyzeResponse> {
+                override fun onResponse(
+                    call: Call<AnalyzeResponse>,
+                    response: Response<AnalyzeResponse>
+                ) {
+                    hideLoadingDialog()
+                    if (response.isSuccessful && response.body()?.isSuccess == true) {
+                        val result = response.body()?.result
+
+                        val feedbackFragment = CameraFeedbackFragment.newInstance(
+                            result?.videoUrl ?: "",
+                            result?.poseScore ?: "분석 결과 없음",
+                            result?.recommendPose ?: "추천 자세 없음"
+                        )
+                        Log.d("Analyze", "분석 성공: ${result?.poseScore} / ${result?.recommendPose}")
+                        Toast.makeText(this@CameraActivity, "분석 완료!", Toast.LENGTH_SHORT).show()
+                        supportFragmentManager.beginTransaction()
+                            .add(android.R.id.content, feedbackFragment)
+                            .addToBackStack(null)
+                            .commit()
+
+                    } else {
+                        Log.e("Analyze", "응답 실패: ${response.code()}")
+                        Toast.makeText(this@CameraActivity, "분석 실패: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<AnalyzeResponse>, t: Throwable) {
+                    hideLoadingDialog()
+                    Log.e("Analyze", "네트워크 오류: ${t.message}")
+                    Toast.makeText(this@CameraActivity, "서버 통신 실패", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun showLoadingDialog() {
+        val view = layoutInflater.inflate(R.layout.camera_loading, null)
+
+        loadingDialog = AlertDialog.Builder(this, R.style.LoadingDialogTheme)
+            .setView(view)
+            .setCancelable(false)
+            .create()
+
+        loadingDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog() {
+        loadingDialog?.dismiss()
+        loadingDialog = null
+    }
 
 
 
