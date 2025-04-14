@@ -58,6 +58,7 @@
         <item name="android:backgroundDimAmount">0.5</item> <!-- 어둡기 정도 (0.0~1.0) -->
         <item name="android:windowMinWidthMajor">100%</item>
         <item name="android:windowMinWidthMinor">100%</item>
+    </style>
 
     <style name="CustomSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
         <item name="thumbTint">@color/switch_thumb_color</item>
