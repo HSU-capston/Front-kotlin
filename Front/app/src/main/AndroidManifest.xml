@@ -22,7 +22,7 @@
 
 
     <application
-        android:name=".Main.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -60,7 +60,7 @@
             android:value="androidx.camera.camera2.Camera2Config" />
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value=""/>
+            android:value="${KAKAO_APP_KEY}"/>
 
     </application>
 

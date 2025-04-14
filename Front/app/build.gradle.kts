@@ -1,11 +1,23 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
 
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+val kakaoAppKey: String = localProperties.getProperty("KAKAO_APP_KEY") ?: ""
+
+
 android {
     namespace = "com.example.capston_spotyup"
     compileSdk = 35
+
+
 
     defaultConfig {
         applicationId = "com.example.capston_spotyup"
@@ -13,6 +25,11 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        ndk {
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
+        }
+        buildConfigField("String", "KAKAO_APP_KEY", "\"$kakaoAppKey\"")
+        manifestPlaceholders["KAKAO_APP_KEY"] = kakaoAppKey
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,6 +45,7 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -98,7 +116,7 @@ dependencies {
 
 
 
-    implementation ("com.kakao.maps.open:android:2.12.8")
+    implementation ("com.kakao.maps.open:android:2.12.13")
     implementation ("com.github.bumptech.glide:glide:4.12.0") // 최신 버전으로 확인
 
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
