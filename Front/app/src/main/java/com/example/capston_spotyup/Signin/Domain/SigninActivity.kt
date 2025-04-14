@@ -76,8 +76,10 @@ class SigninActivity : AppCompatActivity() {
         }
         // 회원가입 버튼(수정 불필요)
         binding.loginButton2.setOnClickListener {
+            val fragment = SignUpFragment()
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
+                replace(R.id.fragment_container, fragment)
                 addToBackStack(null)
             }
         }

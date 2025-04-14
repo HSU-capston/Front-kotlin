@@ -28,7 +28,7 @@ class OnboardingFragment_1 : Fragment() {
 
         binding.NextButton.setOnClickListener {
             val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, OnboardingFragment_2())
+            transaction.replace(R.id.onboard_fragment_container, OnboardingFragment_2())
             transaction.addToBackStack(null) // 뒤로 가기 지원
             transaction.commit()
         }

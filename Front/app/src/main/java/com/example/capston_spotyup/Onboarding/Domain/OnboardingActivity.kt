@@ -5,15 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.capston_spotyup.Onboarding.OnboardingFragment_1
 import com.example.capston_spotyup.R
 
-class OnboardingActivity  : AppCompatActivity() {
+class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_onboarding) // 여기가 layout 파일과 정확히 매칭돼야 함
+        setContentView(R.layout.activity_onboarding) // ✅ layout 파일 이름
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, OnboardingFragment_1())
+                .replace(R.id.onboard_fragment_container, OnboardingFragment_1()) // ✅ ID 매칭
                 .commit()
         }
     }
 }
+
