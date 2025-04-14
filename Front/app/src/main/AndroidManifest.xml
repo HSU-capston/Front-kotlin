@@ -33,7 +33,7 @@
         android:theme="@style/Theme.CapstonSpotyUP"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name=".CameraActivity"
+        <activity android:name=".Main.Domain.CameraActivity"
             android:exported="false"/>
 
 
@@ -52,7 +52,7 @@
 
         <!-- 메인 액티비티 -->
         <activity
-            android:name=".Main.MainActivity"
+            android:name=".Main.Domain.MainActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="true"/>
         <meta-data
