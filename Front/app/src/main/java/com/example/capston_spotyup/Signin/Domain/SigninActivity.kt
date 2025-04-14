@@ -9,6 +9,7 @@ import com.example.capston_spotyup.Login.DTO.LoginRequest
 import com.example.capston_spotyup.Login.DTO.LoginResponse
 import com.example.capston_spotyup.Main.Domain.MainActivity
 import com.example.capston_spotyup.Network.RetrofitClient
+import com.example.capston_spotyup.Onboarding.Domain.OnboardingActivity
 import com.example.capston_spotyup.R
 //import com.example.capston_spotyup.SignupActivity
 import com.example.capston_spotyup.databinding.SigninBinding
@@ -56,15 +57,14 @@ class SigninActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val result = response.body()?.result
                         result?.let {
-                            // ✅ 토큰 저장
                             TokenManager.saveTokens(it.accessToken, it.refreshToken)
 
-                            // ✅ MainActivity로 이동
-                            val intent = Intent(this@SigninActivity, MainActivity::class.java)
+                            val intent = Intent(this@SigninActivity, OnboardingActivity::class.java)
                             startActivity(intent)
                             finish()
                         }
-                    } else {
+                    }
+                    else {
                         Log.e("Login", "로그인 실패 - ${response.code()} / ${response.message()}")
                     }
                 }
@@ -76,10 +76,8 @@ class SigninActivity : AppCompatActivity() {
         }
         // 회원가입 버튼(수정 불필요)
         binding.loginButton2.setOnClickListener {
-            val fragment = SignUpFragment()
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                replace(R.id.fragment_container, fragment)
                 addToBackStack(null)
             }
         }

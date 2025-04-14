@@ -36,6 +36,7 @@
         <activity android:name=".Main.Domain.CameraActivity"
             android:exported="false"/>
 
+        <activity android:name=".Onboarding.Domain.OnboardingActivity"/>
 
         <!-- 스플래시 액티비티 (앱 실행 시 가장 먼저 실행) -->
         <activity
@@ -50,6 +51,7 @@
         <!-- 로그인 액티비티 -->
         <activity android:name=".Signin.Domain.SigninActivity"/>
 
+
         <!-- 메인 액티비티 -->
         <activity
             android:name=".Main.Domain.MainActivity"
@@ -61,6 +63,7 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="${KAKAO_APP_KEY}"/>
+
 
     </application>
 

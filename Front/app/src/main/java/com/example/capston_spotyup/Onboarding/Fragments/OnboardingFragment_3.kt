@@ -6,23 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
 import com.example.capston_spotyup.R
-import com.example.capston_spotyup.Signup.Domain.FragmentInfo
-import com.example.capston_spotyup.Signup.Domain.SignUpFragment
-import com.example.capston_spotyup.databinding.FragmentOnboarding1Binding
+import com.example.capston_spotyup.Onboarding.Fragments.FragmentInfo
+import com.example.capston_spotyup.databinding.FragmentOnboarding3Binding
 
 
-class OnboardingFragment_1 : Fragment() {
+class OnboardingFragment_3 : Fragment() {
 
-    private var _binding: FragmentOnboarding1Binding? = null
+    private var _binding: FragmentOnboarding3Binding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnboarding1Binding.inflate(inflater, container, false)
+        _binding = FragmentOnboarding3Binding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,9 +29,10 @@ class OnboardingFragment_1 : Fragment() {
 
         binding.NextButton.setOnClickListener {
             val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, OnboardingFragment_2())
+            transaction.replace(R.id.fragment_container, FragmentInfo())
             transaction.addToBackStack(null) // 뒤로 가기 지원
             transaction.commit()
+
         }
 
         // 추가 애니메이션 동작, 텍스트 설정 등이 있다면 여기에 작성
