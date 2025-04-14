@@ -1,15 +1,26 @@
 package com.example.sportyup
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.example.capston_spotyup.Home.DTO.RecommendedVideo
+import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.R
+import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 class FragmentHome : Fragment() {
 
@@ -59,6 +70,49 @@ class FragmentHome : Fragment() {
 
         // 🔹 ProgressBar 업데이트 로직 추가
         setupHorizontalScrollListener()
+
+        lifecycleScope.launch {
+            try {
+                val token = TokenManager.getAccessToken()
+
+                if (token != null) {
+                    val bearerToken = "Bearer $token"
+                    val response = RetrofitClient.homeApi.getHomeRecommendations(bearerToken)
+
+                    if (response.isSuccessful && response.body()?.isSuccess == true) {
+                        val videos = response.body()?.result?.recommendedVideoList ?: emptyList()
+
+                        if (videos.isNotEmpty()) {
+                            val slicedVideos = videos.take(6)
+
+                            val imageViews = listOf(
+                                binding.scrollImage1,
+                                binding.scrollImage2,
+                                binding.scrollImage3,
+                                binding.scrollImage4,
+                                binding.scrollImage5,
+                                binding.scrollImage6
+                            )
+
+                            for (i in slicedVideos.indices) {
+                                setupImage(imageViews[i], slicedVideos[i])
+                            }
+                        }
+                    } else {
+                        Log.e("HomeAPI", "요청 실패: ${response.code()}, ${response.message()}")
+                        Toast.makeText(requireContext(), "추천 영상을 불러오지 못했습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Log.e("HomeAPI", "에러 발생: ${e.message}")
+                Toast.makeText(requireContext(), "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
     }
 
 
@@ -79,6 +133,18 @@ class FragmentHome : Fragment() {
             }
         }
     }
+    private fun setupImage(imageView: ImageView, video: RecommendedVideo) {
+        Glide.with(requireContext())
+            .load(video.thumbnailUrl)
+            .centerCrop()
+            .into(imageView)
+
+        imageView.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(video.videoUrl))
+            startActivity(intent)
+        }
+    }
+
 
 
     override fun onDestroyView() {
