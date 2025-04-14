@@ -1,57 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottomSheetLayout"
-    android:layout_width="match_parent"
-    android:layout_height="580sp"
-    android:background="@drawable/sub_card"
-    android:orientation="vertical"
->
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/cancel_feed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_feedback_cancel"
+        android:elevation="4sp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="@dimen/spacing_12"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <VideoView
+        android:id="@+id/videoview"
+        android:layout_width="match_parent"
+        android:layout_height="480sp"
+        android:layout_marginTop="@dimen/spacing_64"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/feedback_round"
+        app:layout_constraintTop_toBottomOf="@+id/videoview" />
+
+
+    <TextView
+        android:id="@+id/text_pose_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pretendard_semibold"
+        android:paddingTop="@dimen/spacing_4"
+        android:text="팔의 각도가 좋았어요!"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/spacing_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/videoview" />
+
+
+    <TextView
+        android:id="@+id/text_recommend_pose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pretendard_semibold"
+        android:paddingTop="@dimen/spacing_4"
+        android:text="다음에는 다리를 더 뻗어보세요!"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/spacing_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_pose_score" />
 
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="580sp"
-            android:orientation="vertical">
-
-
-            <VideoView
-                android:id="@+id/videoview"
-                android:layout_width="match_parent"
-                android:layout_height="480sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/spacing_4"
-                android:layout_gravity="center"
-                android:fontFamily="@font/pretendard_semibold"
-                android:textSize="18sp"
-                android:textColor="@color/main"
-                android:text="팔의 각도가 좋았어요!"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/spacing_4"
-                android:layout_gravity="center"
-                android:fontFamily="@font/pretendard_semibold"
-                android:textSize="18sp"
-                android:textColor="@color/main"
-                android:text="다음에는 다리를 더 뻗어보세요!"/>
-
-
-
-
-
-
-        </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
