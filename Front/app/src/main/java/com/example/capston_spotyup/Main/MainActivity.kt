@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,6 +28,7 @@ import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
 import com.example.capston_spotyup.Profile.Fragments.ProfileFragment
 import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.MainDialogBinding
+import com.google.android.material.card.MaterialCardView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -91,92 +93,96 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showCameraDialog() {
+
+
         val bottomSheetContainer = findViewById<FrameLayout>(R.id.bottom_sheet_container)
         val dimBackground = findViewById<View>(R.id.dim_background)
         val token = TokenManager.getAccessToken()
-        var selectedCardView: CardView? = null
-        var selectedSportsId: Int? = null
 
-        // 기존 뷰 제거
+        val sheetView = layoutInflater.inflate(R.layout.main_select_dialog_sheet, bottomSheetContainer, false)
+        bottomSheetContainer.addView(sheetView)
+
+        val confirmBtn = sheetView.findViewById<Button>(R.id.btnConfirmSport)
+        confirmBtn.isEnabled = false
+        confirmBtn.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.gray_4))
         bottomSheetContainer.removeAllViews()
 
-        // main_sheet_dialog_sheet.xml 파일을 View로 inflate
-        val sheetView =
-            layoutInflater.inflate(R.layout.main_select_dialog_sheet, bottomSheetContainer, false)
-
-        // 추가
+        var selectedSportId: Int? = null
 
         bottomSheetContainer.addView(sheetView)
         bottomSheetContainer.visibility = View.VISIBLE
         dimBackground.visibility = View.VISIBLE
-        dimBackground.alpha = 0f
         dimBackground.animate().alpha(1f).setDuration(200).start()
 
         sheetView.translationY = sheetView.height.toFloat()
         sheetView.alpha = 0f
-        sheetView.animate()
-            .translationY(0f)
-            .alpha(1f)
-            .setDuration(250)
-            .start()
-
-        // 애니메이션 (위로 슬라이드 등장)
-        sheetView.translationY = sheetView.height.toFloat()
-        sheetView.alpha = 0f
-        sheetView.animate()
-            .translationY(0f)
-            .alpha(1f)
-            .setDuration(250)
-            .start()
-
+        sheetView.animate().translationY(0f).alpha(1f).setDuration(250).start()
 
         if (token != null) {
             sportsApi.getSports("Bearer $token").enqueue(object : Callback<SportsResponse> {
                 override fun onResponse(
                     call: Call<SportsResponse>,
-                    response: Response<SportsResponse>,
+                    response: Response<SportsResponse>
                 ) {
                     if (response.isSuccessful) {
                         val sportsList = response.body()?.result?.sportsList ?: emptyList()
-
-
                         val filtered = sportsList.filter { it.id in 1..3 }
 
                         val cards = listOf(
                             Triple(
                                 sheetView.findViewById<CardView>(R.id.cardBowling),
                                 sheetView.findViewById<TextView>(R.id.gettextBowling),
-                                1
+                                sheetView.findViewById<ImageView>(R.id.checkBowling)
                             ),
                             Triple(
                                 sheetView.findViewById<CardView>(R.id.cardBilliard),
                                 sheetView.findViewById<TextView>(R.id.gettextBilliard),
-                                2
+                                sheetView.findViewById<ImageView>(R.id.checkBilliard)
                             ),
                             Triple(
                                 sheetView.findViewById<CardView>(R.id.cardGolf),
                                 sheetView.findViewById<TextView>(R.id.gettextGolf),
-                                3
+                                sheetView.findViewById<ImageView>(R.id.checkGolf)
                             )
                         )
 
+                        var selectedCardView: CardView? = null
+                        var selectedCheckIcon: ImageView? = null
 
-                        for ((cardView, textView, sportId) in cards) {
-                            val sport = filtered.find { it.id == sportId }
-                            textView.text = sport?.name ?: "종목 없음"
+                        cards.forEachIndexed { index, (cardView, textView, checkIcon) ->
+                            val sport = filtered.getOrNull(index)
+                            val sportId = sport?.id ?: return@forEachIndexed
+                            textView.text = sport.name
 
                             cardView.setOnClickListener {
-                                selectedCardView?.setCardBackgroundColor(
-                                    ContextCompat.getColor(this@MainActivity, R.color.white)
+                                // 이전 카드 초기화
+                                selectedCheckIcon?.setImageResource(R.drawable.ic_check)
+                                (selectedCardView as? MaterialCardView)?.setStrokeColor(
+                                    ContextCompat.getColor(this@MainActivity, R.color.gray_4)
                                 )
-                                cardView.setCardBackgroundColor(
-                                    ContextCompat.getColor(this@MainActivity, R.color.main)
-                                )
-                                selectedCardView = cardView
-                                selectedSportsId = sportId
 
+                                // 새 카드 강조
+                                checkIcon.setImageResource(R.drawable.ic_check_on)
+                                (cardView as MaterialCardView).setStrokeColor(
+                                    ContextCompat.getColor(this@MainActivity, R.color.sub_6)
+                                )
+
+                                // 선택 상태 저장
+                                selectedCardView = cardView
+                                selectedCheckIcon = checkIcon
+                                selectedSportId = sportId
+
+                                // ✅ 확인 버튼 활성화
+                                confirmBtn.isEnabled = true
+                                confirmBtn.setBackgroundTintList(ContextCompat.getColorStateList(this@MainActivity, R.color.sub_6))
+                            }
+                        }
+
+                        // ✅ 2. 카드뷰 루프 끝난 뒤 여기 넣기!!
+                        confirmBtn.setOnClickListener {
+                            selectedSportId?.let { id ->
                                 hideBottomSheet(sheetView, bottomSheetContainer, dimBackground)
-                                showCameraMethodDialog(sportId)
+                                showCameraMethodDialog(id)
                             }
                         }
 
@@ -191,27 +197,16 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-
-
-        // 닫기 버튼이 있다면
-        val closeBtn = sheetView.findViewById<ImageView>(R.id.btnClose)
-        closeBtn.setOnClickListener {
+        sheetView.findViewById<ImageView>(R.id.btnClose).setOnClickListener {
             hideBottomSheet(sheetView, bottomSheetContainer, dimBackground)
-            sheetView.animate()
-                .translationY(sheetView.height.toFloat())
-                .alpha(0f)
-                .setDuration(200)
-                .withEndAction {
-                    bottomSheetContainer.visibility = View.GONE
-                    bottomSheetContainer.removeAllViews()
-                }
-                .start()
         }
+
         dimBackground.setOnClickListener {
             hideBottomSheet(sheetView, bottomSheetContainer, dimBackground)
         }
 
-        // 촬영 시작 버튼
+
+    // 촬영 시작 버튼
 //        val confirmBtn = sheetView.findViewById<Button>(R.id.btn_confirm)
 //        confirmBtn.setOnClickListener {
 //            openCameraActivity()
@@ -308,6 +303,7 @@ class MainActivity : AppCompatActivity() {
             }
             .start()
     }
+    }
 
 
     // 기존 카메라 권한 추가 로직
@@ -336,4 +332,4 @@ class MainActivity : AppCompatActivity() {
 //    companion object {
 //        private const val REQUEST_CAMERA_PERMISSION = 1001
 //    }
-}
+
