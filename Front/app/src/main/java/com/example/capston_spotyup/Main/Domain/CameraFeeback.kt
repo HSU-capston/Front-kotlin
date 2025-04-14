@@ -1,6 +1,5 @@
-package com.example.capston_spotyup.Map
+package com.example.capston_spotyup.Main.Domain
 
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,11 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Map.DTO.Response.BowlingResponse
-import com.example.capston_spotyup.databinding.FragmentMapBinding
+import com.example.capston_spotyup.databinding.FragmentCameraFeedbackBinding
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -24,14 +22,14 @@ import java.io.File
 
 class CameraFeeback : Fragment() {
 
-    private var _binding: FragmentMapBinding? = null
+    private var _binding: FragmentCameraFeedbackBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMapBinding.inflate(inflater, container, false)
+        _binding = FragmentCameraFeedbackBinding.inflate(inflater, container, false)
         return binding.root
     }
 
