@@ -52,5 +52,11 @@
     <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
     <item name="android:windowExitAnimation">@android:anim/fade_out</item>
 </style>
+
+    <style name="CustomSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="thumbTint">@color/switch_thumb_color</item>
+        <item name="trackTint">@color/switch_track_color</item>
+    </style>
+
 </resources>
 

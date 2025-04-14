@@ -6,8 +6,14 @@
 
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+
+        <item name="colorControlActivated">@null</item>
+        <item name="colorSwitchThumbNormal">@null</item>
     </style>
 
     <style name="Theme.CapstonSpotyUP" parent="Base.Theme.CapstonSpotyUP" />
+
+
 
 </resources>
