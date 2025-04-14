@@ -52,13 +52,25 @@ class ProfileViewModel : ViewModel() {
     fun setUserInfo(request: UserRequest) {
         val userResult = UserResult(
             name = request.name,
+            nickname = request.nickname, // 👈 닉네임 반영
             email = request.email,
             password = request.password,
             phoneNum = request.phone_num
         )
-
         _userInfo.value = userResult
     }
+
+    fun loadDummyUserInfo() {
+        val dummy = UserResult(
+            name = "홍길동",
+            nickname = "길동이", // 👈 닉네임 더미 값
+            email = "test@naver.com",
+            password = "dummy",
+            phoneNum = "010-1111-2222"
+        )
+        _userInfo.value = dummy
+    }
+
 
 
 }

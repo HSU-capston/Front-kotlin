@@ -1,50 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Profile.Fragments.SettingsFragment"
-    tools:ignore="ExtraText">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchNotification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알림 허용"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:thumbTint="@color/blue_1"
-        android:trackTint="@color/blue_6"
-        android:textColor="@color/black" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchSms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="문자 알림 허용"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:thumbTint="@color/blue_1"
-        android:trackTint="@color/blue_6"
-        android:textColor="@color/black"/>
+        <!-- 1. 알림 허용 -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingVertical="12dp">
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이메일 알림 허용"
-        android:layout_marginTop="80dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:thumbTint="@color/blue_1"
-        android:trackTint="@color/blue_6"
-        android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:text="알림 허용"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="앱에서 푸쉬알림 허용"
+                    android:textColor="@color/Gray6"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CustomSwitchStyle"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- 구분선 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Gray2"
+            android:layout_marginVertical="8dp" />
+
+        <!-- 2. 문자/이메일 제목 -->
+        <TextView
+            android:text="문자 / 이메일"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="다양한 혜택과 이벤트 알림"
+            android:textColor="@color/Gray6"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- 문자 Switch -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:text="문자"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchSms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CustomSwitchStyle"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <!-- 이메일 Switch -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:text="이메일"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CustomSwitchStyle"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

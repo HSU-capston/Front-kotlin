@@ -56,7 +56,7 @@
 
 
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardBilliard"
                 android:layout_marginTop="@dimen/spacing_4"
                 android:layout_marginLeft="@dimen/spacing_8"
@@ -84,6 +84,7 @@
                         android:text="" />
 
                     <ImageView
+                        android:id="@+id/checkBilliard"
                         android:layout_width="17dp"
                         android:layout_height="17dp"
                         android:layout_gravity="center"
@@ -97,12 +98,15 @@
                         android:layout_marginBottom="@dimen/spacing_4"
                         android:src="@drawable/ic_select_bill" />
 
+
+
+
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
 
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardGolf"
                 android:layout_marginTop="@dimen/spacing_4"
                 android:layout_width="120dp"
@@ -129,6 +133,7 @@
                         android:text="" />
 
                     <ImageView
+                        android:id="@+id/checkGolf"
                         android:layout_width="17dp"
                         android:layout_height="17dp"
                         android:layout_gravity="center"
@@ -143,9 +148,12 @@
                         android:layout_marginBottom="@dimen/spacing_4"
                         android:src="@drawable/ic_golf_p" />
 
+
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardBowling"
                 android:layout_marginTop="@dimen/spacing_4"
                 android:layout_width="120dp"
@@ -172,6 +180,7 @@
                         android:text=""/>
 
                     <ImageView
+                        android:id="@+id/checkBowling"
                         android:layout_width="17dp"
                         android:layout_height="17dp"
                         android:layout_gravity="center"
@@ -185,8 +194,10 @@
                         android:layout_marginBottom="@dimen/spacing_4"
                         android:src="@drawable/ic_bowl_p" />
 
+
+
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
@@ -196,6 +207,20 @@
     </HorizontalScrollView>
 
     <!-- 선택 버튼 영역 -->
+
+    <Button
+        android:id="@+id/btnConfirmSport"
+        android:layout_width="80dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="-237dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/gray_4"
+        android:enabled="false"
+        android:text="확인"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/pretendard_bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
