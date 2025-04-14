@@ -14,6 +14,7 @@ import com.example.capston_spotyup.Profile.Api.UserApi
 import com.example.capston_spotyup.Signup.Api.SmsVerificationApi
 import com.example.capston_spotyup.User.Api.EmailApi
 import com.example.capston_spotyup.Home.Api.HomeApi
+import com.example.capston_spotyup.Survey.Api.SurveyApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -156,6 +157,15 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(FriendApi::class.java)  // friendApi 인터페이스를 만들어야 합니다.
+    }
+
+    val surveyApi: SurveyApi by lazy{
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(SurveyApi::class.java)
     }
 
 }

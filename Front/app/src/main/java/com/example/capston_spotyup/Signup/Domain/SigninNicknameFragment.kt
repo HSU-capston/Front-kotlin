@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import com.example.capston_spotyup.Onboarding.Fragments.FragmentInfo
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.Signin.Domain.SigninActivity
 import com.example.capston_spotyup.User.DTO.EmailResponse
@@ -84,14 +85,16 @@ class SigninNicknameFragment : Fragment() {
 
 
         // NextButton 클릭 시 Fragment 전환  -> 일단 다시 login쪽으로 넘어가게했습니다.
-//        binding.NextButton.setOnClickListener {
-//            signUpViewModel.name = binding.editText.text.toString()
+       binding.NextButton.setOnClickListener {
+//         signUpViewModel.name = binding.editText.text.toString()
 //
 //            // 로그인 처리, Fragment 전환
-//            val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-//            transaction.replace(R.id.fragment_container, FragmentInfo())
-//            transaction.addToBackStack(null) // 뒤로 가기 지원
-//            transaction.commit()
+           val transaction: FragmentTransaction =
+               requireActivity().supportFragmentManager.beginTransaction()
+           transaction.replace(R.id.fragment_container, FragmentInfo())
+           transaction.addToBackStack(null) // 뒤로 가기 지원
+           transaction.commit()
+       }
 //            //원래 SigninActivity 로넘어감
 ////            Toast.makeText(requireContext(), "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show()
 ////            val intent = Intent(requireContext(), SigninActivity::class.java)
