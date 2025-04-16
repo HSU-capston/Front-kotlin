@@ -22,6 +22,7 @@ import retrofit2.Response
 class SigninActivity : AppCompatActivity() {
 
     private lateinit var binding: SigninBinding
+    var isPasswordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +83,20 @@ class SigninActivity : AppCompatActivity() {
                 replace(R.id.fragment_container, fragment)
                 addToBackStack(null)
             }
+        }
+        binding.eye.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            if (isPasswordVisible) {
+                // 비밀번호 보이게 설정
+                binding.passwordLoginEditText.inputType =
+                    android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                // 비밀번호 숨기기
+                binding.passwordLoginEditText.inputType =
+                    android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+
+            binding.passwordLoginEditText.setSelection(binding.passwordLoginEditText.text?.length ?: 0)
         }
 
     }
