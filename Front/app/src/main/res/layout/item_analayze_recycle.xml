@@ -21,7 +21,7 @@
         android:text="25.03.10"
         android:layout_gravity="center"
         android:fontFamily="@font/pretendard_regular"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="@color/Gray5"/>
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_bold"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         android:layout_weight="1"
         android:textColor="@color/main"
@@ -47,6 +47,9 @@
         android:src="@drawable/ic_button_highlight"/>
 
     <ImageView
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/allVideoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/spacing_4"
