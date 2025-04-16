@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/specific_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_analyze_logo2"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginLeft="@dimen/spacing_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/main_card"
+        android:layout_width="wrap_content"
+        android:layout_height="480dp"
+        android:layout_marginTop="@dimen/spacing_24"
+        app:layout_constraintTop_toBottomOf="@id/specific_logo"
+        app:cardCornerRadius="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <VideoView
+            android:id="@+id/videoview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_64" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/feedback_round"
+        app:layout_constraintTop_toBottomOf="@+id/main_card"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/text_pose_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pretendard_semibold"
+        android:paddingTop="@dimen/spacing_4"
+        android:text="팔의 각도가 좋았어요!"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/spacing_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_card" />
+
+
+    <TextView
+        android:id="@+id/text_recommend_pose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/pretendard_semibold"
+        android:paddingTop="@dimen/spacing_4"
+        android:text="다음에는 다리를 더 뻗어보세요!"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/spacing_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_pose_score" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

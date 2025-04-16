@@ -105,6 +105,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <ImageView
+            android:id="@+id/eye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:layout_marginRight="@dimen/spacing_20"
+            android:src="@drawable/ic_login_eye"
+            app:layout_constraintEnd_toEndOf="@+id/passwordLoginInputLayout"
+            app:layout_constraintTop_toTopOf="@+id/passwordLoginInputLayout" />
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/loginButton2"
             android:layout_width="300dp"

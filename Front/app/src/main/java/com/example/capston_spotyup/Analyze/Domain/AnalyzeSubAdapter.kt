@@ -10,39 +10,48 @@ import com.example.capston_spotyup.databinding.ItemAnalayzeRecycleBinding
 
 data class AnalyzeItem(
     val date: String,
-    val score: String
+    val score: String,
+    val gameId: Int
 )
 
-class AnalyzeSubAdapter : ListAdapter<AnalyzeItem, AnalyzeSubAdapter.AnalyzeViewHolder>(AnalyzeItemDiffCallback()) {
+
+class AnalyzeSubAdapter(
+    private val onAllVideoClick: (Int) -> Unit  // gameId 전달
+) : ListAdapter<AnalyzeItem, AnalyzeSubAdapter.AnalyzeViewHolder>(AnalyzeItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnalyzeViewHolder {
         val binding = ItemAnalayzeRecycleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AnalyzeViewHolder(binding)
+        return AnalyzeViewHolder(binding, onAllVideoClick)
     }
 
     override fun onBindViewHolder(holder: AnalyzeViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        holder.bind(getItem(position))
     }
 
-    class AnalyzeViewHolder(private val binding: ItemAnalayzeRecycleBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AnalyzeViewHolder(
+        private val binding: ItemAnalayzeRecycleBinding,
+        private val onAllVideoClick: (Int) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: AnalyzeItem) {
             binding.dateTextView.text = item.date
-            binding.scoreTextView.text = item.score
-            // 추가적으로 ImageView를 설정하거나 클릭 리스너를 처리할 수 있음
+            binding.scoreTextView.text = "${item.score}점"
+
+
+            binding.allVideoButton.setOnClickListener {
+                onAllVideoClick(item.gameId)
+            }
         }
     }
 
     class AnalyzeItemDiffCallback : DiffUtil.ItemCallback<AnalyzeItem>() {
         override fun areItemsTheSame(oldItem: AnalyzeItem, newItem: AnalyzeItem): Boolean {
-            // 항목이 동일한지 비교하는 로직
-            return oldItem.date == newItem.date
+            return oldItem.gameId == newItem.gameId
         }
 
         override fun areContentsTheSame(oldItem: AnalyzeItem, newItem: AnalyzeItem): Boolean {
-            // 내용이 동일한지 비교하는 로직
             return oldItem == newItem
         }
     }
 }
+

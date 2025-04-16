@@ -4,7 +4,7 @@ import retrofit2.http.Query
 import retrofit2.http.Header
 
 interface ListApi {
-    @GET("/game/list")
+    @GET("/games/list")
     fun getGameList(
         @Header("Authorization") token: String,
         @Query("date") date: String
