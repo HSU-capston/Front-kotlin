@@ -88,11 +88,16 @@ class AnalyzeCalendarFragment : Fragment() {
                             val analyzeFragmentSub = AnalyzeFragmentSub().apply {
                                 arguments = bundle
                             }
-                            parentFragmentManager.beginTransaction()
-                                // 활성화 된 날짜만 화면 전환이 가능하게
-                                .replace(R.id.nav_host_fragment, analyzeFragmentSub)
+//                            parentFragmentManager.beginTransaction()
+//                                // 활성화 된 날짜만 화면 전환이 가능하게
+//                                .replace(R.id.nav_host_fragment, analyzeFragmentSub)
+//                                .addToBackStack(null)
+//                                .commit()
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.main_container, analyzeFragmentSub)
                                 .addToBackStack(null)
                                 .commit()
+
                         }
                     } else {
                         container.textView.setTextColor(Color.GRAY) // 비활성화 색상 -> 이것도 고칠게
