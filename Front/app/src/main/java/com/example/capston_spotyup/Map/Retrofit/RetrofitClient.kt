@@ -2,6 +2,8 @@ package com.example.capston_spotyup.Network
 
 import ListApi
 import com.example.capston_spotyup.Analyze.Api.ChartApi
+import com.example.capston_spotyup.Analyze.Api.SpecificApi
+import com.example.capston_spotyup.Analyze.Api.SpecificListApi
 import com.example.capston_spotyup.Login.Api.LoginApi
 import com.example.capston_spotyup.Main.Api.AnalyzeApi
 import com.example.capston_spotyup.Main.Api.DatesApi
@@ -149,6 +151,26 @@ object RetrofitClient {
             .build()
             .create(HomeApi::class.java)
     }
+
+    val specificApi: SpecificApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(SpecificApi::class.java)
+    }
+
+    val specificListApi: SpecificListApi by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(SpecificListApi::class.java)
+    }
+
+
     val friendApi: FriendApi by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
