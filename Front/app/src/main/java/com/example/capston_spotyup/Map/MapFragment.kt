@@ -1,3 +1,5 @@
+package com.example.capston_spotyup.Map
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,7 +32,6 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
-        KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_APP_KEY)
 
 
         // MapView 참조 (XML에 정의된 MapView 사용)

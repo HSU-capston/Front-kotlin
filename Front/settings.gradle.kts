@@ -1,6 +1,6 @@
 pluginManagement {
     repositories {
-        google()  // ✅ Google 저장소 추가
+        google()
         mavenCentral()
         gradlePluginPortal()
 
@@ -14,6 +14,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
         maven { url = uri("https://devrepo.kakao.com/nexus/content/groups/public/") }
+        maven { url = uri("https://devrepo.kakao.com/nexus/repository/kakaomap-releases/")}
 
 
 

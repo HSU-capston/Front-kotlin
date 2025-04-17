@@ -1,9 +1,12 @@
 package com.example.capston_spotyup.Main.Domain
 
-import MapFragment
+
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -21,6 +24,7 @@ import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.ActivityMainBinding
 import com.example.sportyup.FragmentHome
 import com.example.capston_spotyup.Main.DTO.Response.SportsResponse
+import com.example.capston_spotyup.Map.MapFragment
 //import com.example.capston_spotyup.Map.MapFragment
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
@@ -31,6 +35,7 @@ import com.google.android.material.card.MaterialCardView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.MessageDigest
 
 class MainActivity : AppCompatActivity() {
 
@@ -276,6 +281,20 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("gameId", gameId)
         startActivity(intent)
     }
+    // MainActivity.kt 또는 Application 클래스에 추가
+//    private fun getKeyHash() {
+//        try {
+//            val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+//            for (signature in info.signatures) {
+//                val md = MessageDigest.getInstance("SHA")
+//                md.update(signature.toByteArray())
+//                val keyHash = Base64.encodeToString(md.digest(), Base64.DEFAULT)
+//                Log.d("KeyHash", "키해시: $keyHash")
+//            }
+//        } catch (e: Exception) {
+//            Log.e("KeyHash", "키해시 가져오기 실패", e)
+//        }
+//    }
 
 
 

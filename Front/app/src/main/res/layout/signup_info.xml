@@ -293,7 +293,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="96sp"
+        android:layout_marginTop="86sp"
         android:backgroundTint="@color/Gray7"
         android:padding="10dp"
         android:text="다음"
