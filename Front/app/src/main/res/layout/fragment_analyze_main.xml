@@ -32,7 +32,6 @@
                 android:src="@drawable/ic_analyze_logo"
                 android:layout_marginTop="@dimen/spacing_24"
                 android:layout_marginLeft="@dimen/spacing_16"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

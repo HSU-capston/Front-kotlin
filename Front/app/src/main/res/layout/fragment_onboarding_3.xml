@@ -102,7 +102,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="@dimen/spacing_48"
+        android:layout_marginTop="@dimen/spacing_32"
         android:backgroundTint="@color/main"
         android:text="다음"
         android:textColor="@android:color/white"
