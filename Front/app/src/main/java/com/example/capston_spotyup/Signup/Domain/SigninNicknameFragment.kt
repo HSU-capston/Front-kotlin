@@ -89,18 +89,18 @@ class SigninNicknameFragment : Fragment() {
 //         signUpViewModel.name = binding.editText.text.toString()
 //
 //            // 로그인 처리, Fragment 전환
-           val transaction: FragmentTransaction =
-               requireActivity().supportFragmentManager.beginTransaction()
-           transaction.replace(R.id.fragment_container, FragmentInfo())
-           transaction.addToBackStack(null) // 뒤로 가기 지원
-           transaction.commit()
-       }
-//            //원래 SigninActivity 로넘어감
-////            Toast.makeText(requireContext(), "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show()
-////            val intent = Intent(requireContext(), SigninActivity::class.java)
-////            startActivity(intent)
-////            requireActivity().finish() // 현재 Fragment가 포함된 Activity 종료 (필요에 따라 유지 가능)
-//        }
+//           val transaction: FragmentTransaction =
+//               requireActivity().supportFragmentManager.beginTransaction()
+//           transaction.replace(R.id.fragment_container, FragmentInfo())
+//           transaction.addToBackStack(null) // 뒤로 가기 지원
+//           transaction.commit()
+//       }
+            //원래 SigninActivity 로넘어감
+            Toast.makeText(requireContext(), "회원가입에 성공하셨습니다", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), SigninActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish() // 현재 Fragment가 포함된 Activity 종료 (필요에 따라 유지 가능)
+        }
         //원래 코드
 //        binding.NextButton.setOnClickListener {
 //            signUpViewModel.name = binding.editText.text.toString()
