@@ -18,7 +18,7 @@
             android:text="이름"
             android:textSize="16sp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="36dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -26,15 +26,16 @@
             android:id="@+id/inputName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="-"
-            android:textSize="16sp"
-            android:padding="8dp"
+            android:layout_marginTop="@dimen/icon_size_36"
+            android:layout_marginEnd="16dp"
+            android:paddingLeft="@dimen/spacing_24"
             android:background="@android:color/transparent"
             android:enabled="false"
-            app:layout_constraintStart_toEndOf="@id/labelName"
-            app:layout_constraintTop_toTopOf="@id/labelName"
+            android:hint="-"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp" />
+            app:layout_constraintStart_toEndOf="@id/labelName"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 닉네임 -->
         <TextView
@@ -52,15 +53,16 @@
             android:id="@+id/inputNickname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="-"
-            android:textSize="16sp"
-            android:padding="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:enabled="false"
-            app:layout_constraintStart_toEndOf="@id/labelNickname"
-            app:layout_constraintTop_toTopOf="@id/labelNickname"
+            android:paddingLeft="@dimen/spacing_24"
+            android:hint="-"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp" />
+            app:layout_constraintStart_toEndOf="@id/labelNickname"
+            app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
         <!-- 이메일 -->
         <TextView
@@ -78,15 +80,16 @@
             android:id="@+id/inputEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="-"
-            android:textSize="16sp"
-            android:padding="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="@dimen/spacing_24"
             android:background="@android:color/transparent"
             android:enabled="false"
-            app:layout_constraintStart_toEndOf="@id/labelEmail"
-            app:layout_constraintTop_toTopOf="@id/labelEmail"
+            android:paddingLeft="@dimen/spacing_24"
+            android:hint="-"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp" />
+            app:layout_constraintStart_toEndOf="@id/labelEmail"
+            app:layout_constraintTop_toBottomOf="@+id/inputNickname" />
 
         <!-- 수정/저장 버튼 -->
         <ImageView
