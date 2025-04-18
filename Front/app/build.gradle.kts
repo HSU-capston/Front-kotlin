@@ -121,8 +121,14 @@ dependencies {
 
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
+    //TFLite
+    implementation("org.tensorflow:tensorflow-lite:2.13.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.3.1")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
 }
 
