@@ -50,6 +50,9 @@
 
         <!-- 로그인 액티비티 -->
         <activity android:name=".Signin.Domain.SigninActivity"/>
+        <activity android:name=".CameraAuto.CameraAutoActivity"/>
+
+
 
 
         <!-- 메인 액티비티 -->
