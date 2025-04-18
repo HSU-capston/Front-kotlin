@@ -18,6 +18,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.Analyze.Domain.AnalyzeFragmentMain
+import com.example.capston_spotyup.CameraAuto.CameraAutoActivity
 import com.example.capston_spotyup.Main.DTO.Request.GameRequest
 import com.example.capston_spotyup.Main.DTO.Response.GameResponse
 import com.example.capston_spotyup.R
@@ -31,6 +32,7 @@ import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
 import com.example.capston_spotyup.Profile.Fragments.ProfileFragment
 import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.MainDialogBinding
+
 import com.google.android.material.card.MaterialCardView
 import retrofit2.Call
 import retrofit2.Callback
@@ -266,10 +268,11 @@ class MainActivity : AppCompatActivity() {
 //            // 갤러리에서 선택 기능 추가
 //            dialog.dismiss()
 //        }
-        // 뒤로가기 버튼
-//        dialogBinding.btnCancel.setOnClickListener {
-//            dialog.dismiss()
-//        }
+
+        dialogBinding.btnCancel.setOnClickListener {
+            val intent = Intent(this, CameraAutoActivity::class.java)
+            startActivity(intent)
+        }
 
         dialog.show()
 

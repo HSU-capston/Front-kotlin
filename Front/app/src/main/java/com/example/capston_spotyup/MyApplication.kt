@@ -12,7 +12,7 @@ class MyApplication : Application() {
         super.onCreate()
         TokenManager.init(this)
         KakaoSdk.init(this, BuildConfig.KAKAO_APP_KEY)
-        KakaoMapSdk.init(this, BuildConfig.KAKAO_APP_KEY)
+//        KakaoMapSdk.init(this, BuildConfig.KAKAO_APP_KEY)
         Log.d("KakaoAppKey", "App Key: ${BuildConfig.KAKAO_APP_KEY}")
     }
 }
