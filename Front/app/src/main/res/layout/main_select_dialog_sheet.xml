@@ -51,6 +51,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_24"
             android:layout_height="200sp"
             android:orientation="horizontal">
 
@@ -212,7 +213,7 @@
         android:id="@+id/btnConfirmSport"
         android:layout_width="80dp"
         android:layout_height="37dp"
-        android:layout_marginTop="-237dp"
+        android:layout_marginTop="-226dp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/gray_4"
         android:enabled="false"
