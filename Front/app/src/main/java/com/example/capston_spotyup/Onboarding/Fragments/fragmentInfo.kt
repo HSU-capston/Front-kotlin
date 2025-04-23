@@ -2,6 +2,7 @@ package com.example.capston_spotyup.Onboarding.Fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -102,7 +103,7 @@ class FragmentInfo : Fragment() {
 
                 R.id.purpose1 -> selectedGoal = "GENERAL"
                 R.id.purpose2 -> selectedGoal = "AMATEUR"
-                R.id.purpose3 -> selectedGoal = "PRO"
+                R.id.purpose3 -> selectedGoal = "PROFESSIONAL"
             }
 
         } else {
@@ -139,18 +140,28 @@ class FragmentInfo : Fragment() {
     private fun submitSurvey(request: SurveyRequest) {
         val token = TokenManager.getAccessToken() ?: return
 
+        Log.d("SurveyRequest", "Survey Request: $request") // Log 추가
+
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val response = RetrofitClient.surveyApi.submitSurvey("Bearer $token", request)
-                if (response.isSuccessful && response.body()?.isSuccess == true) {
-                    Toast.makeText(requireContext(), "설문 완료!", Toast.LENGTH_SHORT).show()
+                if (response.isSuccessful) {
+                    if (response.body()?.isSuccess == true) {
+                        Toast.makeText(requireContext(), "설문 완료!", Toast.LENGTH_SHORT).show()
 
                     // ✅ 설문 성공 시에만 MainActivity 이동
                     val intent = Intent(requireContext(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
+                    } else {
+                        // 서버 응답에서의 body를 로깅하여 더 많은 정보를 확인
+                        Log.d("SurveyResponse", "Response body: ${response.body()}")
+                        Toast.makeText(requireContext(), "설문 전송 실패", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    Toast.makeText(requireContext(), "설문 전송 실패", Toast.LENGTH_SHORT).show()
+                    // 응답 실패 시 상태 코드 확인
+                    Log.e("SurveyResponse", "Error code: ${response.code()}")
+                    Toast.makeText(requireContext(), "응답 실패: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
