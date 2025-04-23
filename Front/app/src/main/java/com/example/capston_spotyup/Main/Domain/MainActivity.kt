@@ -270,12 +270,43 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         dialogBinding.btnCancel.setOnClickListener {
-            val intent = Intent(this, CameraAutoActivity::class.java)
-            startActivity(intent)
+            val token = TokenManager.getAccessToken()
+            if (token != null) {
+                val request = GameRequest(sportsId = sportsId)
+
+
+                RetrofitClient.gameApi.startManualGame("Bearer $token", request)
+                    .enqueue(object : Callback<GameResponse> {
+                        override fun onResponse(call: Call<GameResponse>, response: Response<GameResponse>) {
+                            if (response.isSuccessful) {
+                                val gameId = response.body()?.result?.id
+                                if (gameId != null) {
+                                    openAutoCameraActivity(gameId.toLong())
+                                }
+
+                                println("게임 생성 성공! ID: $gameId")
+                            } else {
+                                println("게임 생성 실패: ${response.code()}")
+                            }
+                        }
+
+                        override fun onFailure(call: Call<GameResponse>, t: Throwable) {
+                            println("네트워크 오류: ${t.message}")
+                        }
+                    })
+            } else {
+                println("토큰이 없습니다. 로그인 필요.")
+            }
+            dialog.dismiss()
         }
 
         dialog.show()
 
+    }
+    private fun openAutoCameraActivity(gameId:Long){
+        val intent = Intent(this,CameraAutoActivity::class.java)
+        intent.putExtra("gameId",gameId)
+        startActivity(intent)
     }
 
 
