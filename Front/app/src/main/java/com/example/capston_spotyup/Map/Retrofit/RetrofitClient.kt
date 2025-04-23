@@ -26,9 +26,9 @@ object RetrofitClient {
     private const val BASE_URL = "http://13.209.69.164:8080" // 🔥 서버 주소 확인!
 
     private val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(180, TimeUnit.SECONDS) // ⏳ 연결 시간 60초
-        .readTimeout(180, TimeUnit.SECONDS) // ⏳ 읽기 시간 60초
-        .writeTimeout(180, TimeUnit.SECONDS) // ⏳ 쓰기 시간 60초
+        .connectTimeout(300, TimeUnit.SECONDS) // ⏳ 연결 시간 60초
+        .readTimeout(300, TimeUnit.SECONDS) // ⏳ 읽기 시간 60초
+        .writeTimeout(300, TimeUnit.SECONDS) // ⏳ 쓰기 시간 60초
         .build()
     // Timeout 에따라 연결
 
