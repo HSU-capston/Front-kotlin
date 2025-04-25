@@ -239,7 +239,7 @@ class CameraAutoActivity : AppCompatActivity() {
         recordingHandler = Handler(Looper.getMainLooper())
         recordingHandler?.postDelayed({
             stopRecording()
-        }, 3000)  // 5초 후 stopRecording 호출
+        }, 5000)  // 5초 후 stopRecording 호출
     }
     private fun processVideoFile(videoUri: Uri) {
         // Uri에서 실제 파일 경로를 얻음
@@ -410,6 +410,7 @@ private fun sendAnalyzeRequest(gameId: Long, videoUri: Uri) {
                         if (response.body()?.isSuccess == true) {
                             val result = response.body()?.result
                             // 피드백 화면을 띄운다
+
                             val feedbackFragment = CameraFeedbackFragment.newInstance(
                                 result?.videoUrl ?: "",
                                 result?.poseScore ?: "분석 결과 없음",
@@ -419,7 +420,7 @@ private fun sendAnalyzeRequest(gameId: Long, videoUri: Uri) {
                             Log.d(TAG, "분석 완료 결과: ${result?.poseScore} / ${result?.recommendPose}")
 
                             Toast.makeText(this@CameraAutoActivity, "분석 완료!", Toast.LENGTH_SHORT).show()
-
+                            hideLoadingDialog()
                             supportFragmentManager.beginTransaction()
                                 .add(android.R.id.content, feedbackFragment)
                                 .addToBackStack(null)
@@ -456,9 +457,9 @@ private fun sendAnalyzeRequest(gameId: Long, videoUri: Uri) {
             val results = runObjectDetection(bitmap)
 
             runOnUiThread {
-//                overlayView.previewBitmap = bitmap
-//                overlayView.objects = results
-//                overlayView.invalidate()
+                overlayView.previewBitmap = bitmap
+                overlayView.objects = results
+                overlayView.invalidate()
 
                 if (results.isNotEmpty()) {
                     val bestObject = results.first()
@@ -518,9 +519,9 @@ private fun sendAnalyzeRequest(gameId: Long, videoUri: Uri) {
 
         // 결과 처리
         val results = parseOutputs(outputBoxes, outputScores, outputClasses)
-//        overlayView.previewBitmap = bitmap
-//        overlayView.objects = results
-//        overlayView.invalidate()
+        overlayView.previewBitmap = bitmap
+        overlayView.objects = results
+        overlayView.invalidate()
 
         return results
     }
