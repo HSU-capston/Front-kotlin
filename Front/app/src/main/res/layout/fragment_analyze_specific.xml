@@ -17,11 +17,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/main_card"
         android:layout_width="wrap_content"
         android:layout_height="480dp"
-        android:layout_marginTop="@dimen/spacing_24"
+        android:layout_marginTop="@dimen/spacing_32"
         app:layout_constraintTop_toBottomOf="@id/specific_logo"
         app:cardCornerRadius="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +44,15 @@
         app:layout_constraintTop_toBottomOf="@+id/main_card"
         tools:layout_editor_absoluteX="0dp" />
 
+    <Spinner
+        android:id="@+id/list_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_12"
+        app:layout_constraintTop_toBottomOf="@id/main_card"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <TextView
         android:id="@+id/text_pose_score"
         android:layout_width="wrap_content"
@@ -56,7 +66,7 @@
         android:layout_marginTop="@dimen/spacing_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_card" />
+        app:layout_constraintTop_toBottomOf="@+id/list_spinner" />
 
 
     <TextView
