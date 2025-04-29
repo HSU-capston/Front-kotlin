@@ -135,6 +135,7 @@ private fun onAllVideoClicked(gameId: Int) {
 
                 if (analyzeId != null) {
                     val bundle = Bundle().apply {
+                        putParcelableArrayList("analyzeList", ArrayList(analyzeList))
                         putLong("analyzeId", analyzeId)
                     }
                     val specificFragment = SpecificFragment().apply {
