@@ -23,7 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private const val BASE_URL = "http://13.209.69.164:8080" // 🔥 서버 주소 확인!
+    private const val BASE_URL = "http://3.39.237.57:8080" // 🔥 서버 주소 확인! gpu 서버
+   // private const val BASE_URL = "http://13.209.69.164:8080" // 🔥 서버 주소 확인! cpu서버
 
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(300, TimeUnit.SECONDS) // ⏳ 연결 시간 60초
