@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
+import com.example.capston_spotyup.CameraAuto.CameraAutoActivity
 import com.example.capston_spotyup.R
 
 class CameraFeedbackFragment : Fragment() {
@@ -60,4 +61,11 @@ class CameraFeedbackFragment : Fragment() {
             return fragment
         }
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        // 피드백 창이 닫힐 때 부모 액티비티에 알림
+        (activity as? CameraAutoActivity)?.onFeedbackFragmentClosed()
+    }
+
 }

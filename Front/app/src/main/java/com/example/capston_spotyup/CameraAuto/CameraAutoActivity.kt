@@ -15,6 +15,10 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.util.Size
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -68,6 +72,7 @@ class CameraAutoActivity : AppCompatActivity() {
     private lateinit var overlayView: OverlayView
     private lateinit var previewView: PreviewView
     private lateinit var textView : TextView
+    private lateinit var imageView: ImageView
     private lateinit var videoCapture: VideoCapture<Recorder>
     private var recording: Recording? = null
     private var isRecording = false
@@ -91,6 +96,7 @@ class CameraAutoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_auto)
 
+        imageView = findViewById(R.id.cancel_camera)
         textView = findViewById(R.id.timer_texter)
         previewView = findViewById(R.id.previewView)
         overlayView = findViewById(R.id.overlay_view)
@@ -98,8 +104,93 @@ class CameraAutoActivity : AppCompatActivity() {
 
         currentGameId = intent.getLongExtra("gameId", -1L)
 
+
+        imageView.setOnClickListener{
+            showCameraDialog()
+
+        }
+
+
         // 카메라 화면으로
         startAutoCamera()
+    }
+    override fun onResume() {
+        super.onResume()
+        // 무조건 OverlayView도 다시 보이게 설정
+        overlayView.visibility = View.VISIBLE
+        overlayView.previewBitmap = null
+        overlayView.objects = emptyList()
+        overlayView.invalidate()
+
+
+        startAutoCamera()
+    }
+    private fun showCameraDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.camera_dialog, null)
+        val scoreEditText = dialogView.findViewById<EditText>(R.id.scoreText)
+        val btnConfirm = dialogView.findViewById<Button>(R.id.btnConfirm)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancel)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        // 확인 버튼 클릭 시
+        btnConfirm.setOnClickListener {
+            val scoreText = scoreEditText.text.toString()
+            val score = scoreText.toIntOrNull()
+
+            if (score != null && currentGameId != null) {
+                sendGameExitRequest(score)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(this, "유효한 점수를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // 취소 버튼 클릭 시
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+    private fun sendGameExitRequest(score: Int) {
+        val token = TokenManager.getAccessToken()
+        val gameId = currentGameId
+
+        if (token != null && gameId != null) {
+            val request = GameExitRequest(score)
+
+            RetrofitClient.gameExitApi.exitGame("Bearer $token", gameId, request)
+                .enqueue(object : Callback<GameExitResponse> {
+                    override fun onResponse(call: Call<GameExitResponse>, response: Response<GameExitResponse>) {
+                        if (response.isSuccessful) {
+                            val result = response.body()?.result
+                            Log.d("GameExit", "게임 종료 완료 - 점수: ${result?.score}, 요약: ${result?.summary}")
+                            Toast.makeText(this@CameraAutoActivity, "게임 종료 완료!", Toast.LENGTH_SHORT).show()
+
+                            //  MainActivity로 이동 (FragmentHome 표시 요청)
+                            val intent = Intent(this@CameraAutoActivity, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                            intent.putExtra("navigateToHome", true)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this@CameraAutoActivity, "서버 오류: ${response.code()}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<GameExitResponse>, t: Throwable) {
+                        Log.e("GameExit", "요청 실패: ${t.message}")
+                        Toast.makeText(this@CameraAutoActivity, "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
+                    }
+                })
+        } else {
+            Toast.makeText(this, "토큰 또는 게임 정보가 없습니다.", Toast.LENGTH_SHORT).show()
+        }
     }
     private fun parseOutputs(
         boxes: Array<Array<ByteArray>>,
@@ -158,11 +249,48 @@ class CameraAutoActivity : AppCompatActivity() {
     }
 
 
+// 기존 코드
+//    private fun startAutoCamera() {
+//        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+//
+//        cameraProviderFuture.addListener({
+//            val cameraProvider = cameraProviderFuture.get()
+//
+//            val preview = Preview.Builder()
+//                .build()
+//                .also {
+//                    it.setSurfaceProvider(previewView.surfaceProvider)
+//                }
+//
+//            val recorder = Recorder.Builder()
+//                .setQualitySelector(QualitySelector.from(Quality.HD))  // 해상도 설정
+//                .build()
+//            videoCapture = VideoCapture.withOutput(recorder)
+//
+//            val imageAnalyzer = ImageAnalysis.Builder()
+//                .setTargetResolution(Size(640, 640))
+//                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+//                .build()
+//                .also {
+//                    it.setAnalyzer(ContextCompat.getMainExecutor(this), ImageAnalyzer())
+//                }
+//
+//            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+//
+//            try {
+//                cameraProvider.unbindAll()
+//                // 1. VideoCapture와 Preview를 바인딩해야 함
+//                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer, videoCapture)
+//            } catch (e: Exception) {
+//                Log.e(TAG, "Camera binding failed", e)
+//            }
+//        }, ContextCompat.getMainExecutor(this))
+//    }
+private fun startAutoCamera() {
+    val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
-    private fun startAutoCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
-        cameraProviderFuture.addListener({
+    cameraProviderFuture.addListener({
+        try {
             val cameraProvider = cameraProviderFuture.get()
 
             val preview = Preview.Builder()
@@ -172,8 +300,9 @@ class CameraAutoActivity : AppCompatActivity() {
                 }
 
             val recorder = Recorder.Builder()
-                .setQualitySelector(QualitySelector.from(Quality.HD))  // 해상도 설정
+                .setQualitySelector(QualitySelector.from(Quality.HD))
                 .build()
+
             videoCapture = VideoCapture.withOutput(recorder)
 
             val imageAnalyzer = ImageAnalysis.Builder()
@@ -186,15 +315,20 @@ class CameraAutoActivity : AppCompatActivity() {
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-            try {
-                cameraProvider.unbindAll()
-                // 1. VideoCapture와 Preview를 바인딩해야 함
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer, videoCapture)
-            } catch (e: Exception) {
-                Log.e(TAG, "Camera binding failed", e)
-            }
-        }, ContextCompat.getMainExecutor(this))
-    }
+            // 기존 바인딩 해제하고 다시 바인딩
+            cameraProvider.unbindAll()
+            cameraProvider.bindToLifecycle(
+                this, cameraSelector, preview, imageAnalyzer, videoCapture
+            )
+
+            Log.d(TAG, "카메라 재바인딩 성공")
+
+        } catch (e: Exception) {
+            Log.e(TAG, "카메라 시작 실패", e)
+        }
+    }, ContextCompat.getMainExecutor(this))
+}
+
 
     private fun startRecording() {
         if (isRecording) return
@@ -239,11 +373,11 @@ class CameraAutoActivity : AppCompatActivity() {
         recordingHandler = Handler(Looper.getMainLooper())
         recordingHandler?.postDelayed({
             stopRecording()
-        }, 5000)  // 5초 후 stopRecording 호출
+        }, 3000)  // 5초 후 stopRecording 호출
     }
     private fun processVideoFile(videoUri: Uri) {
         // Uri에서 실제 파일 경로를 얻음
-        showLoadingDialog()
+//        showLoadingDialog()
         sendAnalyzeRequest(currentGameId!!,videoUri)
 //        // 파일 경로가 유효한지 확인
 //        if (filePath != null) {
@@ -319,10 +453,21 @@ class CameraAutoActivity : AppCompatActivity() {
         isRecording = false
         Log.d(TAG, "녹화 종료")
 
+        clearOverlay()
+
 //        // 5초 타이머 제거
 //        recordingHandler?.removeCallbacksAndMessages(null)
 //        showLoadingDialog()
 
+    }
+
+    private fun clearOverlay() {
+        runOnUiThread {
+            overlayView.previewBitmap = null
+            overlayView.objects = emptyList()
+            overlayView.invalidate()
+            overlayView.visibility = View.GONE  // 필요 시 View 자체를 숨김
+        }
     }
 //    private fun sendGameExitRequest(score: Int) {
 //        val token = TokenManager.getAccessToken()
@@ -398,49 +543,100 @@ private fun sendAnalyzeRequest(gameId: Long, videoUri: Uri) {
         showLoadingDialog()
 
         // API 호출
+//        RetrofitClient.analyzeApi.analyzeVideo("Bearer $token", gameId, body)
+//            .enqueue(object : Callback<AnalyzeResponse> {
+//                override fun onResponse(call: Call<AnalyzeResponse>, response: Response<AnalyzeResponse>) {
+//                    Log.d(TAG, "API 요청 완료. 응답 코드: ${response.code()}")
+//
+//                    hideLoadingDialog()
+//
+//                    if (response.isSuccessful) {
+//                        Log.d(TAG, "API 응답 성공: ${response.body()}")
+//                        if (response.body()?.isSuccess == true) {
+//                            val result = response.body()?.result
+//                            // 피드백 화면을 띄운다
+//
+//                            val feedbackFragment = CameraFeedbackFragment.newInstance(
+//                                result?.videoUrl ?: "",
+//                                result?.poseScore ?: "분석 결과 없음",
+//                                result?.recommendPose ?: "추천 자세 없음"
+//                            )
+//
+//                            Log.d(TAG, "분석 완료 결과: ${result?.poseScore} / ${result?.recommendPose}")
+//
+//                            Toast.makeText(this@CameraAutoActivity, "분석 완료!", Toast.LENGTH_SHORT).show()
+//                            runOnUiThread {
+//                                hideLoadingDialog()  // 반드시 FragmentTransaction 전에 다이얼로그 닫기
+//                                supportFragmentManager.beginTransaction()
+//                                    .replace(android.R.id.content, feedbackFragment)  // replace로 깔끔히 덮기 추천
+//                                    .addToBackStack(null)
+//                                    .commitAllowingStateLoss()  // API 콜백 안에서는 commitAllowingStateLoss 안전하게 사용
+//                            }
+//                        } else {
+//                            Log.e(TAG, "분석 실패: ${response.message()}")
+//                            Toast.makeText(this@CameraAutoActivity, "분석 실패: ${response.message()}", Toast.LENGTH_SHORT).show()
+//                        }
+//                    } else {
+//                        Log.e(TAG, "응답 실패: ${response.code()}")
+//                        Toast.makeText(this@CameraAutoActivity, "서버 오류: ${response.code()}", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<AnalyzeResponse>, t: Throwable) {
+//                    Log.e(TAG, "API 요청 실패: ${t.message}")
+//                    hideLoadingDialog()
+//                    Toast.makeText(this@CameraAutoActivity, "서버 통신 실패", Toast.LENGTH_SHORT).show()
+//                }
+//            })
+
+
         RetrofitClient.analyzeApi.analyzeVideo("Bearer $token", gameId, body)
             .enqueue(object : Callback<AnalyzeResponse> {
                 override fun onResponse(call: Call<AnalyzeResponse>, response: Response<AnalyzeResponse>) {
                     Log.d(TAG, "API 요청 완료. 응답 코드: ${response.code()}")
 
-                    hideLoadingDialog()
+                    runOnUiThread {
+                        hideLoadingDialog()
+                        if (response.isSuccessful) {
+                            Log.d(TAG, "API 응답 성공: ${response.body()}")
+                            if (response.body()?.isSuccess == true) {
+                                val result = response.body()?.result
 
-                    if (response.isSuccessful) {
-                        Log.d(TAG, "API 응답 성공: ${response.body()}")
-                        if (response.body()?.isSuccess == true) {
-                            val result = response.body()?.result
-                            // 피드백 화면을 띄운다
+                                val feedbackFragment = CameraFeedbackFragment.newInstance(
+                                    result?.videoUrl ?: "",
+                                    result?.poseScore ?: "분석 결과 없음",
+                                    result?.recommendPose ?: "추천 자세 없음"
+                                )
 
-                            val feedbackFragment = CameraFeedbackFragment.newInstance(
-                                result?.videoUrl ?: "",
-                                result?.poseScore ?: "분석 결과 없음",
-                                result?.recommendPose ?: "추천 자세 없음"
-                            )
+                                Log.d(TAG, "분석 완료 결과: ${result?.poseScore} / ${result?.recommendPose}")
 
-                            Log.d(TAG, "분석 완료 결과: ${result?.poseScore} / ${result?.recommendPose}")
+                                Toast.makeText(this@CameraAutoActivity, "분석 완료!", Toast.LENGTH_SHORT).show()
 
-                            Toast.makeText(this@CameraAutoActivity, "분석 완료!", Toast.LENGTH_SHORT).show()
-                            hideLoadingDialog()
-                            supportFragmentManager.beginTransaction()
-                                .add(android.R.id.content, feedbackFragment)
-                                .addToBackStack(null)
-                                .commit()
+                                supportFragmentManager.beginTransaction()
+                                    .replace(android.R.id.content, feedbackFragment)
+                                    .addToBackStack(null)
+                                    .commitAllowingStateLoss()
+                            } else {
+                                Log.e(TAG, "분석 실패: ${response.message()}")
+                                Toast.makeText(this@CameraAutoActivity, "분석 실패: ${response.message()}", Toast.LENGTH_SHORT).show()
+                            }
                         } else {
-                            Log.e(TAG, "분석 실패: ${response.message()}")
-                            Toast.makeText(this@CameraAutoActivity, "분석 실패: ${response.message()}", Toast.LENGTH_SHORT).show()
+                            Log.e(TAG, "응답 실패: ${response.code()}")
+                            Toast.makeText(this@CameraAutoActivity, "서버 오류: ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        Log.e(TAG, "응답 실패: ${response.code()}")
-                        Toast.makeText(this@CameraAutoActivity, "서버 오류: ${response.code()}", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<AnalyzeResponse>, t: Throwable) {
                     Log.e(TAG, "API 요청 실패: ${t.message}")
-                    hideLoadingDialog()
-                    Toast.makeText(this@CameraAutoActivity, "서버 통신 실패", Toast.LENGTH_SHORT).show()
+
+                    runOnUiThread {
+                        hideLoadingDialog() // 실패할 때도 딱 한 번
+                        Toast.makeText(this@CameraAutoActivity, "서버 통신 실패", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
+
     } catch (e: Exception) {
         hideLoadingDialog()
         Log.e(TAG, "Error while processing Uri: ${e.message}")
@@ -536,11 +732,43 @@ private fun sendAnalyzeRequest(gameId: Long, videoUri: Uri) {
         loadingDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         loadingDialog?.show()
     }
+    fun onFeedbackFragmentClosed() {
+        Log.d(TAG, "CameraFeedbackFragment가 닫혔습니다. 다이얼로그 정리 및 카메라 재시작.")
+
+        // 혹시 남아있을 수 있는 loadingDialog를 확실히 닫는다
+        hideLoadingDialog()
+
+        // OverlayView 다시 준비
+        overlayView.visibility = View.VISIBLE
+        overlayView.previewBitmap = null
+        overlayView.objects = emptyList()
+        overlayView.invalidate()
+
+        // 카메라 재시작
+        startAutoCamera()
+    }
+
 
     private fun hideLoadingDialog() {
         loadingDialog?.dismiss()
         loadingDialog = null
     }
+    fun restartCamera() {
+        // 오버레이 초기화
+        overlayView.visibility = View.VISIBLE
+        overlayView.previewBitmap = null
+        overlayView.objects = emptyList()
+        overlayView.invalidate()
+
+        // 레코딩 관련 변수 초기화
+        isRecording = false
+        seconds = 0
+        textView.text = "00:00"
+
+        // 카메라 다시 시작
+        startAutoCamera()
+    }
+
 
     private fun saveVideoFilePathToPreferences(videoFilePath: String) {
         val sharedPref = getSharedPreferences("VideoPrefs", MODE_PRIVATE)

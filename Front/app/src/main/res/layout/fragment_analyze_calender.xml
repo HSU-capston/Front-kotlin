@@ -98,7 +98,7 @@
         <com.kizitonwose.calendarview.CalendarView
             android:id="@+id/calendar_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="320dp"
             android:layout_marginHorizontal="@dimen/spacing_20"
             android:layout_marginTop="@dimen/spacing_8"
             android:background="@drawable/bg_calendar"

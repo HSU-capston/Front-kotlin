@@ -1,5 +1,9 @@
 package com.example.capston_spotyup.Analyze.DTO.Response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
 data class SpecificListResponse(
     val isSuccess: Boolean,
     val code: String,
@@ -12,6 +16,7 @@ data class AnalyzeListResult(
     val analyzeList: List<AnalyzeListItem>
 )
 
+@Parcelize
 data class AnalyzeListItem(
     val id: Long
-)
+) : Parcelable

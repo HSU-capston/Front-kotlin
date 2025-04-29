@@ -87,14 +87,18 @@ class SigninInfoFragment : Fragment() {
                             // 비밀번호 형식 검사
                             if (!isValidPassword(editText.text.toString())) {
                                 binding.warning1.visibility = View.VISIBLE
+                                binding.invalidIcon.visibility=View.VISIBLE
                             } else {
                                 binding.warning1.visibility = View.INVISIBLE
+                                binding.invalidIcon.visibility=View.INVISIBLE
+
                             }
                         }
                         binding.editText3 -> {
                             // 비밀번호 확인 체크
                             if (editText.text.toString() != binding.editText2.text.toString()) {
                                 binding.warning2.visibility = View.VISIBLE
+                                binding.valid.visibility=View.INVISIBLE
                             } else {
                                 binding.warning2.visibility = View.INVISIBLE
                                 binding.valid.visibility=View.VISIBLE
@@ -130,8 +134,10 @@ class SigninInfoFragment : Fragment() {
                 val password = s.toString()
                 if (!isValidPassword(password)) {
                     binding.warning1.visibility=View.INVISIBLE
+                    binding.invalidIcon.visibility=View.INVISIBLE
                 } else {
                     binding.warning1.visibility=View.VISIBLE
+                    binding.invalidIcon.visibility=View.VISIBLE
                 }
             }
 

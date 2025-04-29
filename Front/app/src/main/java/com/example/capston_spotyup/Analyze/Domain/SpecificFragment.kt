@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import com.example.capston_spotyup.databinding.FragmentAnalyzeSpecificBinding
-import com.example.capston_spotyup.Util.TokenManager
-import com.example.capston_spotyup.Network.RetrofitClient
 import androidx.lifecycle.lifecycleScope
+import com.example.capston_spotyup.databinding.FragmentAnalyzeSpecificBinding
+import com.example.capston_spotyup.Network.RetrofitClient
+import com.example.capston_spotyup.Util.TokenManager
+import com.example.capston_spotyup.Analyze.DTO.Response.AnalyzeListItem
 import kotlinx.coroutines.launch
 import android.util.Log
-
-
+import com.example.capston_spotyup.R   // ✅ 반드시 우리 프로젝트 R을 import!
 
 class SpecificFragment : Fragment() {
 
     private lateinit var binding: FragmentAnalyzeSpecificBinding
+    private var analyzeList: List<AnalyzeListItem> = emptyList()
+    private var selectedAnalyzeId: Long = -1L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +33,43 @@ class SpecificFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val analyzeId = arguments?.getLong("analyzeId") ?: return
+        analyzeList = arguments?.getParcelableArrayList("analyzeList") ?: emptyList()
+        selectedAnalyzeId = arguments?.getLong("initialAnalyzeId") ?: return
         val token = TokenManager.getAccessToken() ?: return
 
+        setupSpinner()
+        fetchSpecificAnalyze(selectedAnalyzeId, token)
+    }
 
-        fetchSpecificAnalyze(analyzeId, token)
+    private fun setupSpinner() {
+        val analyzeIdStrings = analyzeList.map { "분석 ID: ${it.id}" }
+
+        val adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, analyzeIdStrings)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.listSpinner.adapter = adapter
+
+        // Spinner 현재 선택을 초기 설정
+        binding.listSpinner.setSelection(analyzeList.indexOfFirst { it.id == selectedAnalyzeId })
+
+        //  setOnItemSelectedListener 는 반드시 이렇게
+        binding.listSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selected = analyzeList[position]
+                selectedAnalyzeId = selected.id
+                val token = TokenManager.getAccessToken() ?: return
+                fetchSpecificAnalyze(selectedAnalyzeId, token)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // 아무 것도 선택하지 않았을 때는 무시
+            }
+        }
     }
 
     private fun fetchSpecificAnalyze(analyzeId: Long, token: String) {
@@ -54,7 +90,7 @@ class SpecificFragment : Fragment() {
                         }
                     }
                 } else {
-                    Log.e("SpecificAnalyze", "실패: ${response.code()} ${response.message()}")
+                    Log.e("SpecificAnalyze", "API 실패: ${response.code()} ${response.message()}")
                 }
             } catch (e: Exception) {
                 Log.e("SpecificAnalyze", "오류 발생: ${e.message}")
