@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.capston_spotyup.Analyze.DTO.Request.ChartRequest
 import com.example.capston_spotyup.Analyze.DTO.Response.ChartResult
 import com.example.capston_spotyup.Analyze.DTO.Response.DateScore
 import com.example.capston_spotyup.R
@@ -18,6 +19,9 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.ValueFormatter
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class AnalyzeChartFragment : Fragment() {
 
@@ -37,12 +41,22 @@ class AnalyzeChartFragment : Fragment() {
         val userId = 1234L // 예시 userId
 
         // 데이터 로드 및 차트 설정
-        viewModel.getChartData(userId, currentSportsId)
+        val request = ChartRequest(
+            userId = userId,
+            sportsId = currentSportsId,
+            date = "2025-04-30",  // 원하는 날짜를 입력
+            token = "your-auth-token"  // 실제 인증 토큰을 넣어야 합니다.
+        )
 
-        // 데이터가 업데이트되면 차트와 RecyclerView를 갱신
+// ChartRequest 객체를 ViewModel에 전달
+        viewModel.getChartData(request)
+
+        // 데이터가 업데이트되면 차트와 통계 정보를 갱신
         viewModel.chartData.observe(viewLifecycleOwner) { chartData ->
-            updateChart(chartData.result.dateScores)
-            updateStats(chartData.result)  // 📌 추가!
+            chartData?.result?.dateScores?.let {
+                updateChart(it)
+                updateStats(chartData.result)
+            }
         }
 
         setupIconSelectors()  // 아이콘 선택 기능 설정
@@ -55,32 +69,68 @@ class AnalyzeChartFragment : Fragment() {
             Entry(index.toFloat(), score.gameScore.toFloat())
         }
 
-        val dataSet = LineDataSet(entries, "점수")
-        dataSet.color = ContextCompat.getColor(requireContext(), R.color.main)
-        dataSet.setCircleColor(Color.BLACK)
-        dataSet.lineWidth = 2f
-        dataSet.circleRadius = 4f
-        dataSet.setDrawValues(false)
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("M/d", Locale.getDefault())
+
+        val labels = dateScores.map {
+            val dateOnly = it.gameDate.substring(0, 10)
+            try {
+                val parsed = inputFormat.parse(dateOnly)
+                outputFormat.format(parsed!!)
+            } catch (e: Exception) {
+                dateOnly
+            }
+        }
+
+        val dataSet = LineDataSet(entries, "점수").apply {
+            color = ContextCompat.getColor(requireContext(), R.color.main)
+            setCircleColor(Color.BLACK)
+            lineWidth = 2f
+            circleRadius = 4f
+            setDrawValues(false) // true로 바꾸면 그래프 위에 점수 생김
+            valueTextSize = 10f
+            valueTextColor = Color.BLACK
+            valueFormatter = object : ValueFormatter() {
+                override fun getPointLabel(entry: Entry?): String {
+                    return "\n${entry?.y?.toInt()}"  // 그래프 위에 뜨는 점수 줄바꿈 트릭
+                }
+            }
+        }
+        binding.lineChart.setExtraOffsets(0f, 30f, 0f, 10f) // 그래프 위로 공간 확보
+
+
+        val formatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                val index = value.toInt()
+                return if (index in labels.indices) labels[index] else ""
+            }
+        }
+
+        binding.lineChart.xAxis.apply {
+            position = XAxis.XAxisPosition.BOTTOM
+            valueFormatter = formatter
+            granularity = 1f
+            setDrawGridLines(false)
+        }
 
         binding.lineChart.data = LineData(dataSet)
-        binding.lineChart.description.isEnabled = false
-        binding.lineChart.setTouchEnabled(false)
-
-        binding.lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
         binding.lineChart.axisRight.isEnabled = false
         binding.lineChart.axisLeft.axisMinimum = 0f
+        binding.lineChart.description.isEnabled = false
         binding.lineChart.invalidate()
+
+        val markerView = CustomMarkerView(requireContext(), R.layout.marker_chart)
+        markerView.chartView = binding.lineChart  // 필수!
+        binding.lineChart.marker = markerView
     }
+
 
     private fun updateStats(result: ChartResult) {
         binding.tvGameCount.text = result.gameCount.toString()
-        binding.tvAvgScore.text = result.averageScore.toString()
+        binding.tvAvgScore.text = result.averageScore.toInt().toString()
         binding.tvHighScore.text = result.highScore.toString()
         binding.tvLowScore.text = result.lowScore.toString()
     }
-
-
-
 
     // 스포츠 아이콘 클릭 시 데이터 갱신
     private fun setupIconSelectors() {
@@ -104,7 +154,6 @@ class AnalyzeChartFragment : Fragment() {
             R.drawable.ic_chart_3
         )
 
-
         icons.forEachIndexed { index, imageView ->
             imageView.setOnClickListener {
                 icons.forEachIndexed { i, icon ->
@@ -115,7 +164,15 @@ class AnalyzeChartFragment : Fragment() {
                 currentSportsId = index + 1
 
                 val userId = 1234L // 예시
-                viewModel.getChartData(userId, currentSportsId)
+                val request = ChartRequest(
+                    userId = userId,
+                    sportsId = currentSportsId,
+                    date = "2025-04-30",  // 원하는 날짜를 입력
+                    token = "your-auth-token"  // 실제 인증 토큰을 넣어야 합니다.
+                )
+
+// ChartRequest 객체를 ViewModel에 전달
+                viewModel.getChartData(request)
             }
         }
     }
