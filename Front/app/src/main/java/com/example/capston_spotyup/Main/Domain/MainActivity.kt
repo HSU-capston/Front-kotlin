@@ -25,13 +25,15 @@ import com.example.capston_spotyup.R
 import com.example.capston_spotyup.databinding.ActivityMainBinding
 import com.example.sportyup.FragmentHome
 import com.example.capston_spotyup.Main.DTO.Response.SportsResponse
-import com.example.capston_spotyup.Map.MapFragment
+import com.example.capston_spotyup.Map.GoogleMapFragment
+import com.google.android.gms.maps.SupportMapFragment
 //import com.example.capston_spotyup.Map.MapFragment
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.Network.RetrofitClient.sportsApi
 import com.example.capston_spotyup.Profile.Fragments.ProfileFragment
 import com.example.capston_spotyup.Util.TokenManager
 import com.example.capston_spotyup.databinding.MainDialogBinding
+import com.google.android.gms.maps.MapFragment
 
 import com.google.android.material.card.MaterialCardView
 import retrofit2.Call
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.fragment_map -> {
-                    switchFragment(MapFragment())
+                    switchFragment(GoogleMapFragment())
                     true
                 }
 

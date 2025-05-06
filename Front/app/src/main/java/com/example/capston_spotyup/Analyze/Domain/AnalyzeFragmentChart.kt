@@ -65,14 +65,16 @@ class AnalyzeChartFragment : Fragment() {
 
     // 차트 업데이트
     private fun updateChart(dateScores: List<DateScore>) {
-        val entries = dateScores.mapIndexed { index, score ->
+        val sortedScores = dateScores.sortedBy { it.gameDate } // 날짜 오름차순 정렬
+
+        val entries = sortedScores.mapIndexed { index, score ->
             Entry(index.toFloat(), score.gameScore.toFloat())
         }
 
         val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val outputFormat = SimpleDateFormat("M/d", Locale.getDefault())
 
-        val labels = dateScores.map {
+        val labels = sortedScores.map {
             val dateOnly = it.gameDate.substring(0, 10)
             try {
                 val parsed = inputFormat.parse(dateOnly)
@@ -87,17 +89,17 @@ class AnalyzeChartFragment : Fragment() {
             setCircleColor(Color.BLACK)
             lineWidth = 2f
             circleRadius = 4f
-            setDrawValues(false) // true로 바꾸면 그래프 위에 점수 생김
+            setDrawValues(false)
             valueTextSize = 10f
             valueTextColor = Color.BLACK
             valueFormatter = object : ValueFormatter() {
                 override fun getPointLabel(entry: Entry?): String {
-                    return "\n${entry?.y?.toInt()}"  // 그래프 위에 뜨는 점수 줄바꿈 트릭
+                    return "\n${entry?.y?.toInt()}"
                 }
             }
         }
-        binding.lineChart.setExtraOffsets(0f, 30f, 0f, 10f) // 그래프 위로 공간 확보
 
+        binding.lineChart.setExtraOffsets(0f, 30f, 0f, 10f)
 
         val formatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
@@ -120,9 +122,10 @@ class AnalyzeChartFragment : Fragment() {
         binding.lineChart.invalidate()
 
         val markerView = CustomMarkerView(requireContext(), R.layout.marker_chart)
-        markerView.chartView = binding.lineChart  // 필수!
+        markerView.chartView = binding.lineChart
         binding.lineChart.marker = markerView
     }
+
 
 
     private fun updateStats(result: ChartResult) {
@@ -140,11 +143,14 @@ class AnalyzeChartFragment : Fragment() {
             binding.undertab1.getChildAt(2) as ImageView
         )
 
+        // 실제 서버에 보내야 하는 스포츠 ID 리스트
+        val sportsIdList = listOf(3, 2, 1) // 예: 1 = 볼링, 2 = 골프, 3 = 당구
+
         // 선택 아이콘 이미지들
         val selectedIcons = listOf(
-            R.drawable.ic_anal_bill,
-            R.drawable.ic_anal_golf,
-            R.drawable.ic_anal_bowl
+            R.drawable.ic_anal_bill,  // 1번 버튼 선택 이미지
+            R.drawable.ic_anal_golf,  // 2번 버튼 선택 이미지
+            R.drawable.ic_anal_bowl   // 3번 버튼 선택 이미지
         )
 
         // 기본 아이콘 이미지들
@@ -157,25 +163,26 @@ class AnalyzeChartFragment : Fragment() {
         icons.forEachIndexed { index, imageView ->
             imageView.setOnClickListener {
                 icons.forEachIndexed { i, icon ->
-                    icon.setImageResource(defaultIcons[i]) // 기본 아이콘으로 초기화
+                    icon.setImageResource(defaultIcons[i]) // 모두 기본 아이콘으로 초기화
                 }
 
-                imageView.setImageResource(selectedIcons[index]) // 선택된 아이콘만 파란색으로
-                currentSportsId = index + 1
+                imageView.setImageResource(selectedIcons[index]) // 현재 아이콘만 선택된 이미지로
 
-                val userId = 1234L // 예시
+                currentSportsId = sportsIdList[index] // 정확한 스포츠 ID로 갱신
+
+                val userId = 1234L
                 val request = ChartRequest(
                     userId = userId,
                     sportsId = currentSportsId,
-                    date = "2025-04-30",  // 원하는 날짜를 입력
-                    token = "your-auth-token"  // 실제 인증 토큰을 넣어야 합니다.
+                    date = "2025-04-30",
+                    token = "your-auth-token"
                 )
 
-// ChartRequest 객체를 ViewModel에 전달
                 viewModel.getChartData(request)
             }
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

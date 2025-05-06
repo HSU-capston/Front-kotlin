@@ -117,6 +117,9 @@ dependencies {
 
 
 
+    implementation ("com.google.android.gms:play-services-maps:19.2.0")
+    implementation ("com.google.android.gms:play-services-location:21.3.0")
+
     implementation ("com.kakao.maps.open:android:2.12.13")
     implementation ("com.github.bumptech.glide:glide:4.12.0") // 최신 버전으로 확인
 

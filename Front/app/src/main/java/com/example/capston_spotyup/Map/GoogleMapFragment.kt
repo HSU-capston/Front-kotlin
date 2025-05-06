@@ -1,25 +1,48 @@
-/*
 package com.example.capston_spotyup.Map
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.example.capston_spotyup.databinding.FragmentMapBinding
-import com.kakao.vectormap.KakaoMap
-import com.kakao.vectormap.KakaoMapReadyCallback
-import com.kakao.vectormap.KakaoMapSdk
-import com.kakao.vectormap.LatLng
-import com.kakao.vectormap.MapLifeCycleCallback
-import com.kakao.vectormap.MapView
-import com.kakao.vectormap.camera.CameraUpdate
-import com.kakao.vectormap.camera.CameraUpdateFactory
-import com.example.capston_spotyup.BuildConfig
+import com.example.capston_spotyup.R
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.CameraUpdateFactory
 
 
+class GoogleMapFragment : Fragment(R.layout.fragment_map_google), OnMapReadyCallback {
+
+    private lateinit var map: GoogleMap
+
+    override fun onViewCreated(view: android.view.View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val mapFragment = childFragmentManager
+            .findFragmentById(R.id.map_fragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+
+        // ⛰️ 서울 성북구 상상관 좌표
+        val sangsangLocation = LatLng(37.582802, 127.010276)
+
+        // ✅ 마커와 카메라 이동 추가
+        map.addMarker(
+            MarkerOptions()
+                .position(sangsangLocation)
+                .title("상상관")
+        )
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(sangsangLocation, 17f))
+    }
+}
+
+/*
 class MapFragment : Fragment() {
 
     private var _binding: FragmentMapBinding? = null
