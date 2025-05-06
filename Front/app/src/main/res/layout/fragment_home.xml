@@ -139,6 +139,15 @@
                 app:layout_constraintTop_toBottomOf="@id/viewpager"
                 tools:ignore="MissingClass" />
 
+            <TextView
+                android:id="@+id/textView44"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@color/Gray8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/indicator" />
+
 
             <TextView
                 android:id="@+id/textView5"
@@ -151,7 +160,7 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/pretendard_semibold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/indicator" />
+                app:layout_constraintTop_toBottomOf="@id/textView44" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
@@ -169,27 +178,52 @@
                     android:orientation="horizontal">
 
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10sp">
 
-                    <ImageView
-                        android:id="@+id/scrollImage1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_home1"/>
+                        <ImageView
+                            android:id="@+id/scrollImage1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home1"/>
 
-                    <ImageView
-                        android:id="@+id/scrollImage2"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="@dimen/spacing_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:src="@drawable/img_home1"/>
-                    <ImageView
-                        android:id="@+id/scrollImage3"
+                        app:cardCornerRadius="10sp">
+
+                        <ImageView
+                            android:id="@+id/scrollImage2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home1"/>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="@dimen/spacing_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:src="@drawable/img_home1"/>
+                        app:cardCornerRadius="10sp">
+
+                        <ImageView
+                            android:id="@+id/scrollImage3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_home1"/>
+
+
+
+                    </androidx.cardview.widget.CardView>
 
 
 
@@ -234,12 +268,6 @@
                     android:layout_margin="5dp"
                     android:background="@drawable/dot_inactive" />
 
-                <View
-                    android:id="@+id/dot4"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive"/>
 
             </LinearLayout>
 
@@ -258,17 +286,27 @@
 
 
             <TextView
+                android:id="@+id/textView54"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@color/Gray8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dotsLayout" />
+
+
+            <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최근 시청한 강의"
+                android:text="주간 HOT CAST"
                 android:layout_marginLeft="@dimen/spacing_16"
                 android:textColor="@color/Gray2"
                 android:layout_marginTop="@dimen/spacing_16"
                 android:textStyle="bold"
                 android:fontFamily="@font/pretendard_semibold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dotsLayout" />
+                app:layout_constraintTop_toBottomOf="@id/textView54" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView2"
@@ -285,26 +323,49 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/scrollImage4"
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="@dimen/spacing_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_home3"/>
+                        app:cardCornerRadius="10sp">
+                        <ImageView
+                            android:id="@+id/scrollImage4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home3"/>
 
-                    <ImageView
-                        android:id="@+id/scrollImage5"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="@dimen/spacing_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:src="@drawable/img_home3"/>
-                    <ImageView
-                        android:id="@+id/scrollImage6"
+                        app:cardCornerRadius="10sp">
+
+                        <ImageView
+                            android:id="@+id/scrollImage5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home3"/>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginStart="@dimen/spacing_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:src="@drawable/img_home3"/>
+                        app:cardCornerRadius="10sp">
+
+                        <ImageView
+                            android:id="@+id/scrollImage6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/img_home3"/>
+
+
+                    </androidx.cardview.widget.CardView>
 
 
                 </LinearLayout>
@@ -352,6 +413,16 @@
 
 
             <TextView
+                android:id="@+id/textView64"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@color/Gray8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dotsLayout2" />
+
+
+            <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -362,7 +433,7 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/pretendard_semibold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dotsLayout2" />
+                app:layout_constraintTop_toBottomOf="@id/textView64" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView3"
@@ -422,7 +493,7 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
+                    android:background="@drawable/dot_active" />
 
                 <View
                     android:id="@+id/dot9"
@@ -441,6 +512,15 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView84"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="@color/Gray8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dotsLayout3" />
+
 
             <TextView
                 android:id="@+id/textView8"
@@ -453,7 +533,7 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/pretendard_semibold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dotsLayout3" />
+                app:layout_constraintTop_toBottomOf="@id/textView84" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView4"
@@ -513,7 +593,7 @@
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
+                    android:background="@drawable/dot_active" />
 
                 <View
                     android:id="@+id/dot12"

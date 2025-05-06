@@ -3,7 +3,9 @@ package com.example.capston_spotyup.Signin.Domain
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.commit
 import com.example.capston_spotyup.Login.DTO.LoginRequest
 import com.example.capston_spotyup.Login.DTO.LoginResponse
@@ -59,6 +61,7 @@ class SigninActivity : AppCompatActivity() {
                         val result = response.body()?.result
                         result?.let {
                             TokenManager.saveTokens(it.accessToken, it.refreshToken)
+                            Toast.makeText(this@SigninActivity, "로그인 성공!! ${response.message()}", Toast.LENGTH_SHORT).show()
 
                             val intent = Intent(this@SigninActivity, OnboardingActivity::class.java)
                             startActivity(intent)
@@ -67,6 +70,8 @@ class SigninActivity : AppCompatActivity() {
                     }
                     else {
                         Log.e("Login", "로그인 실패 - ${response.code()} / ${response.message()}")
+                        Toast.makeText(this@SigninActivity, "로그인 실패!! ${response.message()}", Toast.LENGTH_SHORT).show()
+
                     }
                 }
 
