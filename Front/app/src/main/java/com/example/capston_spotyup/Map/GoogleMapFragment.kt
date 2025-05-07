@@ -30,7 +30,7 @@ class GoogleMapFragment : Fragment(R.layout.fragment_map_google), OnMapReadyCall
         map = googleMap
 
         // ⛰️ 서울 성북구 상상관 좌표
-        val sangsangLocation = LatLng(37.582802, 127.010276)
+        val sangsangLocation = LatLng(37.582631, 127.010118)
 
         // ✅ 마커와 카메라 이동 추가
         map.addMarker(
