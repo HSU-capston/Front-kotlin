@@ -1,56 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    layout_height="match_parent"
+    layout_width="match_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    layout_width="match_parent"
-    layout_height="match_parent">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
+        <ImageView
+            android:id="@+id/color1"
+            android:layout_width="match_parent"
+            android:layout_height="110sp"
+            android:src="@drawable/main_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/color2"
+            android:layout_width="match_parent"
+            android:layout_height="100sp"
+
+            android:src="@drawable/main_gradient2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/color1"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="45dp" />
+
 
         <ImageView
             android:id="@+id/specific_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_analyze_logo2"
-            android:layout_marginTop="@dimen/spacing_16"
             android:layout_marginLeft="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:src="@drawable/ic_analyze_logo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/main_card"
-            android:backgroundTint="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="480dp"
-            android:layout_marginTop="@dimen/spacing_32"
-            app:layout_constraintTop_toBottomOf="@id/specific_logo"
-            app:cardCornerRadius="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+
 
             <VideoView
                 android:id="@+id/videoview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="420dp"
+                android:layout_height="360dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/specific_logo"
                 android:layout_marginTop="@dimen/spacing_64" />
-
-        </com.google.android.material.card.MaterialCardView>
 
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:src="@drawable/feedback_round"
-            app:layout_constraintTop_toBottomOf="@+id/main_card"
+            app:layout_constraintTop_toBottomOf="@+id/videoview"
             tools:layout_editor_absoluteX="0dp" />
 
         <Spinner
@@ -59,8 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/spacing_12"
             android:layout_marginTop="@dimen/spacing_12"
-            app:layout_constraintTop_toBottomOf="@id/main_card"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/videoview" />
 
 
         <TextView
@@ -72,36 +84,372 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/list_spinner" />
 
-        <TextView
-            android:id="@+id/text_pose_score"
-            android:layout_width="wrap_content"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/pretendard_semibold"
-            android:paddingTop="@dimen/spacing_4"
-            android:text="팔의 각도가 좋았어요!"
-            android:textColor="@color/main"
-            android:textSize="18sp"
             android:layout_marginTop="@dimen/spacing_20"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewspecific" />
+            app:layout_constraintTop_toBottomOf="@id/textViewspecific">
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="@dimen/spacing_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="스코어 :"/>
+                <TextView
+                    android:id="@+id/score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_12"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:text="Score"
+                    android:textColor="@color/main"
+                    android:textSize="20sp" />
+            </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/text_recommend_pose"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="@dimen/spacing_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:textStyle="bold"
+                    android:text="shoulder-angle-diff:"/>
+
+                <TextView
+                    android:id="@+id/shoulder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_24"
+                    android:text="shoulder" />
+            </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/feedback_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_20"
+                    android:layout_marginRight="@dimen/spacing_20"
+                    android:max="10"
+                    android:progressDrawable="@drawable/feedback_style"
+                    android:thumb="@drawable/seekbar_thumb" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_12">
+
+                    <TextView
+                        android:id="@+id/bar_1"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient" />
+
+                    <TextView
+                        android:id="@+id/bar_2"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient_2" />
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="@dimen/spacing_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:textStyle="bold"
+                    android:text="movement-distance :"/>
+                <TextView
+                    android:id="@+id/movement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_24"
+                    android:text="shoulder" />
+
+            </LinearLayout>
+                <SeekBar
+                    android:id="@+id/feedback_bar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_20"
+                    android:layout_marginRight="@dimen/spacing_20"
+                    android:max="10"
+                    android:progressDrawable="@drawable/feedback_style"
+                    android:thumb="@drawable/seekbar_thumb" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_12">
+
+                    <TextView
+                        android:id="@+id/bar_3"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient" />
+
+                    <TextView
+                        android:id="@+id/bar_4"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient_2" />
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="@dimen/spacing_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:textStyle="bold"
+                    android:text="wrist-movement-total :"/>
+
+                <TextView
+                    android:id="@+id/wrist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_24"
+                    android:text="shoulder" />
+
+            </LinearLayout>
+                <SeekBar
+                    android:id="@+id/feedback_bar3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_20"
+                    android:layout_marginRight="@dimen/spacing_20"
+                    android:max="10"
+                    android:progressDrawable="@drawable/feedback_style"
+                    android:thumb="@drawable/seekbar_thumb" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_12">
+
+                    <TextView
+                        android:id="@+id/bar_5"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient" />
+
+                    <TextView
+                        android:id="@+id/bar_6"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient_2" />
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="@dimen/spacing_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:textStyle="bold"
+                    android:text="ankle-switch-count :"/>
+                <TextView
+                    android:id="@+id/ankle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_24"
+                    android:text="shoulder" />
+
+            </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/feedback_bar4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_20"
+                    android:layout_marginRight="@dimen/spacing_20"
+                    android:max="10"
+                    android:progressDrawable="@drawable/feedback_style"
+                    android:thumb="@drawable/seekbar_thumb" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_12">
+
+                    <TextView
+                        android:id="@+id/bar_7"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient" />
+
+                    <TextView
+                        android:id="@+id/bar_8"
+                        android:layout_width="174sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/bar_gradient_2" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@id/card_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/pretendard_semibold"
-            android:paddingTop="@dimen/spacing_4"
-            android:text="다음에는 다리를 더 뻗어보세요!"
-            android:textColor="@color/main"
-            android:textSize="18sp"
-            android:layout_marginTop="@dimen/spacing_4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_pose_score" />
+            android:orientation="vertical">
+
+
+
+                <TextView
+                    android:id="@+id/text_pose_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:text="팔의 각도가 좋았어요!"
+                    android:textColor="@color/main"
+                    android:textSize="22sp" />
+
+
+
+
+
+
+            <TextView
+                android:layout_marginTop="@dimen/spacing_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/spacing_8"
+                android:textColor="@color/black"
+                android:text="recommend-pose"/>
+
+            <TextView
+                android:id="@+id/text_recommend_pose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingTop="@dimen/spacing_4"
+                android:text="다음에는 다리를 더 뻗어보세요!"
+                android:textColor="@color/main"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_pose_score" />
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/spacing_8"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:text="good-point"/>
+
+
+            <TextView
+                android:id="@+id/text_good_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingTop="@dimen/spacing_4"
+                android:text="good"
+                android:textColor="@color/main"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_recommend_pose" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/spacing_8"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:text="bad-point"/>
+
+
+            <TextView
+                android:id="@+id/text_bad_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:fontFamily="@font/pretendard_semibold"
+                android:paddingTop="@dimen/spacing_4"
+                android:text="다음에는 다리를 더 뻗어보세요!"
+                android:textColor="@color/main"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_good_point" />
+
+
+        </LinearLayout>
+
 
 
 
