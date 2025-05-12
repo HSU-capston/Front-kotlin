@@ -71,6 +71,12 @@
     <color name="gray_9">#5D5F62</color>
     <color name="gray_10">#484A4C</color>
 
+    <!-- feedback -->
+    <color name ="feedback_1">#F01C1C</color>
+    <color name ="feedback_2">#FFD735</color>
+    <color name ="feedback_3">#1DF336</color>
+    <color name ="feedback_ex">#FC600C</color>
+
 
 
 
