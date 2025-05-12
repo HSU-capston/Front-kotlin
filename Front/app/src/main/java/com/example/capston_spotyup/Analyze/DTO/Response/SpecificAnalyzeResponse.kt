@@ -12,5 +12,12 @@ data class AnalyzeDetailResult(
     val videoUrl: String,
     val poseScore: String,
     val recommendPose: String,
-    val feedback: String? // 선택 사항
+    val goodPoint :String,
+    val badPoint:String,
+    val feedback: String?,
+    val score: Int,
+    val shoulderAngleDiff :Int,
+    val movementDistance : Int,
+    val wristMovementTotal: Int,
+    val ankleSwitchCount : Int
 )
