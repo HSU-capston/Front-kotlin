@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
@@ -61,6 +62,11 @@ class FragmentHome : Fragment() {
         viewPagerAdapter = ViewPagerAdapter(layoutList)
         binding.viewpager.adapter = viewPagerAdapter
         binding.viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+
+        binding.iconGuide.setOnClickListener {
+            showGuideDialog()
+        }
 
         // Indicator 연결
         binding.indicator.setViewPager(binding.viewpager)
@@ -133,6 +139,49 @@ class FragmentHome : Fragment() {
             }
         }
     }
+    private fun showGuideDialog() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_guide_first, null)
+
+        val imageView = dialogView.findViewById<ImageView>(R.id.image_guide)
+        val closeButton = dialogView.findViewById<ImageView>(R.id.btnClose)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        val imageResList = listOf(
+            R.drawable.img_guide,
+            R.drawable.img_guide_2
+
+        )
+
+        var currentIndex = 0
+        imageView.setImageResource(imageResList[currentIndex])
+
+        imageView.setOnClickListener {
+            currentIndex = (currentIndex + 1) % imageResList.size
+            imageView.setImageResource(imageResList[currentIndex])
+        }
+
+
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setOnShowListener {
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        dialog.show()
+    }
+
+
     private fun setupImage(imageView: ImageView, video: RecommendedVideo) {
         Glide.with(requireContext())
             .load(video.thumbnailUrl)
@@ -144,6 +193,7 @@ class FragmentHome : Fragment() {
             startActivity(intent)
         }
     }
+
 
 
 
