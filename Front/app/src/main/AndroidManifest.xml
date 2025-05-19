@@ -72,7 +72,7 @@
             android:value="${KAKAO_APP_KEY}"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD9yjd-vKMUozGZnh3eXbBxZ0W23d51C6w" />
+            android:value="${MAPS_API_KEY}" />
 
 
     </application>

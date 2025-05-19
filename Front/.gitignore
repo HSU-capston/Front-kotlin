@@ -39,7 +39,7 @@ android/app/build/kotlin/cacheable/**/*
 # === Gradle 설정 관련 ===
 *.iml
 .gradle/
-local.properties
+/local.properties
 /.idea/workspace.xml
 /.idea/libraries/
 *.ipr

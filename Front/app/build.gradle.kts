@@ -6,6 +6,7 @@ plugins {
     id("kotlin-parcelize")
 }
 
+
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
@@ -32,7 +33,9 @@ android {
         buildConfigField("String", "KAKAO_APP_KEY", "\"$kakaoAppKey\"")
         manifestPlaceholders["KAKAO_APP_KEY"] = kakaoAppKey
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val mapsApiKey = project.findProperty("MAPS_API_KEY") as? String ?: ""
+
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 
     buildTypes {
