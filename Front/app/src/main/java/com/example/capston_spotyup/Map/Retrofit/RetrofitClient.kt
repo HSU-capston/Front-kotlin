@@ -2,6 +2,7 @@ package com.example.capston_spotyup.Network
 
 import ListApi
 import com.example.capston_spotyup.Analyze.Api.ChartApi
+import com.example.capston_spotyup.Analyze.Api.HighlightAPi
 import com.example.capston_spotyup.Analyze.Api.SpecificApi
 import com.example.capston_spotyup.Analyze.Api.SpecificListApi
 import com.example.capston_spotyup.Login.Api.LoginApi
@@ -23,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private const val BASE_URL = "http://54.180.112.171:8080" // 🔥 서버 주소 확인! gpu 서버
+    private const val BASE_URL = "http://54.180.119.68:8080" // 🔥 서버 주소 확인! gpu 서버
    // private const val BASE_URL = "http://13.209.69.164:8080" // 🔥 서버 주소 확인! cpu서버
 
     private val okHttpClient = OkHttpClient.Builder()
@@ -189,6 +190,15 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(SurveyApi::class.java)
+    }
+
+    val highlightAPi: HighlightAPi by lazy{
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(HighlightAPi::class.java)
     }
 
 }
