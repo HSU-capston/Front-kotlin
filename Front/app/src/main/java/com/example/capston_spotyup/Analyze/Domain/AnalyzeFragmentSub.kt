@@ -1,22 +1,23 @@
 package com.example.app
 
+
 import GameListResponse
-import ListApi
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capston_spotyup.Analyze.DTO.Response.HighlightResponse
+import com.example.capston_spotyup.Analyze.Domain.HighlightFragment
 import com.example.capston_spotyup.Analyze.Domain.SpecificFragment
 import com.example.capston_spotyup.Network.RetrofitClient
 import com.example.capston_spotyup.R
 import com.example.capston_spotyup.Util.TokenManager
-
-
 import com.example.capston_spotyup.databinding.FragmentAnalyzeSubBinding
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -34,7 +35,7 @@ class AnalyzeFragmentSub : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentAnalyzeSubBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,10 +43,14 @@ class AnalyzeFragmentSub : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val highlightUrl = arguments?.getString("highlightUrl")
 
-        analyzeAdapter = AnalyzeSubAdapter { gameId ->
-            onAllVideoClicked(gameId) //
-        }
+
+        analyzeAdapter = AnalyzeSubAdapter(
+            onAllVideoClick = { gameId -> onAllVideoClicked(gameId) },
+            lookHighlight = { gameId -> lookHighlight(gameId) }
+        )
+
 
         binding.recycle.apply {
             layoutManager = LinearLayoutManager(context)
@@ -105,68 +110,114 @@ class AnalyzeFragmentSub : Fragment() {
 //            }
 //        }
 //    }  기존
-private fun onAllVideoClicked(gameId: Int) {
-    Toast.makeText(requireContext(), "전체영상 클릭됨: $gameId", Toast.LENGTH_SHORT).show()
-    val token = TokenManager.getAccessToken() ?: run {
-        Toast.makeText(requireContext(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
-        return
+
+    private fun lookHighlight(gameId: Int){
+        val token = TokenManager.getAccessToken() ?: run {
+            Toast.makeText(requireContext(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        RetrofitClient.highlightAPi.hightlightservice("Bearer $token", gameId.toLong())
+            .enqueue(object : Callback<HighlightResponse> {
+                override fun onResponse(
+                    call: Call<HighlightResponse>,
+                    response: Response<HighlightResponse>
+                ) {
+                    if (response.isSuccessful && response.body()?.isSuccess == true) {
+                        val result = response.body()?.result
+                        val highlightUrl = result?.highlightUrl
+
+                        val fragment = HighlightFragment().apply {
+                            arguments = Bundle().apply {
+                                putString("highlightUrl", highlightUrl)
+                            }
+                        }
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(android.R.id.content, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                    } else {
+                        Toast.makeText(requireContext(), "하이라이트 영상 조회 실패", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<HighlightResponse>, t: Throwable) {
+                    Log.e("HighlightAPI", "네트워크 오류 발생", t)
+                    Toast.makeText(requireContext(), "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 
-    lifecycleScope.launch {
-        try {
-            Log.d("AllVideoAPI", "API 요청 시작 - gameId: $gameId")
 
-            val response = RetrofitClient.specificListApi.getAnalyzeList("Bearer $token", gameId.toLong())
 
-            Log.d("AllVideoAPI", "응답 수신됨 - isSuccessful: ${response.isSuccessful}")
+    private fun onAllVideoClicked(gameId: Int) {
+        Toast.makeText(requireContext(), "전체영상 클릭됨: $gameId", Toast.LENGTH_SHORT).show()
+        val token = TokenManager.getAccessToken() ?: run {
+            Toast.makeText(requireContext(), "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-            if (response.isSuccessful && response.body()?.isSuccess == true) {
-                val body = response.body()
-                Log.d("AllVideoAPI", "body: $body")
+        lifecycleScope.launch {
+            try {
+                Log.d("AllVideoAPI", "API 요청 시작 - gameId: $gameId")
 
-                val result = body?.result
-                Log.d("AllVideoAPI", "result: $result")
+                val response =
+                    RetrofitClient.specificListApi.getAnalyzeList("Bearer $token", gameId.toLong())
 
-                val analyzeList = result?.analyzeList
-                Log.d("AllVideoAPI", "analyzeList: $analyzeList")
+                Log.d("AllVideoAPI", "응답 수신됨 - isSuccessful: ${response.isSuccessful}")
 
-                val analyzeId = analyzeList?.firstOrNull()?.id
-                Log.d("AllVideoAPI", "analyzeId: $analyzeId")
+                if (response.isSuccessful && response.body()?.isSuccess == true) {
+                    val body = response.body()
+                    Log.d("AllVideoAPI", "body: $body")
 
-                if (analyzeId != null) {
-                    val bundle = Bundle().apply {
-                        putParcelableArrayList("analyzeList", ArrayList(analyzeList))
-                        putLong("analyzeId", analyzeId)
+                    val result = body?.result
+                    Log.d("AllVideoAPI", "result: $result")
+
+                    val analyzeList = result?.analyzeList
+                    Log.d("AllVideoAPI", "analyzeList: $analyzeList")
+
+                    val analyzeId = analyzeList?.firstOrNull()?.id
+                    Log.d("AllVideoAPI", "analyzeId: $analyzeId")
+
+                    if (analyzeId != null) {
+                        val bundle = Bundle().apply {
+                            putParcelableArrayList("analyzeList", ArrayList(analyzeList))
+                            putLong("analyzeId", analyzeId)
+                        }
+                        val specificFragment = SpecificFragment().apply {
+                            arguments = bundle
+                        }
+
+                        val activity = requireActivity()
+                        val containerId = activity.findViewById<View>(android.R.id.content).id
+
+                        Log.d("FragmentNavigation", "트랜잭션 시작: containerId=$containerId")
+
+                        activity.supportFragmentManager.beginTransaction()
+                            .replace(containerId, specificFragment)
+                            .addToBackStack(null)
+                            .commit()
+
+                        Log.d("FragmentNavigation", "트랜잭션 완료")
+                    } else {
+                        Log.w(
+                            "AllVideoAPI",
+                            "⚠️ analyzeId가 null입니다. analyzeList가 비어 있거나 데이터 형식 오류 가능성."
+                        )
                     }
-                    val specificFragment = SpecificFragment().apply {
-                        arguments = bundle
-                    }
-
-                    val activity = requireActivity()
-                    val containerId = activity.findViewById<View>(android.R.id.content).id
-
-                    Log.d("FragmentNavigation", "트랜잭션 시작: containerId=$containerId")
-
-                    activity.supportFragmentManager.beginTransaction()
-                        .replace(containerId, specificFragment)
-                        .addToBackStack(null)
-                        .commit()
-
-                    Log.d("FragmentNavigation", "트랜잭션 완료")
                 } else {
-                    Log.w("AllVideoAPI", "⚠️ analyzeId가 null입니다. analyzeList가 비어 있거나 데이터 형식 오류 가능성.")
+                    Log.e(
+                        "AllVideoAPI",
+                        "❌ 응답 실패: code=${response.code()} message=${response.message()}"
+                    )
+                    Toast.makeText(requireContext(), "분석 목록 조회 실패", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Log.e("AllVideoAPI", "❌ 응답 실패: code=${response.code()} message=${response.message()}")
-                Toast.makeText(requireContext(), "분석 목록 조회 실패", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Log.e("AllVideoAPI", "예외 발생: ${e.message}", e)
+                Toast.makeText(requireContext(), "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
             }
-        } catch (e: Exception) {
-            Log.e("AllVideoAPI", "예외 발생: ${e.message}", e)
-            Toast.makeText(requireContext(), "네트워크 오류 발생", Toast.LENGTH_SHORT).show()
         }
     }
-}
-
 
 
     // 게임 목록을 가져오는 함수
@@ -185,18 +236,22 @@ private fun onAllVideoClicked(gameId: Int) {
         RetrofitClient.listApi.getGameList("Bearer $token", date)
             .enqueue(object : Callback<GameListResponse> {
                 override fun onResponse(
-                    call: Call<GameListResponse>, response: Response<GameListResponse>
+                    call: Call<GameListResponse>, response: Response<GameListResponse>,
                 ) {
                     if (response.isSuccessful) {
                         response.body()?.result?.gameInfoList?.let { gameList ->
 
                             gameList.forEach { game ->
-                                Log.d("GameListAPI", "게임 정보: ${game.id}, ${game.sportsId}, ${game.playDate}, ${game.score}")
+                                Log.d(
+                                    "GameListAPI",
+                                    "게임 정보: ${game.id}, ${game.sportsId}, ${game.playDate}, ${game.score}"
+                                )
                             }
                             // 데이터를 RecyclerView에 업데이트
                             val analyzeItems = gameList.map {
                                 val parsedDate = inputFormat.parse(it.playDate)
-                                val formattedDate = parsedDate?.let { d -> outputFormat.format(d) } ?: it.playDate
+                                val formattedDate =
+                                    parsedDate?.let { d -> outputFormat.format(d) } ?: it.playDate
                                 AnalyzeItem(formattedDate, it.score.toString(), it.id)
                             }
 
