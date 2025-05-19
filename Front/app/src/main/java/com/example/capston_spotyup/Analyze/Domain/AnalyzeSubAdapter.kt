@@ -16,12 +16,13 @@ data class AnalyzeItem(
 
 
 class AnalyzeSubAdapter(
-    private val onAllVideoClick: (Int) -> Unit  // gameId 전달
+    private val onAllVideoClick: (Int) -> Unit,
+    private val lookHighlight: (Int) -> Unit
 ) : ListAdapter<AnalyzeItem, AnalyzeSubAdapter.AnalyzeViewHolder>(AnalyzeItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnalyzeViewHolder {
         val binding = ItemAnalayzeRecycleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AnalyzeViewHolder(binding, onAllVideoClick)
+        return AnalyzeViewHolder(binding, onAllVideoClick, lookHighlight)
     }
 
     override fun onBindViewHolder(holder: AnalyzeViewHolder, position: Int) {
@@ -30,7 +31,8 @@ class AnalyzeSubAdapter(
 
     class AnalyzeViewHolder(
         private val binding: ItemAnalayzeRecycleBinding,
-        private val onAllVideoClick: (Int) -> Unit
+        private val onAllVideoClick: (Int) -> Unit,
+        private val lookHighlight: (Int) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: AnalyzeItem) {
@@ -40,6 +42,9 @@ class AnalyzeSubAdapter(
 
             binding.allVideoButton.setOnClickListener {
                 onAllVideoClick(item.gameId)
+            }
+            binding.highlight.setOnClickListener{
+                lookHighlight(item.gameId)
             }
         }
     }
