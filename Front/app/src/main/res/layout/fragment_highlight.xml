@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/upper"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:src="@drawable/feedback_upper_round"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_analyze_logo2"
+        android:layout_marginLeft="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_16"
+        app:layout_constraintTop_toTopOf="@id/upper"
+        app:layout_constraintStart_toStartOf="@id/upper"/>
+
+    <ImageView
+        android:id="@+id/cancel_feed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:elevation="4sp"
+        android:src="@drawable/ic_feedback_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/videoview" />
+
+
+    <VideoView
+        android:id="@+id/videoview"
+        android:layout_width="match_parent"
+        android:layout_height="480sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upper" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:src="@drawable/feedback_round"
+        app:layout_constraintTop_toBottomOf="@+id/videoview" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
