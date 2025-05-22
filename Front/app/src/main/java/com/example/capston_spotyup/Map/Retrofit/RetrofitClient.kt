@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-
+    private const val BASE_URL = "http://13.209.69.164:8080" //
 
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(300, TimeUnit.SECONDS) // ⏳ 연결 시간 60초
