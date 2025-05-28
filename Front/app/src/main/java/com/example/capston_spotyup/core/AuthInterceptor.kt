@@ -1,7 +1,5 @@
-package com.example.capston_spotyup
+package com.example.capston_spotyup.core
 
-import android.content.Context
-import android.util.Log
 import com.example.capston_spotyup.Util.TokenManager
 import okhttp3.Interceptor
 import okhttp3.Response

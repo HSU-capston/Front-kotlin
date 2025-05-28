@@ -50,7 +50,7 @@ class FragmentHome : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupScrollWithDotsIndicator()
         // ViewPager2 어댑터 설정 (4개의 개별 XML 사용)
         val layoutList = listOf(
             R.layout.viewpager1,
@@ -193,6 +193,30 @@ class FragmentHome : Fragment() {
             startActivity(intent)
         }
     }
+
+    private fun setupScrollWithDotsIndicator() {
+        val scrollView = binding.horizontalScrollView4
+        val dotViews = listOf(
+            binding.dot11,
+            binding.dot12,
+            binding.dot13
+        )
+
+        scrollView.viewTreeObserver.addOnScrollChangedListener {
+            val scrollX = scrollView.scrollX
+            val itemWidth = resources.getDimensionPixelSize(R.dimen.scroll_image_width) +  // 이미지 너비
+                    resources.getDimensionPixelSize(R.dimen.spacing_16)            // 마진
+
+            val index = (scrollX + itemWidth / 2) / itemWidth  // 가장 가까운 인덱스 계산
+
+            for (i in dotViews.indices) {
+                val dot = dotViews[i]
+                val drawableRes = if (i == index) R.drawable.dot_active else R.drawable.dot_inactive
+                dot.setBackgroundResource(drawableRes)
+            }
+        }
+    }
+
 
 
 
