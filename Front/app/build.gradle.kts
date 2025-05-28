@@ -7,18 +7,17 @@ plugins {
 }
 
 
-val localProperties = Properties()
-val localPropertiesFile = rootProject.file("local.properties")
-if (localPropertiesFile.exists()) {
-    localProperties.load(localPropertiesFile.inputStream())
-}
-val kakaoAppKey: String = localProperties.getProperty("KAKAO_APP_KEY") ?: ""
-val baseUrl: String = localProperties.getProperty("BASE_URL")
-
 android {
     namespace = "com.example.capston_spotyup"
     compileSdk = 35
 
+    val localProperties = Properties()
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localProperties.load(localPropertiesFile.inputStream())
+    }
+    val kakaoAppKey: String = localProperties.getProperty("KAKAO_APP_KEY") ?: ""
+    val baseUrl: String = localProperties.getProperty("BASE_URL") ?: ""
 
 
     defaultConfig {
@@ -33,11 +32,12 @@ android {
         buildConfigField("String", "KAKAO_APP_KEY", "\"$kakaoAppKey\"")
         manifestPlaceholders["KAKAO_APP_KEY"] = kakaoAppKey
 
+
         val mapsApiKey = project.findProperty("MAPS_API_KEY") as? String ?: ""
 
         manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
 
-        buildConfigField("String", "BASE_URL", baseUrl)
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
     }
 
     buildTypes {
