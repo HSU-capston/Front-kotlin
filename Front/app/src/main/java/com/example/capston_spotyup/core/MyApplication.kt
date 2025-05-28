@@ -1,10 +1,10 @@
-package com.example.capston_spotyup
+package com.example.capston_spotyup.core
 
 import android.app.Application
 import android.util.Log
+import com.example.capston_spotyup.BuildConfig
 import com.example.capston_spotyup.Util.TokenManager
 import com.kakao.sdk.common.KakaoSdk
-import com.kakao.vectormap.KakaoMapSdk
 
 
 class MyApplication : Application() {
