@@ -71,10 +71,10 @@ class MyPageFragment : Fragment() {
                     phone_num = "010-0000-0000"
                 )
 
-                viewModel.updateUserInfo(updatedRequest)
+                viewModel.setUserInfo(updatedRequest)
 
                 // 👇 서버에서 result가 null이라면 아래 호출로 다시 갱신
-                viewModel.getUserInfo()
+              //  viewModel.getUserInfo() //사용하면 현재 저장된 상태로 출력
 
                 Toast.makeText(requireContext(), "저장되었습니다", Toast.LENGTH_SHORT).show()
                 switchToViewMode()

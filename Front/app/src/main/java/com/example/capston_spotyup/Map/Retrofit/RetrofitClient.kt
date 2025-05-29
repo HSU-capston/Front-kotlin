@@ -1,5 +1,6 @@
 package com.example.capston_spotyup.Network
 
+import FriendApi
 import ListApi
 import com.example.capston_spotyup.Analyze.Api.ChartApi
 import com.example.capston_spotyup.Analyze.Api.HighlightAPi
@@ -13,7 +14,6 @@ import com.example.capston_spotyup.Main.Api.GameApi
 import com.example.capston_spotyup.Main.Api.GameExitApi
 import com.example.capston_spotyup.Main.Api.SportsApi
 import com.example.capston_spotyup.Map.Api.BowlingApi
-import com.example.capston_spotyup.Profile.Api.FriendApi
 import com.example.capston_spotyup.Profile.Api.UserApi
 import com.example.capston_spotyup.Signup.Api.SmsVerificationApi
 import com.example.capston_spotyup.User.Api.EmailApi

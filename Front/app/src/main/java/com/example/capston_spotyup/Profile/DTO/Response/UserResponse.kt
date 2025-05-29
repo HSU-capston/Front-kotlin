@@ -15,7 +15,7 @@ data class UserResult(
 )
 
 data class Friend(
-    val id: Long,
+    val id: Int,
     val name: String,
-    val profileImageUrl: String
+    val profileImageResId: Int
 )
