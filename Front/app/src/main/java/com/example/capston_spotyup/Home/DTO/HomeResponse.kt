@@ -13,5 +13,7 @@ data class ResultData(
 
 data class RecommendedVideo(
     val videoUrl: String,
-    val thumbnailUrl: String
+    val thumbnailUrl: String,
+    val title : String,
+    val channelTitle : String
 )
