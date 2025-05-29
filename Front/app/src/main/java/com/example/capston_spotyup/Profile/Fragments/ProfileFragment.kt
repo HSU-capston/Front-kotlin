@@ -25,53 +25,64 @@ import com.example.capston_spotyup.R
 class ProfileFragment : Fragment() {
 
     private val viewModel: ProfileViewModel by activityViewModels()
-
-    private lateinit var profileImage: ImageView
     private var _binding: FragmentMypageBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var profileImage: ImageView
+    private lateinit var tabMyinfo: TextView
+    private lateinit var tabFriends: TextView
+    private lateinit var tabSettings: TextView
+    private lateinit var name: TextView
+    private lateinit var accountCode: TextView
+    private lateinit var cameraIcon: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
-        profileImage = binding.profileImage // XML에서 ImageView id가 'profileImageView'라고 가정
+
+        // ⬇️ findViewById 초기화 (onCreateView에서!)
+        val rootView = binding.root
+        profileImage = rootView.findViewById(R.id.profileImage)
+        tabMyinfo = rootView.findViewById(R.id.tabMyinfo)
+        tabFriends = rootView.findViewById(R.id.tabFriends)
+        tabSettings = rootView.findViewById(R.id.tabSettings)
+        name = rootView.findViewById(R.id.name)
+        accountCode = rootView.findViewById(R.id.accountCode)
+        cameraIcon = rootView.findViewById(R.id.cameraIcon)
 
         // 기본 탭 설정: '내 정보' 탭 선택
-        replaceFragment(MyPageFragment(), binding.tabMyinfo)
+        replaceFragment(MyPageFragment(), tabMyinfo)
 
         // 탭 클릭 이벤트 설정
-        binding.tabMyinfo.setOnClickListener { replaceFragment(MyPageFragment(), binding.tabMyinfo) }
-        binding.tabFriends.setOnClickListener { replaceFragment(FriendsFragment(), binding.tabFriends) }
-        binding.tabSettings.setOnClickListener { replaceFragment(SettingsFragment(), binding.tabSettings) }
+        tabMyinfo.setOnClickListener { replaceFragment(MyPageFragment(), tabMyinfo) }
+        tabFriends.setOnClickListener { replaceFragment(FriendsFragment(), tabFriends) }
+        tabSettings.setOnClickListener { replaceFragment(SettingsFragment(), tabSettings) }
 
         // 프로필 사진 클릭 시 갤러리 열기
-        binding.cameraIcon.setOnClickListener {
+        cameraIcon.setOnClickListener {
             openGallery()
         }
 
-        viewModel.loadDummyUserInfo() // 서버 안 붙었을 때 더미 데이터 로딩
+        // 더미 데이터
+        viewModel.loadDummyUserInfo()
 
         viewModel.userInfo.observe(viewLifecycleOwner) { user ->
-            binding.name.text = user.name   // 👈 이름 반영
-            binding.accountCode.text = user.nickname    // 👈 닉네임도 따로 반영 가능
+            name.text = user.name
+            accountCode.text = user.nickname
         }
 
-
-        return binding.root
+        return rootView
     }
 
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val imageUri: Uri? = result.data?.data
             if (imageUri != null) {
-                // 선택한 이미지 URI로 프로필 이미지 설정
                 profileImage.setImageURI(imageUri)
-
-                // 이미지 Uri 서버에 업로드하거나 SharedPreferences 저장
-                saveProfileImageToSharedPreferences(imageUri) // SharedPreferences에 이미지 URI 저장
-                // 서버에 이미지 업로드 (Retrofit 사용 가능)
-                uploadProfileImageToServer(imageUri) // 서버로 이미지 업로드하는 함수
+                saveProfileImageToSharedPreferences(imageUri)
+                uploadProfileImageToServer(imageUri)
             } else {
                 Toast.makeText(requireContext(), "이미지를 불러올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -84,45 +95,35 @@ class ProfileFragment : Fragment() {
         pickImageLauncher.launch(intent)
     }
 
-    // SharedPreferences에 프로필 이미지 URI 저장
     private fun saveProfileImageToSharedPreferences(imageUri: Uri) {
         val sharedPreferences = requireActivity().getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("profile_image_uri", imageUri.toString())
-        editor.apply()
+        sharedPreferences.edit().putString("profile_image_uri", imageUri.toString()).apply()
     }
 
-    // 서버에 프로필 이미지 업로드
     private fun uploadProfileImageToServer(imageUri: Uri) {
-        // Retrofit을 사용해 서버에 이미지를 업로드하는 코드 추가 (예시)
-        // 서버 API와 통신하여 이미지 업로드 요청을 보내는 코드 작성
-        // 예시) retrofitService.uploadProfileImage(imageUri) 등을 사용하여 서버로 이미지 업로드
+        // TODO: Retrofit으로 서버 업로드 구현
     }
 
-    // 탭 클릭 시 스타일 변경 함수
     private fun setSelectedTab(selectedView: TextView) {
         val gray = ContextCompat.getColor(requireContext(), R.color.Gray1)
         val blue = ContextCompat.getColor(requireContext(), R.color.blue_5)
 
-        val tabs = listOf(binding.tabMyinfo, binding.tabFriends, binding.tabSettings)
-
-        tabs.forEach { tab ->
-            tab.setTextColor(gray)
-            tab.setBackgroundResource(android.R.color.transparent)
+        val tabs = listOf(tabMyinfo, tabFriends, tabSettings)
+        tabs.forEach {
+            it.setTextColor(gray)
+            it.setBackgroundResource(android.R.color.transparent)
         }
 
         selectedView.setTextColor(blue)
         selectedView.setBackgroundResource(R.drawable.tab_selected_underline)
     }
 
-    // Fragment 교체 함수
     private fun replaceFragment(fragment: Fragment, selectedView: TextView) {
         childFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
         setSelectedTab(selectedView)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

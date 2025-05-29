@@ -4,6 +4,7 @@ package com.example.capston_spotyup.Main.Domain
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -15,6 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.capston_spotyup.Analyze.Domain.AnalyzeFragmentMain
@@ -52,12 +54,38 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val rootView = findViewById<View>(android.R.id.content)
+        val bottomNav = binding.bottomNavigationView
+        val fabCamera = findViewById<ImageView>(R.id.fab_camera)
+        val camBack = findViewById<ImageView>(R.id.ic_camera_back) // ← 이건 ID 있어야 됨!
+        val camBg = findViewById<ImageView>(R.id.ic_main_background) // ← 이건도 ID 필요!
+
+
+
+
+
         // 첫 화면으로 FragmentHome을 표시
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(binding.mainContainer.id, FragmentHome())
                 .commit()
         }
+
+
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val rect = Rect()
+            rootView.getWindowVisibleDisplayFrame(rect)
+            val screenHeight = rootView.rootView.height
+            val keypadHeight = screenHeight - rect.bottom
+
+            val isKeyboardVisible = keypadHeight > screenHeight * 0.15
+
+            bottomNav.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
+            fabCamera.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
+            camBack.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
+            camBg.visibility = if (isKeyboardVisible) View.GONE else View.VISIBLE
+        }
+
 
         // BottomNavigationView의 아이템 클릭 리스너 설정
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -90,6 +118,10 @@ class MainActivity : AppCompatActivity() {
         binding.fabCamera.setOnClickListener {
             showCameraDialog()
         }
+
+
+
+
     }
 
     private fun switchFragment(fragment: Fragment) {
