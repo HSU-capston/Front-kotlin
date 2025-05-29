@@ -29,8 +29,7 @@
             <ImageView
                 android:id="@+id/color2"
                 android:layout_width="match_parent"
-                android:layout_height="100sp"
-
+                android:layout_height="120sp"
                 android:src="@drawable/main_gradient2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,8 +116,8 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="260sp"
-                android:layout_marginTop="@dimen/spacing_12"
+                android:layout_height="240sp"
+                android:layout_marginTop="@dimen/spacing_4"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -155,6 +154,7 @@
                 android:fontFamily="@font/pretendard_semibold"
                 android:text="최근 시청한 강의"
                 android:textColor="@color/black"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView44" />
@@ -165,27 +165,64 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_16"
                 android:layout_marginTop="@dimen/spacing_12"
+                android:paddingBottom="@dimen/spacing_8"
                 android:scrollbars="none"
                 app:layout_constraintTop_toBottomOf="@id/textView5">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_8">
 
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_8"
+                        android:layout_marginBottom="@dimen/spacing_12"
                         app:cardCornerRadius="10sp">
 
-                        <ImageView
-                            android:id="@+id/scrollImage1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home1" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/scrollImage1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home1" />
+
+                            <TextView
+                                android:id="@+id/main_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/channeltitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:layout_marginBottom="@dimen/spacing_8"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
 
                     </androidx.cardview.widget.CardView>
 
@@ -195,12 +232,45 @@
                         android:layout_marginStart="@dimen/spacing_8"
                         app:cardCornerRadius="10sp">
 
-                        <ImageView
-                            android:id="@+id/scrollImage2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home1" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/scrollImage2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home1" />
+
+                            <TextView
+                                android:id="@+id/main_title2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/channeltitle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:layout_marginBottom="@dimen/spacing_8"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
@@ -211,11 +281,45 @@
                         android:layout_marginStart="@dimen/spacing_8"
                         app:cardCornerRadius="10sp">
 
-                        <ImageView
-                            android:id="@+id/scrollImage3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/img_home1" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/scrollImage3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home1" />
+
+                            <TextView
+                                android:id="@+id/main_title3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/channeltitle3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:layout_marginBottom="@dimen/spacing_8"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
 
 
                     </androidx.cardview.widget.CardView>
@@ -226,42 +330,42 @@
 
             </HorizontalScrollView>
 
-            <LinearLayout
-                android:id="@+id/dotsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12sp"
-                android:layout_marginBottom="48dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
-                tools:layout_editor_absoluteX="0dp">
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/dotsLayout"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="12sp"-->
+            <!--                android:layout_marginBottom="48dp"-->
+            <!--                android:gravity="center"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"-->
+            <!--                tools:layout_editor_absoluteX="0dp">-->
 
-                <View
-                    android:id="@+id/dot1"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_active" />
+            <!--                <View-->
+            <!--                    android:id="@+id/dot1"-->
+            <!--                    android:layout_width="10dp"-->
+            <!--                    android:layout_height="10dp"-->
+            <!--                    android:layout_margin="5dp"-->
+            <!--                    android:background="@drawable/dot_active" />-->
 
-                <View
-                    android:id="@+id/dot2"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
+            <!--                <View-->
+            <!--                    android:id="@+id/dot2"-->
+            <!--                    android:layout_width="10dp"-->
+            <!--                    android:layout_height="10dp"-->
+            <!--                    android:layout_margin="5dp"-->
+            <!--                    android:background="@drawable/dot_inactive" />-->
 
-                <View
-                    android:id="@+id/dot3"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
+            <!--                <View-->
+            <!--                    android:id="@+id/dot3"-->
+            <!--                    android:layout_width="10dp"-->
+            <!--                    android:layout_height="10dp"-->
+            <!--                    android:layout_margin="5dp"-->
+            <!--                    android:background="@drawable/dot_inactive" />-->
 
 
-            </LinearLayout>
+            <!--            </LinearLayout>-->
 
             <!--            <ProgressBar-->
             <!--                android:id="@+id/scrollIndicator"-->
@@ -284,7 +388,18 @@
                 android:layout_marginTop="@dimen/spacing_24"
                 android:background="@color/Gray8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dotsLayout" />
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
+
+            <ImageView
+                android:id="@+id/color5"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:src="@drawable/main_gradient2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView54"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="45dp" />
 
 
             <TextView
@@ -295,10 +410,19 @@
                 android:layout_marginTop="@dimen/spacing_16"
                 android:fontFamily="@font/pretendard_semibold"
                 android:text="주간 HOT CAST"
-                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView54" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:src="@drawable/ic_home_green"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toTopOf="@+id/color5" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView2"
@@ -306,26 +430,61 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_16"
                 android:layout_marginTop="@dimen/spacing_12"
+                android:paddingBottom="@dimen/spacing_12"
                 android:scrollbars="none"
                 app:layout_constraintTop_toBottomOf="@id/textView6">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/spacing_12">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_8"
+                        android:paddingBottom="@dimen/spacing_12"
                         app:cardCornerRadius="10sp">
 
-                        <ImageView
-                            android:id="@+id/scrollImage4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home3" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/scrollImage4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home1" />
+
+                            <TextView
+                                android:id="@+id/main_title4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/channeltitle4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
@@ -335,12 +494,44 @@
                         android:layout_marginStart="@dimen/spacing_8"
                         app:cardCornerRadius="10sp">
 
-                        <ImageView
-                            android:id="@+id/scrollImage5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home3" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/scrollImage5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home1" />
+
+                            <TextView
+                                android:id="@+id/main_title5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/channeltitle5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
 
@@ -350,11 +541,44 @@
                         android:layout_marginStart="@dimen/spacing_8"
                         app:cardCornerRadius="10sp">
 
-                        <ImageView
-                            android:id="@+id/scrollImage6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/img_home3" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/scrollImage6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home1" />
+
+                            <TextView
+                                android:id="@+id/main_title6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/channeltitle6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/spacing_4"
+                                android:layout_marginTop="@dimen/spacing_4"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/pretendard_regular"
+                                android:maxLines="1"
+                                android:text="제목"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
 
 
                     </androidx.cardview.widget.CardView>
@@ -364,43 +588,6 @@
 
 
             </HorizontalScrollView>
-
-            <LinearLayout
-                android:id="@+id/dotsLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12sp"
-                android:layout_marginBottom="48dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView2"
-                tools:layout_editor_absoluteX="0dp">
-
-                <View
-                    android:id="@+id/dot5"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_active" />
-
-                <View
-                    android:id="@+id/dot6"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
-
-                <View
-                    android:id="@+id/dot7"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
-
-
-            </LinearLayout>
 
 
             <TextView
@@ -410,8 +597,16 @@
                 android:layout_marginTop="@dimen/spacing_24"
                 android:background="@color/Gray8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dotsLayout2" />
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView2" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="110sp"
+                android:src="@drawable/main_gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView64" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -420,20 +615,24 @@
                 android:layout_marginLeft="@dimen/spacing_16"
                 android:layout_marginTop="@dimen/spacing_16"
                 android:fontFamily="@font/pretendard_semibold"
-                android:text="주완님을 위한 제품"
-                android:textColor="@color/black"
+                android:text="인기 추천 제품"
+                android:textColor="@color/white"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView64" />
+
+
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_16"
-                android:layout_marginTop="@dimen/spacing_12"
+                android:layout_marginTop="@dimen/spacing_16"
                 android:scrollbars="none"
                 app:layout_constraintTop_toBottomOf="@id/textView7">
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -443,21 +642,181 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_home4" />
+                        android:src="@drawable/ic_1"
+                        android:layout_gravity="center"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_4"
+                        android:orientation="vertical">
+
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home4" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_4"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="B형 상자 | 건강기능식품 "
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_4"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_home4" />
+                        android:src="@drawable/ic_2"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:layout_gravity="center"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_4"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="213dp"
+                            android:layout_height="115dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home_re1" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="건강 기능 식품 - 이엔에스(주)"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:src="@drawable/img_home4" />
+                        android:src="@drawable/ic_3"
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:layout_gravity="center"
+                        />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="213dp"
+                            android:layout_height="115dp"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home_re2" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="한독, 멀티케어 네이처셋"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="213dp"
+                            android:layout_height="115dp"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home_re3" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="눈건강 루테인 아스타잔틴"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -465,42 +824,6 @@
 
             </HorizontalScrollView>
 
-            <LinearLayout
-                android:id="@+id/dotsLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12sp"
-                android:layout_marginBottom="48dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView3"
-                tools:layout_editor_absoluteX="0dp">
-
-                <View
-                    android:id="@+id/dot8"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_active" />
-
-                <View
-                    android:id="@+id/dot9"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
-
-                <View
-                    android:id="@+id/dot10"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
-
-
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView84"
@@ -509,7 +832,7 @@
                 android:layout_marginTop="@dimen/spacing_24"
                 android:background="@color/Gray8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dotsLayout3" />
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView3" />
 
 
             <TextView
@@ -520,6 +843,7 @@
                 android:layout_marginTop="@dimen/spacing_16"
                 android:fontFamily="@font/pretendard_semibold"
                 android:text="이런 영상은 어때요?"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -539,67 +863,163 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_home1" />
+                        android:orientation="vertical">
 
-                    <ImageView
+                        <ImageView
+                            android:layout_width="213dp"
+                            android:layout_height="115dp"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home1" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="운동 스트레칭 루틴"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_home1" />
+                        android:orientation="vertical">
 
-                    <ImageView
+                        <ImageView
+                            android:layout_width="213dp"
+                            android:layout_height="115dp"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home_c1" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="운동 고수 썰푼다"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/spacing_16"
-                        android:src="@drawable/img_home1" />
+                        android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="213dp"
+                            android:layout_height="115dp"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home_c2" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="우리동네 좋은 볼링장"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="213dp"
+                            android:layout_height="115dp"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_home_c3" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="자세분석"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:maxLines="1"
+                            android:text="제목"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
             </HorizontalScrollView>
 
-            <LinearLayout
-                android:id="@+id/dotsLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12sp"
-                android:layout_marginBottom="48dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView4"
-                tools:layout_editor_absoluteX="0dp">
-
-                <View
-                    android:id="@+id/dot11"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_active" />
-
-                <View
-                    android:id="@+id/dot12"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
-
-                <View
-                    android:id="@+id/dot13"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/dot_inactive" />
-
-
-            </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"
@@ -609,7 +1029,7 @@
                 android:src="@drawable/img_home_banner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dotsLayout4" />
+                app:layout_constraintTop_toBottomOf="@id/horizontalScrollView4" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
