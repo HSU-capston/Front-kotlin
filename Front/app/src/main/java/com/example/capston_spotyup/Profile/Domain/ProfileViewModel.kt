@@ -41,10 +41,13 @@ class ProfileViewModel : ViewModel() {
             try {
                 val response = RetrofitClient.userApi.updateUserInfo("Bearer $token", request)
                 if (response.isSuccessful) {
+                    Log.d("ProfileViewModel", "✅ updateUserInfo 성공: ${response.body()}") // 👈 여기에!
                     _userInfo.value = response.body()?.result
+                } else {
+                    Log.e("ProfileViewModel", "❌ updateUserInfo 실패: ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
-                Log.e("ProfileViewModel", "User info update failed: ${e.message}")
+                Log.e("ProfileViewModel", "🔥 예외 발생: ${e.message}")
             }
         }
     }
@@ -52,7 +55,6 @@ class ProfileViewModel : ViewModel() {
     fun setUserInfo(request: UserRequest) {
         val userResult = UserResult(
             name = request.name,
-            nickname = request.nickname, // 👈 닉네임 반영
             email = request.email,
             password = request.password,
             phoneNum = request.phone_num
@@ -63,7 +65,6 @@ class ProfileViewModel : ViewModel() {
     fun loadDummyUserInfo() {
         val dummy = UserResult(
             name = "홍길동",
-            nickname = "길동이", // 👈 닉네임 더미 값
             email = "test@naver.com",
             password = "dummy",
             phoneNum = "010-1111-2222"

@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@android:color/white"
     android:fitsSystemWindows="true"
     android:clipToPadding="false"
     android:paddingBottom="32dp"> <!-- 키보드 여유 -->
@@ -132,6 +133,7 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:gravity="center"
+        android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/textView44"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
