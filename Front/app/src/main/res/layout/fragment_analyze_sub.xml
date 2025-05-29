@@ -58,9 +58,17 @@
                 android:id="@+id/recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_32"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divid"/>
+
+            <TextView
+                android:id="@+id/divid"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:layout_height="2dp"
+                android:background="@color/main"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textsub"/>
 
 
