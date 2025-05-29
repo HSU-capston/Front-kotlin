@@ -113,36 +113,59 @@
                 app:layout_constraintEnd_toEndOf="@+id/searchbar"
                 app:layout_constraintTop_toTopOf="@+id/searchbar" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/viewcardview"
                 android:layout_width="match_parent"
-                android:layout_height="240sp"
-                android:layout_marginTop="@dimen/spacing_4"
-                android:nestedScrollingEnabled="false"
+                android:layout_height="260sp"
+                android:layout_marginStart="@dimen/spacing_4"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:layout_marginEnd="@dimen/spacing_4"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/searchbar" />
+                app:layout_constraintTop_toBottomOf="@id/searchbar">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="260sp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searchbar" />
+
+            </androidx.cardview.widget.CardView>
+
 
             <me.relex.circleindicator.CircleIndicator3
                 android:id="@+id/indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/spacing_12"
                 app:ci_drawable="@drawable/main_radius"
                 app:ci_drawable_unselected="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewpager"
+                app:layout_constraintTop_toBottomOf="@id/viewcardview"
                 tools:ignore="MissingClass" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView44"
+                android:layout_marginTop="@dimen/spacing_8"
                 android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginTop="@dimen/spacing_24"
-                android:background="@color/Gray8"
+                android:layout_height="10dp"
+                android:src="@drawable/home_background_top"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/indicator" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/indicator" />
+
+
 
 
             <TextView
@@ -163,23 +186,21 @@
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
+
                 android:layout_marginTop="@dimen/spacing_12"
-                android:paddingBottom="@dimen/spacing_8"
                 android:scrollbars="none"
                 app:layout_constraintTop_toBottomOf="@id/textView5">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="@dimen/spacing_8">
+                    android:orientation="horizontal">
 
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_8"
+                        android:layout_marginStart="@dimen/spacing_16"
                         android:layout_marginBottom="@dimen/spacing_12"
                         app:cardCornerRadius="10sp">
 
@@ -263,9 +284,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/spacing_4"
                                 android:layout_marginTop="@dimen/spacing_4"
+                                android:layout_marginBottom="@dimen/spacing_8"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/pretendard_regular"
-                                android:layout_marginBottom="@dimen/spacing_8"
                                 android:maxLines="1"
                                 android:text="제목"
                                 android:textColor="@color/black" />
@@ -312,9 +333,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/spacing_4"
                                 android:layout_marginTop="@dimen/spacing_4"
+                                android:layout_marginBottom="@dimen/spacing_8"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/pretendard_regular"
-                                android:layout_marginBottom="@dimen/spacing_8"
                                 android:maxLines="1"
                                 android:text="제목"
                                 android:textColor="@color/black" />
@@ -385,7 +406,7 @@
                 android:id="@+id/textView54"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:layout_marginTop="@dimen/spacing_24"
+                android:layout_marginTop="@dimen/spacing_20"
                 android:background="@color/Gray8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/horizontalScrollView" />
@@ -410,8 +431,8 @@
                 android:layout_marginTop="@dimen/spacing_16"
                 android:fontFamily="@font/pretendard_semibold"
                 android:text="주간 HOT CAST"
-                android:textSize="20sp"
                 android:textColor="@color/white"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView54" />
@@ -428,23 +449,20 @@
                 android:id="@+id/horizontalScrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
                 android:layout_marginTop="@dimen/spacing_12"
-                android:paddingBottom="@dimen/spacing_12"
                 android:scrollbars="none"
                 app:layout_constraintTop_toBottomOf="@id/textView6">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="@dimen/spacing_12">
+                    android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_8"
-                        android:paddingBottom="@dimen/spacing_12"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        android:layout_marginBottom="@dimen/spacing_12"
                         app:cardCornerRadius="10sp">
 
                         <LinearLayout
@@ -478,6 +496,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/spacing_4"
                                 android:layout_marginTop="@dimen/spacing_4"
+                                android:layout_marginBottom="@dimen/spacing_12"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/pretendard_regular"
                                 android:maxLines="1"
@@ -525,6 +544,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/spacing_4"
                                 android:layout_marginTop="@dimen/spacing_4"
+                                android:layout_marginBottom="@dimen/spacing_12"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/pretendard_regular"
                                 android:maxLines="1"
@@ -572,6 +592,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/spacing_4"
                                 android:layout_marginTop="@dimen/spacing_4"
+                                android:layout_marginBottom="@dimen/spacing_12"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/pretendard_regular"
                                 android:maxLines="1"
@@ -600,13 +621,23 @@
                 app:layout_constraintTop_toBottomOf="@id/horizontalScrollView2" />
 
             <ImageView
+                android:id="@+id/meal_color"
                 android:layout_width="match_parent"
-                android:layout_height="110sp"
+                android:layout_height="140sp"
                 android:src="@drawable/main_gradient"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView64" />
+
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:src="@drawable/ic_home_green"
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toTopOf="@+id/meal_color" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -623,12 +654,11 @@
                 app:layout_constraintTop_toBottomOf="@id/textView64" />
 
 
-
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_16"
+
                 android:layout_marginTop="@dimen/spacing_16"
                 android:scrollbars="none"
                 app:layout_constraintTop_toBottomOf="@id/textView7">
@@ -640,11 +670,11 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:layout_marginLeft="@dimen/spacing_16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_1"
                         android:layout_gravity="center"
-                        />
+                        android:src="@drawable/ic_1" />
 
 
                     <LinearLayout
@@ -653,20 +683,26 @@
                         android:layout_marginStart="@dimen/spacing_4"
                         android:orientation="vertical">
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="200dp"
+                            android:layout_height="180dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home_re1" />
 
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home4" />
+                        </androidx.cardview.widget.CardView>
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/spacing_4"
-                            android:layout_marginTop="@dimen/spacing_4"
+                            android:layout_marginTop="@dimen/spacing_12"
                             android:ellipsize="end"
                             android:fontFamily="@font/pretendard_regular"
                             android:maxLines="1"
@@ -682,7 +718,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/pretendard_regular"
                             android:maxLines="1"
-                            android:text="제목"
+                            android:text="59,000원"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -691,10 +727,9 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_2"
-                        android:layout_marginStart="@dimen/spacing_8"
                         android:layout_gravity="center"
-                        />
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:src="@drawable/ic_2" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -702,18 +737,27 @@
                         android:layout_marginStart="@dimen/spacing_4"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="213dp"
-                            android:layout_height="115dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home_re1" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="200dp"
+                            android:layout_height="180dp"
+                            app:cardCornerRadius="10dp">
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home_re2" />
+
+
+                        </androidx.cardview.widget.CardView>
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
-                            android:layout_marginTop="@dimen/spacing_4"
+                            android:layout_marginTop="@dimen/spacing_12"
                             android:ellipsize="end"
                             android:fontFamily="@font/pretendard_regular"
                             android:maxLines="1"
@@ -724,12 +768,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:layout_marginTop="@dimen/spacing_4"
                             android:ellipsize="end"
                             android:fontFamily="@font/pretendard_regular"
                             android:maxLines="1"
-                            android:text="제목"
+                            android:text="34,000원"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -738,21 +781,28 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_3"
-                        android:layout_marginStart="@dimen/spacing_8"
                         android:layout_gravity="center"
-                        />
+                        android:layout_marginStart="@dimen/spacing_8"
+                        android:src="@drawable/ic_3" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="213dp"
-                            android:layout_height="115dp"
-                            android:layout_marginLeft="@dimen/spacing_16"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home_re2" />
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="200dp"
+                            android:layout_height="180dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home_re3" />
+
+
+                        </androidx.cardview.widget.CardView>
 
 
                         <TextView
@@ -775,7 +825,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/pretendard_regular"
                             android:maxLines="1"
-                            android:text="제목"
+                            android:text="78,000원"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -783,14 +833,22 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_24"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="213dp"
-                            android:layout_height="115dp"
-                            android:layout_marginLeft="@dimen/spacing_16"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/img_home_re3" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="200dp"
+                            android:layout_height="180dp"
+                            app:cardCornerRadius="10dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_home_re4" />
+
+                        </androidx.cardview.widget.CardView>
 
 
                         <TextView
@@ -813,7 +871,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/pretendard_regular"
                             android:maxLines="1"
-                            android:text="제목"
+                            android:text="33,000원"
                             android:textColor="@color/black" />
 
                     </LinearLayout>
@@ -843,8 +901,8 @@
                 android:layout_marginTop="@dimen/spacing_16"
                 android:fontFamily="@font/pretendard_semibold"
                 android:text="이런 영상은 어때요?"
-                android:textSize="20sp"
                 android:textColor="@color/black"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView84" />
@@ -888,16 +946,6 @@
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/spacing_16"
-                            android:layout_marginTop="@dimen/spacing_4"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/pretendard_regular"
-                            android:maxLines="1"
-                            android:text="제목"
-                            android:textColor="@color/black" />
 
                     </LinearLayout>
 
@@ -926,16 +974,6 @@
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/spacing_16"
-                            android:layout_marginTop="@dimen/spacing_4"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/pretendard_regular"
-                            android:maxLines="1"
-                            android:text="제목"
-                            android:textColor="@color/black" />
 
                     </LinearLayout>
 
@@ -964,16 +1002,6 @@
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/spacing_16"
-                            android:layout_marginTop="@dimen/spacing_4"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/pretendard_regular"
-                            android:maxLines="1"
-                            android:text="제목"
-                            android:textColor="@color/black" />
 
                     </LinearLayout>
 
@@ -1002,16 +1030,6 @@
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/spacing_16"
-                            android:layout_marginTop="@dimen/spacing_4"
-                            android:ellipsize="end"
-                            android:fontFamily="@font/pretendard_regular"
-                            android:maxLines="1"
-                            android:text="제목"
-                            android:textColor="@color/black" />
 
                     </LinearLayout>
 
