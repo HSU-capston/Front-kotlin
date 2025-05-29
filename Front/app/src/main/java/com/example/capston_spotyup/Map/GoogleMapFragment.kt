@@ -29,8 +29,8 @@ class GoogleMapFragment : Fragment(R.layout.fragment_map_google), OnMapReadyCall
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // ⛰️ 서울 성북구 상상관 좌표
-        val sangsangLocation = LatLng(37.582631, 127.010118)
+        // ⛰️ 서울 성북구 낙산관 좌표
+        val sangsangLocation = LatLng(37.582187, 127.011414)
 
         // ✅ 마커와 카메라 이동 추가
         map.addMarker(
