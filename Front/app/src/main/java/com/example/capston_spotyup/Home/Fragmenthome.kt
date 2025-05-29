@@ -99,9 +99,29 @@ class FragmentHome : Fragment() {
                                 binding.scrollImage5,
                                 binding.scrollImage6
                             )
+                            val titleViews = listOf(
+                                binding.mainTitle,
+                                binding.mainTitle2,
+                                binding.mainTitle3,
+                                binding.mainTitle4,
+                                binding.mainTitle5,
+                                binding.mainTitle6
+                            )
+
+                            val channelTitleViews = listOf(
+                                binding.channeltitle,
+                                binding.channeltitle2,
+                                binding.channeltitle3,
+                                binding.channeltitle4,
+                                binding.channeltitle5,
+                                binding.channeltitle6
+                            )
 
                             for (i in slicedVideos.indices) {
-                                setupImage(imageViews[i], slicedVideos[i])
+                                val video = slicedVideos[i]
+                                setupImage(imageViews[i], video)
+                                titleViews[i].text = truncateText(video.title, 18)
+                                channelTitleViews[i].text = truncateText(video.channelTitle, 18)
                             }
                         }
                     } else {
@@ -139,6 +159,14 @@ class FragmentHome : Fragment() {
             }
         }
     }
+    private fun truncateText(text: String, maxLength: Int): String {
+        return if (text.length > maxLength) {
+            text.take(maxLength) + "…"
+        } else {
+            text
+        }
+    }
+
     private fun showGuideDialog() {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_guide_first, null)
 
@@ -193,6 +221,7 @@ class FragmentHome : Fragment() {
             startActivity(intent)
         }
     }
+
 
 
 

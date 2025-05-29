@@ -39,6 +39,7 @@
     <dimen name="icon_corner_radius">3dp</dimen>
 
     <dimen name="design_bottom_navigation_height" tools:override="true">60dp</dimen>
-
+    <!-- 이미지 너비-->
+    <dimen name="scroll_image_width">120dp</dimen>
 
 </resources>
