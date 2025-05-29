@@ -3,6 +3,9 @@ package com.example.capston_spotyup.Signin.Domain
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -32,21 +35,6 @@ class SigninActivity : AppCompatActivity() {
         binding = SigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 로그인 버튼 클릭 시 fragment_home으로 이동, 원래 코드 (개발할 때는 이게 더 빠를듯)
-//        binding.loginButton.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
-
-        // 온보딩 전환 코드 (토크 나오고 인증로직 들어가면 이거 써서 풀로 ㄱ)
-//        binding.loginButton.setOnClickListener {
-//            val fragment2 = OnboardingFragment_1()
-//            supportFragmentManager.commit {
-//                setReorderingAllowed(true)
-//                replace(R.id.fragment_container, fragment2)
-//                addToBackStack(null)
-//            }
-//        }
         // 로그인 버튼
         binding.loginButton.setOnClickListener {
             val email = binding.emailLoginEditText.text.toString()
@@ -56,21 +44,31 @@ class SigninActivity : AppCompatActivity() {
 
             RetrofitClient.loginApi.loginWithEmail(request).enqueue(object :
                 Callback<LoginResponse> {
-                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>,
+                ) {
                     if (response.isSuccessful) {
                         val result = response.body()?.result
                         result?.let {
                             TokenManager.saveTokens(it.accessToken, it.refreshToken)
-                            Toast.makeText(this@SigninActivity, "로그인 성공!! ${response.message()}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@SigninActivity,
+                                "로그인 성공!! ${response.message()}",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
                             val intent = Intent(this@SigninActivity, OnboardingActivity::class.java)
                             startActivity(intent)
                             finish()
                         }
-                    }
-                    else {
+                    } else {
                         Log.e("Login", "로그인 실패 - ${response.code()} / ${response.message()}")
-                        Toast.makeText(this@SigninActivity, "로그인 실패!! ${response.message()}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@SigninActivity,
+                            "로그인 실패!! ${response.message()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                     }
                 }
@@ -101,12 +99,125 @@ class SigninActivity : AppCompatActivity() {
                     android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
 
-            binding.passwordLoginEditText.setSelection(binding.passwordLoginEditText.text?.length ?: 0)
+            binding.passwordLoginEditText.setSelection(
+                binding.passwordLoginEditText.text?.length ?: 0
+            )
         }
+
+        setupLoginButton()
+        setupSocialLoginButtons()
+        setupPasswordToggle()
+        setupSignupButton()
 
     }
 
     private fun addToBackStack(nothing: Nothing?) {
         TODO("Not yet implemented")
+    }
+
+    private fun setupLoginButton() {
+        binding.loginButton.setOnClickListener {
+            val email = binding.emailLoginEditText.text.toString()
+            val password = binding.passwordLoginEditText.text.toString()
+            val request = LoginRequest(email, password)
+
+            RetrofitClient.loginApi.loginWithEmail(request).enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                    if (response.isSuccessful) {
+                        response.body()?.result?.let {
+                            TokenManager.saveTokens(it.accessToken, it.refreshToken)
+                            Toast.makeText(this@SigninActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@SigninActivity, OnboardingActivity::class.java))
+                            finish()
+                        }
+                    } else {
+                        Toast.makeText(this@SigninActivity, "로그인 실패: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Log.e("Login", "서버 통신 실패", t)
+                }
+            })
+        }
+    }
+
+    private fun setupSignupButton() {
+        binding.loginButton2.setOnClickListener {
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace(R.id.fragment_container, SignUpFragment())
+                addToBackStack(null)
+            }
+        }
+    }
+
+    private fun setupPasswordToggle() {
+        binding.eye.setOnClickListener {
+            isPasswordVisible = !isPasswordVisible
+            val inputType = if (isPasswordVisible)
+                android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            else
+                android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+            binding.passwordLoginEditText.inputType = inputType
+            binding.passwordLoginEditText.setSelection(binding.passwordLoginEditText.text?.length ?: 0)
+        }
+    }
+
+    private fun setupSocialLoginButtons() {
+        // 보여주기용 로그인 URL
+        val kakaoUrl = "https://kauth.kakao.com/oauth/authorize?client_id=dummy_key&redirect_uri=https://example.com&response_type=code"
+        val naverUrl = "https://nid.naver.com/nidlogin.login"
+        val googleUrl = "https://accounts.google.com/ServiceLogin"
+
+        binding.kakaologin.setOnClickListener {
+            showWebView(binding.kakaoWebView, kakaoUrl)
+        }
+        binding.naverlogin.setOnClickListener {
+            showWebView(binding.naverWebView, naverUrl)
+        }
+        binding.googlelogin.setOnClickListener {
+            showWebView(binding.googleWebView, googleUrl)
+        }
+    }
+
+    private fun showWebView(webView: WebView, url: String) {
+        binding.kakaoWebView.visibility = View.GONE
+        binding.naverWebView.visibility = View.GONE
+        binding.googleWebView.visibility = View.GONE
+
+        webView.visibility = View.VISIBLE
+        webView.settings.javaScriptEnabled = true
+        webView.settings.domStorageEnabled = true
+        webView.settings.userAgentString =
+            "Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.94 Mobile Safari/537.36"
+        webView.webViewClient = WebViewClient()
+        webView.loadUrl(url)
+    }
+    override fun onBackPressed() {
+        when {
+            binding.kakaoWebView.visibility == View.VISIBLE && binding.kakaoWebView.canGoBack() -> {
+                binding.kakaoWebView.goBack()
+            }
+            binding.naverWebView.visibility == View.VISIBLE && binding.naverWebView.canGoBack() -> {
+                binding.naverWebView.goBack()
+            }
+            binding.googleWebView.visibility == View.VISIBLE && binding.googleWebView.canGoBack() -> {
+                binding.googleWebView.goBack()
+            }
+            else -> {
+                // WebView가 표시 중이면 WebView만 닫기
+                if (binding.kakaoWebView.visibility == View.VISIBLE ||
+                    binding.naverWebView.visibility == View.VISIBLE ||
+                    binding.googleWebView.visibility == View.VISIBLE) {
+                    binding.kakaoWebView.visibility = View.GONE
+                    binding.naverWebView.visibility = View.GONE
+                    binding.googleWebView.visibility = View.GONE
+                } else {
+                    super.onBackPressed()
+                }
+            }
+        }
     }
 }
