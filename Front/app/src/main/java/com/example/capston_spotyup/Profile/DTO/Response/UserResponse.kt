@@ -10,13 +10,12 @@ data class UserResponse(
 data class UserResult(
     val name: String,
     val email: String,
-    val nickname: String,
     val password: String,
     val phoneNum: String
 )
 
 data class Friend(
-    val id: Long,
+    val id: Int,
     val name: String,
-    val profileImageUrl: String
+    val profileImageResId: Int
 )

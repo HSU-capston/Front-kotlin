@@ -29,11 +29,7 @@ class FriendsAdapter(private val friendsList: List<Friend>) : RecyclerView.Adapt
         holder.friendName.text = friend.name
 
         // 친구 프로필 이미지 로드 (Glide 사용)
-        Glide.with(holder.itemView.context)
-            .load(friend.profileImageUrl)
-            .placeholder(R.drawable.ic_profile_gray) // 기본 회색 프로필 이미지
-            .circleCrop()
-            .into(holder.friendProfile)
+        holder.friendProfile.setImageResource(friend.profileImageResId)
     }
 
     override fun getItemCount(): Int = friendsList.size
