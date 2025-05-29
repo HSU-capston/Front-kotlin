@@ -10,7 +10,6 @@ data class UserResponse(
 data class UserResult(
     val name: String,
     val email: String,
-    val nickname: String,
     val password: String,
     val phoneNum: String
 )
