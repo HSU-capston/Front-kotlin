@@ -66,11 +66,13 @@ class ProfileFragment : Fragment() {
         }
 
         // 더미 데이터
-        viewModel.loadDummyUserInfo()
+    //   viewModel.loadDummyUserInfo()
+
+        viewModel.getUserInfo() //서버에서 유저 정보 받아옴
 
         viewModel.userInfo.observe(viewLifecycleOwner) { user ->
             name.text = user.name
-            accountCode.text = user.nickname
+            accountCode.text = user.email
         }
 
         return rootView
