@@ -50,7 +50,7 @@ class FragmentHome : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupScrollWithDotsIndicator()
+
         // ViewPager2 어댑터 설정 (4개의 개별 XML 사용)
         val layoutList = listOf(
             R.layout.viewpager1,
@@ -99,9 +99,29 @@ class FragmentHome : Fragment() {
                                 binding.scrollImage5,
                                 binding.scrollImage6
                             )
+                            val titleViews = listOf(
+                                binding.mainTitle,
+                                binding.mainTitle2,
+                                binding.mainTitle3,
+                                binding.mainTitle4,
+                                binding.mainTitle5,
+                                binding.mainTitle6
+                            )
+
+                            val channelTitleViews = listOf(
+                                binding.channeltitle,
+                                binding.channeltitle2,
+                                binding.channeltitle3,
+                                binding.channeltitle4,
+                                binding.channeltitle5,
+                                binding.channeltitle6
+                            )
 
                             for (i in slicedVideos.indices) {
-                                setupImage(imageViews[i], slicedVideos[i])
+                                val video = slicedVideos[i]
+                                setupImage(imageViews[i], video)
+                                titleViews[i].text = truncateText(video.title, 18)
+                                channelTitleViews[i].text = truncateText(video.channelTitle, 18)
                             }
                         }
                     } else {
@@ -139,6 +159,14 @@ class FragmentHome : Fragment() {
             }
         }
     }
+    private fun truncateText(text: String, maxLength: Int): String {
+        return if (text.length > maxLength) {
+            text.take(maxLength) + "…"
+        } else {
+            text
+        }
+    }
+
     private fun showGuideDialog() {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_guide_first, null)
 
@@ -191,29 +219,6 @@ class FragmentHome : Fragment() {
         imageView.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(video.videoUrl))
             startActivity(intent)
-        }
-    }
-
-    private fun setupScrollWithDotsIndicator() {
-        val scrollView = binding.horizontalScrollView4
-        val dotViews = listOf(
-            binding.dot11,
-            binding.dot12,
-            binding.dot13
-        )
-
-        scrollView.viewTreeObserver.addOnScrollChangedListener {
-            val scrollX = scrollView.scrollX
-            val itemWidth = resources.getDimensionPixelSize(R.dimen.scroll_image_width) +  // 이미지 너비
-                    resources.getDimensionPixelSize(R.dimen.spacing_16)            // 마진
-
-            val index = (scrollX + itemWidth / 2) / itemWidth  // 가장 가까운 인덱스 계산
-
-            for (i in dotViews.indices) {
-                val dot = dotViews[i]
-                val drawableRes = if (i == index) R.drawable.dot_active else R.drawable.dot_inactive
-                dot.setBackgroundResource(drawableRes)
-            }
         }
     }
 

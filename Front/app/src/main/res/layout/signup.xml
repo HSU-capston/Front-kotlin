@@ -71,6 +71,18 @@
         app:layout_constraintStart_toStartOf="@+id/naverButton"
         app:layout_constraintTop_toTopOf="@+id/naverButton" />
 
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="17dp"
+        android:elevation="3dp"
+        android:padding="0dp"
+        android:src="@drawable/ic_google"
+        app:layout_constraintStart_toStartOf="@+id/googleButton"
+        app:layout_constraintTop_toTopOf="@+id/googleButton" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/emialButton"
@@ -115,5 +127,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kakaoButton" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/googleButton"
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/Gray9"
+        android:text="구글로 시작하기"
+        android:textColor="@color/Gray3"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/naverButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
