@@ -7,8 +7,8 @@
 
 | 성명                                                 | 역할 및 담당업무                                                                                                        |
 |----------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| <a href="https://github.com/vvan2"> 손주완 </a>   | **Frontend Developer**<br>- 
-| <a href="https://github.com/Hwnsgus"> 황준현 </a>    | **Frontend Developer**<br>-                    |
+| <a href="https://github.com/vvan2"> 손주완 </a>   | 
+| <a href="https://github.com/Hwnsgus"> 황준현 </a>    |                 |
 
 
 ### 👨‍💻GitHub Convention
