@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 interface LoginApi {
     @POST("/login/email")
-    fun loginWithEmail(
+    suspend fun loginWithEmail(
         @Body request: LoginRequest
-    ): Call<LoginResponse>
+    ):LoginResponse
 }
