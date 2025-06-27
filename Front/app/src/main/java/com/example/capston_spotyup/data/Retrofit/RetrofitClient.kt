@@ -19,6 +19,8 @@ import com.example.capston_spotyup.Signup.Api.SmsVerificationApi
 import com.example.capston_spotyup.User.Api.EmailApi
 import com.example.capston_spotyup.Home.Api.HomeApi
 import com.example.capston_spotyup.Survey.Api.SurveyApi
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -85,11 +87,12 @@ object RetrofitClient {
             .build()
             .create(SmsVerificationApi::class.java)
     }
-    val loginApi: LoginApi by lazy {
+    val loginApi by lazy {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory()) // 코루틴 지원 추가
             .build()
             .create(LoginApi::class.java)
     }
